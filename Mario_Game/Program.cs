@@ -1,3 +1,14 @@
-﻿
-using var game = new Mario_Game.Game1();
-game.Run();
+﻿using ScreenMovement;
+using System;
+
+namespace Mario_Game;
+
+public static class Program
+{
+    [STAThread]
+    private static void Main()
+    {
+        using var game = new Game1();
+        game.Run();
+    }
+}
