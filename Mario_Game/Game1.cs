@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 namespace Mario_Game
-{//Added branch
+{
     public class Game1 : Game
     {
         private GraphicsDeviceManager _graphics;
@@ -24,7 +24,7 @@ namespace Mario_Game
             // TODO: Add your initialization logic here
             Globals.Content = Content;
             _gameManager = new();
-            _gameManager.Init(Content);
+            _gameManager.Init();
 
             base.Initialize();
         }

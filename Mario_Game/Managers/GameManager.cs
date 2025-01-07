@@ -19,10 +19,10 @@ namespace Mario_Game
         private Texture2D _playerTexture;
         private Texture2D _CoinTexture;
         private InputManager _inputManager;
-        public void Init(ContentManager content)
+        public void Init()
         {
-            _playerTexture = content.Load<Texture2D>("hero-PlaceHolder");
-            _CoinTexture = content.Load<Texture2D>("coin");
+            _playerTexture = Globals.Content.Load<Texture2D>("hero-PlaceHolder");
+            _CoinTexture = Globals.Content.Load<Texture2D>("coin");
             _hero = new(_playerTexture,new Vector2(500,500),Color.White,200f,new Rectangle(),_coin);
             _coin = new Coin(_CoinTexture,new Vector2(100,100),Color.White,0,new Rectangle());
             _inputManager = new();
