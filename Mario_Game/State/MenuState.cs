@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.ComponentModel;
+using Mario_Game;
 
 namespace NewStartMenu.States
 {
@@ -13,12 +15,12 @@ namespace NewStartMenu.States
     {
         private List<Components> _components;
 
-        public MenuState(Game game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
+        public MenuState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
-            var buttonTexture = content.Load<Texture2D>("Controls/Button");
-            var buttonFont = content.Load<SpriteFont>("Fonts/Fonts");
+            Texture2D buttonTexture = content.Load<Texture2D>("Controls/Button");
+            SpriteFont buttonFont = content.Load<SpriteFont>("Fonts/Fonts");
 
-            var newGameButton = new Button(buttonTexture, buttonFont)
+            Button newGameButton = new Button(buttonTexture, buttonFont)
             {
                 Position = new Vector2(300, 200),
                 Text = "New Game",
@@ -26,7 +28,7 @@ namespace NewStartMenu.States
 
             newGameButton.Click += NewGameButton_Click;
 
-            var loadGameButton = new Button(buttonTexture, buttonFont)
+            Button loadGameButton = new Button (buttonTexture, buttonFont)
             {
                 Position = new Vector2(300, 250),
                 Text = "Load Game",
@@ -34,7 +36,7 @@ namespace NewStartMenu.States
 
             loadGameButton.Click += loadGameButton_Click;
 
-            var quitGameButton = new Button(buttonTexture, buttonFont)
+            Button quitGameButton = new Button(buttonTexture, buttonFont)
             {
                 Position = new Vector2(300, 300),
                 Text = "Quit",
@@ -55,7 +57,7 @@ namespace NewStartMenu.States
         {
             spriteBatch.Begin();
 
-            foreach (var component in _components)
+            foreach (Components component in _components)
                 component.Draw(gameTime, spriteBatch);
 
             spriteBatch.End();
@@ -68,7 +70,7 @@ namespace NewStartMenu.States
 
         private void NewGameButton_Click(object sender, EventArgs e)
         {
-            _game.ChangeState(new GameState(_game, _graphicsDevice, _content));
+           _game.ChangeState(new GameState(_game,_graphicsDevice,_content));
         }
 
         public override void PostUpdate(GameTime gameTime)
@@ -78,7 +80,7 @@ namespace NewStartMenu.States
 
         public override void Update(GameTime gameTime)
         {
-            foreach (var component in _components)
+            foreach (Components component in _components)
                 component.Update(gameTime);
         }
         private void quitGameButton_Click(object sender, EventArgs e)
