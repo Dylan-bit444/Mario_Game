@@ -20,7 +20,7 @@ namespace NewStartMenu.States
             Texture2D buttonTexture = content.Load<Texture2D>("Controls/Button");
             SpriteFont buttonFont = content.Load<SpriteFont>("Fonts/Fonts");
 
-            Button newGameButton = new Button(buttonTexture, buttonFont)
+            Button newGameButton = new (buttonTexture, buttonFont)
             {
                 Position = new Vector2(300, 200),
                 Text = "New Game",

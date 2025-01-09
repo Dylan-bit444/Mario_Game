@@ -67,10 +67,9 @@ namespace NewStartMenu.Controls
 
             if (string.IsNullOrEmpty(Text))
             {
-                var x = (Rectangle.X + (Rectangle.Width / 2)) - (_font.MeasureString(Text).X / 2);
-                var y = (Rectangle.Y + (Rectangle.Height / 2)) - (_font.MeasureString(Text).Y / 2);
+                Vector2 vec = new((Rectangle.X + (Rectangle.Width / 2)) - (_font.MeasureString(Text).X / 2),(Rectangle.Y + (Rectangle.Height / 2)) - (_font.MeasureString(Text).Y / 2));
 
-                spriteBatch.DrawString(_font, Text, new Microsoft.Xna.Framework.Vector2(x, y), PenColour);
+                spriteBatch.DrawString(_font, Text, vec,PenColour);
 
             }
         }
@@ -80,11 +79,18 @@ namespace NewStartMenu.Controls
             _previousMouse = _currentMouse;
             _currentMouse = Mouse.GetState();
 
-            var mouseRectangle = new Rectangle(_currentMouse.X, _currentMouse.Y, 1, 1);
-            {
-                Click?.Invoke(this, new EventArgs());
+            _isHovering = false;
+            Rectangle mouseRectangle = new (_currentMouse.X, _currentMouse.Y, 1, 1);
 
+            if (mouseRectangle.Intersects(Rectangle))
+            {
+                _isHovering = true;
+                if(_currentMouse.LeftButton == ButtonState.Released && _previousMouse.LeftButton == ButtonState.Pressed)
+                {
+                    Click?.Invoke(this, new EventArgs());
+                }
             }
+            
 
         }
         #endregion

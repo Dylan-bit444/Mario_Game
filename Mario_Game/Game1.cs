@@ -23,6 +23,8 @@ namespace Mario_Game
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            //_graphics.IsFullScreen = true;
+            //IsFixedTimeStep = false;
         }
 
         protected override void Initialize()

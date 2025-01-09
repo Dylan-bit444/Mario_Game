@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Mario_Game;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -17,7 +18,7 @@ namespace NewStartMenu.States
 
         protected GraphicsDevice _graphicsDevice;
 
-        protected Game _game;
+        protected Game1 _game;
 
         #endregion
 
@@ -27,7 +28,7 @@ namespace NewStartMenu.States
 
         public abstract void PostUpdate(GameTime gameTime);
 
-        public State(Game game, GraphicsDevice graphicsDevice, ContentManager content)
+        public State(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)
         {
             _game = game;
             _graphicsDevice = graphicsDevice;
