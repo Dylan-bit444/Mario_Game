@@ -12,17 +12,21 @@ namespace Mario_Game
 {
     internal class AnimationManager
     {
-        private Dictionary<object, Animation> Animation = new();
-        private object LastKeyPress;
+        private Dictionary<Vector2, Animation> Animation = new();
+        private Vector2 LastKeyPress;
 
-        public void AddAnimation(object key, Animation animation)
+        public void AddAnimation(Vector2 key, Animation animation)
         {
             Animation.Add(key, animation);
             LastKeyPress = key;
         }
 
-        public void Update(object key)
+        public void Update(Vector2 key)
         {
+            if (InputManager.Mickel)
+            {
+                key = -key;
+            }
             if (Animation.TryGetValue(key, out Animation value))
             {
                 value.Start();

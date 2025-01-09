@@ -10,12 +10,13 @@ namespace Mario_Game
         private  Texture2D Texture;
         private Rectangle []Rectangles= new Rectangle[64];
         private int Frames;
+        private int FrameSection;
         private int CurrentFrame;
         private float FramTime;
         private float FrameTimeLeft;
         private bool Active = true;
 
-        public Animation(Texture2D texture, int framesX, int framesY, float frameTime, int row = 0)
+        public Animation(Texture2D texture, int framesX, int framesY, float frameTime, int row = 0, int frameSection = 0)
         {
             Texture = texture;
             FramTime = frameTime;
@@ -23,11 +24,13 @@ namespace Mario_Game
             Frames = framesX;
             var frameWidth = Texture.Width / framesX;
             var frameHeight = Texture.Height / framesY;
-
+            FrameSection = frameSection;
             for (int i = 0; i < Frames; i++)
             {
                 Rectangles[i] = new Rectangle(i * frameWidth, (row) * frameHeight, frameWidth, frameHeight);
             }
+
+            
         }
 
         public void Stop()

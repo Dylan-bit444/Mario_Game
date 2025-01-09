@@ -6,6 +6,7 @@ namespace Mario_Game
 {
     public class InputManager
     {
+        public static bool Mickel;
         private static Vector2 _direction = Vector2.Zero;
         public static Vector2 Direction => _direction;
         public static bool Moving => _direction != Vector2.Zero;
@@ -69,6 +70,14 @@ namespace Mario_Game
             if (keyboardState.IsKeyDown(Keys.S) || keyboardState.IsKeyDown(Keys.Down))
             {
                 _direction += new Vector2(0, 1); 
+            }
+            if (keyboardState.IsKeyDown(Keys.M))
+            {
+                Mickel = true;
+            }
+            else if (keyboardState.IsKeyDown(Keys.N))
+            {
+                Mickel = false;
             }
         }
     }
