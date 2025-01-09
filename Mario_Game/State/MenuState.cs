@@ -5,9 +5,9 @@ using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System;
-using Main_menu.Modles;
+using Mario_Game;
 
-namespace Main_menu.States
+namespace Mario_Game
 {
     public class MenuState : State
     {

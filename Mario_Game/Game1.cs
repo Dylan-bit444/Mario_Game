@@ -7,54 +7,65 @@ namespace Mario_Game
 {
     public class Game1 : Game
     {
-        private GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
-        private GameManager _gameManager;
+        GraphicsDeviceManager _graphics;
+        SpriteBatch _spriteBatch;
+
+        private State _currentState;
+
+        private State _nextState;
+
+        public void ChangeState(State state)
+        {
+            _nextState = state;
+        }
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            IsMouseVisible = true;
+            _graphics.IsFullScreen = true;
+            IsFixedTimeStep = false;
             _graphics.PreferredBackBufferWidth = 2000;
             _graphics.PreferredBackBufferHeight = 2000;
-        }
+            _graphics.ApplyChanges();
 
+        }
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-            Globals.Content = Content;
-            _gameManager = new();
-            _gameManager.Init();
+            IsMouseVisible = true;
 
             base.Initialize();
         }
-
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            Globals.SpriteBatch = _spriteBatch;
-            // TODO: use this.Content to load your game content here
-        }
 
+            _currentState = new MenuState(this, _graphics.GraphicsDevice, Content);
+        }
         protected override void Update(GameTime gameTime)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
-            // TODO: Add your update logic here
+            Globals.SpriteBatch = _spriteBatch;
+            Globals.Content = Content;
             Globals.Update(gameTime);
-            _gameManager.Update();
+            if (_nextState != null)
+            {
+                _currentState = _nextState;
+
+                _nextState = null;
+            }
+
+            _currentState.Update(gameTime);
+
             base.Update(gameTime);
         }
-
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
-            _spriteBatch.Begin();
-            _gameManager.Draw();
-            _spriteBatch.End();
+            _currentState.Draw(gameTime, _spriteBatch);
+
             base.Draw(gameTime);
         }
     }
