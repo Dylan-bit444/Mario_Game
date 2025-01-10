@@ -48,7 +48,7 @@ namespace Mario_Game
         }
         private void LoadGameButton_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("Load Game");
+            Games.ChangeState(new LoadState(Games, _graphicsDevice, _content));
         }
         private void NewGameButton_Click(object sender, EventArgs e)
         {

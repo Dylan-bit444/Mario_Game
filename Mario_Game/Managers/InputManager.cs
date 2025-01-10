@@ -71,7 +71,7 @@ namespace Mario_Game
             {
                 _direction += new Vector2(0, 1); 
             }
-            if (keyboardState.IsKeyDown(Keys.M))
+            if (keyboardState.IsKeyDown(Keys.M)&& keyboardState.IsKeyDown(Keys.J))
             {
                 Mickel = true;
             }
