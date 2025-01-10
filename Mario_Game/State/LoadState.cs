@@ -14,6 +14,7 @@ namespace Mario_Game
         public LoadState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)
             : base(game, graphicsDevice, content)
         {
+
         }
         public override void PostUpdate(GameTime gameTime)
         {
