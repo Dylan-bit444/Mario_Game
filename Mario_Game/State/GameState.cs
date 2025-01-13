@@ -18,7 +18,7 @@ namespace Mario_Game
         private Button SaveButton;
         private InputManager _inputManager;
         public SaveData Saves;
-        public GameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content,SaveData saves=null)
+        public GameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content,SaveData saves)
             : base(game, graphicsDevice, content)
         {
             Saves = saves;
@@ -37,8 +37,11 @@ namespace Mario_Game
             {
                 _hero = new(_playerTexture, Saves.SavedPostion, Color.White, 200f, new Rectangle(), _coin);
             }
+            else
+            {
+                _hero = new(_playerTexture, new Vector2(500, 500), Color.White, 200f, new Rectangle(), _coin);
+            }
             _coin = new Coin(_CoinTexture, new Vector2(100, 100), Color.White, 0, new Rectangle());
-            _hero = new(_playerTexture, new Vector2(500, 500), Color.White, 200f, new Rectangle(), _coin);
             _inputManager = new();
         }
 

@@ -52,7 +52,7 @@ namespace Mario_Game
         }
         private void NewGameButton_Click(object sender, EventArgs e)
         {
-            Games.ChangeState(new GameState(Games, _graphicsDevice, _content));
+            Games.ChangeState(new GameState(Games, _graphicsDevice, _content,null));
         }
         private void QuitGameButton_Click(object sender, EventArgs e)
         {
