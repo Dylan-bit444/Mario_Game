@@ -30,7 +30,7 @@ namespace NewStartMenu.States
 
             Button loadGameButton = new (buttonTexture, buttonFont)
             {
-                Position = new Vector2(300, 250),
+                Position = new Vector2(300, 500),
                 Text = "Load Game",
             };
 
@@ -38,7 +38,7 @@ namespace NewStartMenu.States
 
             Button quitGameButton = new Button(buttonTexture, buttonFont)
             {
-                Position = new Vector2(300, 300),
+                Position = new Vector2(300, 750),
                 Text = "Quit",
             };
 

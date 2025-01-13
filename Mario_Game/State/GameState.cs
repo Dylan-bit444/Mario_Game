@@ -12,12 +12,17 @@ namespace NewStartMenu.States
 {
     public class GameState : State
     {
+
+
         public GameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
+            Texture2D buttonTexture = _content.Load<Texture2D>("Button");
+            SpriteFont buttonFont = _content.Load<SpriteFont>("File");
 
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+
+    public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
 
         }

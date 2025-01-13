@@ -64,14 +64,9 @@ namespace NewStartMenu.Controls
                 colour = Color.Gray;
 
             spriteBatch.Draw(_texture, Rectangle, colour);
+            Vector2 vec = new((Rectangle.X + (Rectangle.Width / 2)) - (_font.MeasureString(Text).X / 2),(Rectangle.Y + (Rectangle.Height / 2)) - (_font.MeasureString(Text).Y / 2));
 
-            if (string.IsNullOrEmpty(Text))
-            {
-                Vector2 vec = new((Rectangle.X + (Rectangle.Width / 2)) - (_font.MeasureString(Text).X / 2),(Rectangle.Y + (Rectangle.Height / 2)) - (_font.MeasureString(Text).Y / 2));
-
-                spriteBatch.DrawString(_font, Text, vec,PenColour);
-
-            }
+           spriteBatch.DrawString(_font, Text, vec,PenColour);
         }
 
         public override void Update(GameTime gameTime)
