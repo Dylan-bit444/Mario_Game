@@ -16,8 +16,6 @@ namespace NewStartMenu.States
 
         public GameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
-            Texture2D buttonTexture = _content.Load<Texture2D>("Button");
-            SpriteFont buttonFont = _content.Load<SpriteFont>("File");
 
         }
 
