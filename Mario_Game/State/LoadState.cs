@@ -18,11 +18,12 @@ namespace Mario_Game
             : base(game, graphicsDevice, content) { }
         public override void PostUpdate(GameTime gameTime)
         {
+
         }
         public override void Update(GameTime gameTime)
         {
             Load();
-            saveData.SavedPostion = saveData.SavedPostion;
+            Games.ChangeState(new GameState(Games, _graphicsDevice, _content,saveData));
         }
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {

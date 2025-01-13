@@ -1,4 +1,5 @@
 ﻿using Mario_Game;
+using Mario_Game.modles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -16,9 +17,11 @@ namespace Mario_Game
         private Hero _hero;
         private Button SaveButton;
         private InputManager _inputManager;
-        public GameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)
+        public SaveData Saves;
+        public GameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content,SaveData saves=null)
             : base(game, graphicsDevice, content)
         {
+            Saves = saves;
             Texture2D buttonTexture = _content.Load<Texture2D>("Button");
             SpriteFont buttonFont = _content.Load<SpriteFont>("File");
             SaveButton = new(buttonTexture, buttonFont)
@@ -30,6 +33,10 @@ namespace Mario_Game
             graphicsDevice.Clear(Color.CornflowerBlue);
             _playerTexture = content.Load<Texture2D>("hero-PlaceHolder");
             _CoinTexture = content.Load<Texture2D>("coin");
+            if(Saves != null)
+            {
+                _hero = new(_playerTexture, Saves.SavedPostion, Color.White, 200f, new Rectangle(), _coin);
+            }
             _coin = new Coin(_CoinTexture, new Vector2(100, 100), Color.White, 0, new Rectangle());
             _hero = new(_playerTexture, new Vector2(500, 500), Color.White, 200f, new Rectangle(), _coin);
             _inputManager = new();
