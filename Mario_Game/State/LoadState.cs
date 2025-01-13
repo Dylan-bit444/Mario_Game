@@ -21,11 +21,13 @@ namespace Mario_Game
         }
         public override void Update(GameTime gameTime)
         {
+            Load();
+            saveData.SavedPostion = saveData.SavedPostion;
         }
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
         }
-        public static void Load()
+        public void Load()
         {
             String FileName = "Save_Data.txt";
             if (File.Exists(FileName))
@@ -35,9 +37,10 @@ namespace Mario_Game
                     string line;
                     while ((line = reader.ReadLine()) != null)
                     {
-                        string[] parts = line.Split(',');
-                        if (parts.Length == 2 && int.TryParse(parts[1], out var scoreValue))
+                        var parts = line.Split(',');
+                        if (parts.Length == 2 && int.TryParse(parts[1], out var scoreValue) && int.TryParse(parts[0], out var scorValue))
                         {
+                            saveData.SavedPostion = new(scorValue, scoreValue);
 
                         }
                     }
