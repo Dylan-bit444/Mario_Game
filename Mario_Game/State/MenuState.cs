@@ -28,13 +28,13 @@ namespace NewStartMenu.States
 
             newGameButton.Click += NewGameButton_Click;
 
-            Button loadGameButton = new Button (buttonTexture, buttonFont)
+            Button loadGameButton = new (buttonTexture, buttonFont)
             {
                 Position = new Vector2(300, 250),
                 Text = "Load Game",
             };
 
-            loadGameButton.Click += loadGameButton_Click;
+            loadGameButton.Click += LoadGameButton_Click;
 
             Button quitGameButton = new Button(buttonTexture, buttonFont)
             {
@@ -42,13 +42,13 @@ namespace NewStartMenu.States
                 Text = "Quit",
             };
 
-            quitGameButton.Click += quitGameButton_Click;
+            quitGameButton.Click += QuitGameButton_Click;
 
             _components = new List<Components>()
             {
                 newGameButton,
                 loadGameButton,
-                quitGameButton
+                quitGameButton,
             };
 
 
@@ -63,19 +63,19 @@ namespace NewStartMenu.States
             spriteBatch.End();
         }
 
-        private void loadGameButton_Click(object sender, EventArgs e)
+        private void LoadGameButton_Click(object sender, EventArgs e)
         {
             Console.WriteLine("Load Game");
         }
 
         private void NewGameButton_Click(object sender, EventArgs e)
         {
-           _game.ChangeState(new GameState(_game,_graphicsDevice,_content));
+           Game.ChangeState(new GameState(Game,_graphicsDevice,_content));
         }
 
         public override void PostUpdate(GameTime gameTime)
         {
-            // Remove sprites if they're not needed
+            throw new NotImplementedException();
         }
 
         public override void Update(GameTime gameTime)
@@ -83,9 +83,9 @@ namespace NewStartMenu.States
             foreach (Components component in _components)
                 component.Update(gameTime);
         }
-        private void quitGameButton_Click(object sender, EventArgs e)
+        private void QuitGameButton_Click(object sender, EventArgs e)
         {
-            _game.Exit();
+            Game.Exit();
         }
     }
 }

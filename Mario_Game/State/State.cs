@@ -18,7 +18,7 @@ namespace NewStartMenu.States
 
         protected GraphicsDevice _graphicsDevice;
 
-        protected Game1 _game;
+        protected Game1 Game;
 
         #endregion
 
@@ -30,7 +30,7 @@ namespace NewStartMenu.States
 
         public State(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)
         {
-            _game = game;
+            Game = game;
             _graphicsDevice = graphicsDevice;
             _content = content;
         }

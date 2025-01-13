@@ -23,13 +23,15 @@ namespace Mario_Game
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            //_graphics.IsFullScreen = true;
-            //IsFixedTimeStep = false;
+            _graphics.IsFullScreen = true;
+            _graphics.PreferredBackBufferWidth = 2000;
+            _graphics.PreferredBackBufferHeight = 2000;
+            _graphics.ApplyChanges();
         }
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            
             IsMouseVisible = true;
 
             base.Initialize();
@@ -39,14 +41,16 @@ namespace Mario_Game
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
             _currentState = new MenuState(this, _graphics.GraphicsDevice, Content);
         }
 
         protected override void Update(GameTime gameTime)
         {
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+            {
+                Exit();
+            }
 
-            // TODO: Add your update logic here
             if (_nextState != null)
             {
                 _currentState = _nextState;
@@ -55,7 +59,7 @@ namespace Mario_Game
             }
             _currentState.Update(gameTime);
 
-            _currentState.PostUpdate(gameTime);
+            
 
             base.Update(gameTime);
         }
@@ -64,7 +68,7 @@ namespace Mario_Game
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+       
             _currentState.Draw(gameTime, _spriteBatch);
 
             base.Draw(gameTime);
