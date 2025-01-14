@@ -21,7 +21,7 @@ namespace Mario_Game
 
             TileSize = new(textures[0].Width, textures[0].Height);
             MapSize = new(TileSize.X * _mapTileSize.X, TileSize.Y * _mapTileSize.Y);
-
+            //Comment
             Random random = new();
 
             for (int y = 0; y < _mapTileSize.Y; y++)
