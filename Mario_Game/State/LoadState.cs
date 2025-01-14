@@ -15,7 +15,10 @@ namespace Mario_Game
     {
         public SaveData saveData;
         public LoadState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)
-            : base(game, graphicsDevice, content) { }
+            : base(game, graphicsDevice, content) 
+        {
+            saveData=new SaveData();
+        }
         public override void PostUpdate(GameTime gameTime)
         {
 
@@ -35,15 +38,14 @@ namespace Mario_Game
             {
                 using (StreamReader reader = new(FileName))
                 {
-                    string line;
-                    while ((line = reader.ReadLine()) != null)
+                    string line = reader.ReadLine();
+                    var parts = line.Split(',');
+                    if (parts.Length == 2 )
                     {
-                        var parts = line.Split(',');
-                        if (parts.Length == 2 && int.TryParse(parts[1], out var scoreValue) && int.TryParse(parts[0], out var scorValue))
-                        {
-                            saveData.SavedPostion = new(scorValue, scoreValue);
+                        float x = float.Parse(parts[0].Trim());
+                        float y = float.Parse(parts[1].Trim());
+                        saveData.SavedPostion = new(x,y);
 
-                        }
                     }
                 }
             }

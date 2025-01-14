@@ -71,7 +71,7 @@ namespace Mario_Game
             String fileName = "Save_Data.txt";
             using (StreamWriter writer = new(fileName, false))
             {
-                writer.WriteLine($"{_hero.Position}");
+                writer.WriteLine($"{_hero.Position.X},{_hero.Position.Y}");
             }
         }
     }
