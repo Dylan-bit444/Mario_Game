@@ -23,7 +23,7 @@ namespace Mario_Game
         public void Update()
         {
             Position += InputManager.Direction * Globals.Time * SPEED;
-           // Position = Vector2.Clamp(Position, _minPos, _maxPos);
+            //Position = Vector2.Clamp(Position, _minPos, _maxPos);
         }
     }
 }

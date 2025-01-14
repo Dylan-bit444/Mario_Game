@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
-using SharpDX.Direct3D9;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -8,7 +7,7 @@ namespace Mario_Game
 {
     public class Map
     {
-        private readonly Point _mapTileSize = new(6, 5);
+        private readonly Point _mapTileSize = new(25, 5);
         private readonly Sprite[,] _tiles;
         public Point TileSize { get; private set; }
         public Point MapSize { get; private set; }

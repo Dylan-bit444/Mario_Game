@@ -10,7 +10,6 @@ namespace Mario_Game
         private readonly Map _map;
         private readonly Hero _hero;
         private Matrix _translation;
-
         public GameManager()
         {
             _map = new();
