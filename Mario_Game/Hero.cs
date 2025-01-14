@@ -5,7 +5,7 @@ using System.Numerics;
 
 namespace Mario_Game
 {
-    public class Hero : Sprite
+    public class Hero : Sprite 
     {
         public Hero(Texture2D texture, Vector2 position) : base(texture , position)
         { }
@@ -24,6 +24,11 @@ namespace Mario_Game
         {
             Position += InputManager.Direction * Globals.Time * SPEED;
             //Position = Vector2.Clamp(Position, _minPos, _maxPos);
+            if (Position.Y > Globals.WindowSize.Y)
+            {
+                Position = new Vector2(Globals.WindowSize.X / 2 - 100, Globals.WindowSize.Y - 100);
+
+            }
         }
     }
 }
