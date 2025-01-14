@@ -6,7 +6,7 @@ namespace Mario_Game
 {
     internal class Hero:Sprite
     {
-        private AnimationManager Animations = new();
+        public AnimationManager Animations = new();
         private int CoinsCollected=0;
         private Coin Coins {get; set;}
         public Hero():base() { }

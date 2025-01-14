@@ -10,5 +10,6 @@ namespace Mario_Game.modles
     public class SaveData
     {
         public Vector2 SavedPostion { get; set; }
+        public Vector2 SavedAnimation { get; set; }
     }
 }

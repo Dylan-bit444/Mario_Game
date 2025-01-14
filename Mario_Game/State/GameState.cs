@@ -36,6 +36,7 @@ namespace Mario_Game
             if(Saves != null)
             {
                 _hero = new(_playerTexture, Saves.SavedPostion, Color.White, 200f, new Rectangle(), _coin);
+                _hero.Animations.LastKeyPress = Saves.SavedAnimation;
             }
             else
             {
@@ -71,7 +72,7 @@ namespace Mario_Game
             String fileName = "Save_Data.txt";
             using (StreamWriter writer = new(fileName, false))
             {
-                writer.WriteLine($"{_hero.Position.X},{_hero.Position.Y}");
+                writer.WriteLine($"{_hero.Position.X},{_hero.Position.Y},{_hero.Animations.LastKeyPress.X},{_hero.Animations.LastKeyPress.Y}");
             }
         }
     }
