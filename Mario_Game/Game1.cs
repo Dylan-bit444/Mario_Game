@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using NewStartMenu.States;
+using System.Windows.Forms;
 
 namespace Mario_Game
 {//Added Branch
@@ -9,6 +10,13 @@ namespace Mario_Game
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+
+
+        bool paused = false;
+        Texture2D pausedTexture;
+        Rectangle pausedRectangle;
+        Button btnPlay, btnQuit;
+
 
         private State _currentState;
 
@@ -41,6 +49,13 @@ namespace Mario_Game
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            pausedTexture = Content.Load<Texture2D>("Paused");
+            pausedRectangle = new Rectangle (0,0, pausedTexture.Width, pausedTexture.Height);
+            btnPlay = new Button();
+            btnPlay.Load(Content.Load<Texture2D>("Play"), new Vector2(350, 225));
+            btnQuit = new Button();
+            btnQuit.Load (Content.Load<Texture2D>("Quit"), new Vector2(350, 275));
+
             _currentState = new MenuState(this, _graphics.GraphicsDevice, Content);
         }
 
@@ -48,7 +63,7 @@ namespace Mario_Game
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
-                Exit();
+                PauseState();
             }
 
             if (_nextState != null)
@@ -59,7 +74,12 @@ namespace Mario_Game
             }
             _currentState.Update(gameTime);
 
-            
+            MouseState mouse = Mouse.GetState();
+
+            if(!paused)
+            {
+
+            }
 
             base.Update(gameTime);
         }
@@ -70,6 +90,15 @@ namespace Mario_Game
 
        
             _currentState.Draw(gameTime, _spriteBatch);
+
+            SpriteBatch.Begin();
+            if (paused)
+            {
+                SpriteBatch.Draw(pausedTexture, pausedRectangle, Color.White);
+                btnPlay.Draw(spriteBatch);
+                btnQuit.Draw(SpriteBatch);
+            }
+
 
             base.Draw(gameTime);
         }
