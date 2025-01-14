@@ -22,7 +22,7 @@ namespace Mario_Game
             : base(texture, position, _colour, _velocity, _boundingbox)
         {
         }
-        private void UpdateVelocity()
+        public void UpdateVelocity(GraphicsDeviceManager _graphics)
         {
 
             if (Keyboard.GetState().IsKeyDown(Keys.A))
@@ -47,10 +47,10 @@ namespace Mario_Game
         }
         public void Update()
         {
-            UpdateVelocity();
+            //UpdateVelocity(_graphics);
             Position += _velocity * Globals.Time;
         }
-        private void UpdatePosition()
+        public void UpdatePosition()
         {
             _onGround = false;
             var newPos = Position + (_velocity * Globals.Time);
