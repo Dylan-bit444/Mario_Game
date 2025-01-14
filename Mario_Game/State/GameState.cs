@@ -13,7 +13,7 @@ namespace Mario_Game
     {
         private Texture2D _playerTexture;
         private Texture2D _CoinTexture;
-        private Coin _coin;
+        private Coin[] _coin = new Coin[5];
         private Hero _hero;
         private Button SaveButton;
         private InputManager _inputManager;
@@ -35,22 +35,30 @@ namespace Mario_Game
             _CoinTexture = content.Load<Texture2D>("coin");
             if(Saves != null)
             {
-                _hero = new(_playerTexture, Saves.SavedPostion, Color.White, 200f, new Rectangle(), _coin);
+                _hero = new(_playerTexture, Saves.SavedPostion, Color.White, 200f, new Coin[10]);
+                _hero.CoinsCollected = saves.SavedCoins;
                 _hero.Animations.LastKeyPress = Saves.SavedAnimation;
             }
             else
             {
-                _hero = new(_playerTexture, new Vector2(500, 500), Color.White, 200f, new Rectangle(), _coin);
+                _hero = new(_playerTexture, new Vector2(500, 500), Color.White, 200f,new Coin[10]);
             }
-            _coin = new Coin(_CoinTexture, new Vector2(100, 100), Color.White, 0, new Rectangle());
+            for (int i = 0; i < _coin.Length; i++)
+            {
+                _coin[i] = new Coin(_CoinTexture, new Vector2(100*i, 100*i), Color.White, 0);
+            }
+            _hero.Coins =_coin;
             _inputManager = new();
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
+            SpriteFont hudFont = Globals.Content.Load<SpriteFont>("HudText");
             spriteBatch.Begin();
             SaveButton.Draw(gameTime, spriteBatch);
-            _coin.Draw();
+            spriteBatch.DrawString(hudFont, $"Coins: {_hero.CoinsCollected}",new Vector2(1500,0),Color.White);
+            foreach (Coin coin in _coin) 
+            coin.Draw();
             _hero.Draw();
             spriteBatch.End();
         }
@@ -62,9 +70,10 @@ namespace Mario_Game
 
         public override void Update(GameTime gameTime)
         {
-            _inputManager.Update();
-            _coin.Update();
             SaveButton.Update(gameTime);
+            _inputManager.Update();
+            foreach (Coin coin in _coin) 
+            coin.Update();
             _hero.Update();
         }
         private void SaveButton_Click(object sender, EventArgs e)
@@ -72,7 +81,7 @@ namespace Mario_Game
             String fileName = "Save_Data.txt";
             using (StreamWriter writer = new(fileName, false))
             {
-                writer.WriteLine($"{_hero.Position.X},{_hero.Position.Y},{_hero.Animations.LastKeyPress.X},{_hero.Animations.LastKeyPress.Y}");
+                writer.WriteLine($"{_hero.Position.X},{_hero.Position.Y},{_hero.Animations.LastKeyPress.X},{_hero.Animations.LastKeyPress.Y},{_hero.CoinsCollected}");
             }
         }
     }

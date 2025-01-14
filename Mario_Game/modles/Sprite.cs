@@ -6,16 +6,15 @@ namespace Mario_Game
     {
         public Sprite()
         { }
-        public Sprite(Texture2D _texture, Vector2 _position, Color _color, float _volocity,Rectangle _box)
+        public Sprite(Texture2D _texture, Vector2 _position, Color _color, float _volocity)
         {
             Texture = _texture;
             Position = _position;
             Color = _color;
             Volocity = _volocity;
-            _box= new Rectangle((int)Position.X,(int)Position.Y,Texture.Height,Texture.Width);
-            HitBox=_box;
+            HitBox= new Rectangle((int)Position.X, (int)Position.Y, Texture.Height, Texture.Width);
         }
-        public Rectangle HitBox {  get; set; }
+        public Rectangle HitBox;
         public Vector2 Position { get; set; }
         public Color Color { get; set; }
         public float Volocity { get; set; }

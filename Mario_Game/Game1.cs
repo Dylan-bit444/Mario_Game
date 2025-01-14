@@ -47,7 +47,7 @@ namespace Mario_Game
         protected override void Update(GameTime gameTime)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
-                ChangeState(new GameState(, GraphicsDevice, Globals.Content, null)); ;
+                ChangeState(new MenuState(this, GraphicsDevice, Globals.Content)); 
             Globals.SpriteBatch = _spriteBatch;
             Globals.Content = Content;
             Globals.Update(gameTime);

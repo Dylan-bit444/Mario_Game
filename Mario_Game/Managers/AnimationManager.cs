@@ -12,7 +12,7 @@ namespace Mario_Game
 {
     internal class AnimationManager
     {
-        private Dictionary<Vector2, Animation> Animation = new();
+        public Dictionary<Vector2, Animation> Animation = new();
         public Vector2 LastKeyPress;
 
         public void AddAnimation(Vector2 key, Animation animation)

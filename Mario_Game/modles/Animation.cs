@@ -2,13 +2,14 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace Mario_Game
 {
     internal class Animation
     {
         private  Texture2D Texture;
-        private Rectangle []Rectangles= new Rectangle[64];
+        public Rectangle []Rectangles= new Rectangle[64];
         private int Frames;
         private int FrameSection;
         private int CurrentFrame;
