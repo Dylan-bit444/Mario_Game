@@ -50,7 +50,7 @@ namespace Mario_Game
             _hero.Coins =_coin;
             _inputManager = new();
         }
-
+        //need to push
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             SpriteFont hudFont = Globals.Content.Load<SpriteFont>("HudText");
