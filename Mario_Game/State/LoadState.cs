@@ -11,22 +11,18 @@ using Mario_Game.modles;
 
 namespace Mario_Game
 {
-    public class LoadState : State
+    public class LoadState : Structure
     {
         public SaveData saveData;
-        public LoadState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)
-            : base(game, graphicsDevice, content)
+        public LoadState()
+            : base()
         {
             saveData = new SaveData();
-        }
-        public override void PostUpdate(GameTime gameTime)
-        {
-
         }
         public override void Update(GameTime gameTime)
         {
             Load();
-            Games.ChangeState(new GameState(Games, _graphicsDevice, _content, saveData));
+            Globals.GameOne.ChangeState(new GameState(saveData));
         }
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {

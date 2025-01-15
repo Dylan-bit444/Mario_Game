@@ -1,5 +1,6 @@
 ﻿using Mario_Game;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -12,11 +13,11 @@ namespace Mario_Game
         GraphicsDeviceManager _graphics;
         SpriteBatch _spriteBatch;
 
-        private State _currentState;
+        private Structure _currentState;
 
-        private State _nextState;
+        private Structure _nextState;
 
-        public void ChangeState(State state)
+        public void ChangeState(Structure state)
         {
             _nextState = state;
         }
@@ -42,14 +43,17 @@ namespace Mario_Game
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            _currentState = new MenuState(this, _graphics.GraphicsDevice, Content);
+            _currentState = new MenuState();
+            
         }
         protected override void Update(GameTime gameTime)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
-                ChangeState(new MenuState(this, GraphicsDevice, Globals.Content)); 
+                ChangeState(new MenuState()); 
             Globals.SpriteBatch = _spriteBatch;
+            Globals.Device = GraphicsDevice;
             Globals.Content = Content;
+            Globals.GameOne = this;
             Globals.Update(gameTime);
             if (_nextState != null)
             {

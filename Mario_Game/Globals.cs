@@ -9,6 +9,8 @@ namespace Mario_Game
         public static float TotalSeconds { get; set; }
         public static ContentManager Content { get; set; }
         public static SpriteBatch SpriteBatch { get; set; }
+        public static GraphicsDevice Device { get; set; }
+        public static Game1 GameOne { get; set; }
 
         public static void Update(GameTime gt)
         {

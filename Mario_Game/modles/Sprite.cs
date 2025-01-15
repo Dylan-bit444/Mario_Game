@@ -12,7 +12,7 @@ namespace Mario_Game
             Position = _position;
             Color = _color;
             Volocity = _volocity;
-            HitBox= new Rectangle((int)Position.X, (int)Position.Y, Texture.Height, Texture.Width);
+            HitBox= new Rectangle();
         }
         public Rectangle HitBox;
         public Vector2 Position { get; set; }

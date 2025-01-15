@@ -9,13 +9,13 @@ using Mario_Game;
 
 namespace Mario_Game
 {
-    public class MenuState : State
+    public class MenuState : Structure
     {
         private List<Structure> Components;
-        public MenuState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
+        public MenuState() : base()
         {
-            Texture2D buttonTexture = _content.Load<Texture2D>("Button");
-            SpriteFont buttonFont = _content.Load<SpriteFont>("File");
+            Texture2D buttonTexture = Globals.Content.Load<Texture2D>("Button");
+            SpriteFont buttonFont = Globals.Content.Load<SpriteFont>("File");
 
             Button newGameButton = new(buttonTexture, buttonFont)
             {
@@ -48,23 +48,16 @@ namespace Mario_Game
         }
         private void LoadGameButton_Click(object sender, EventArgs e)
         {
-            Games.ChangeState(new LoadState(Games, _graphicsDevice, _content));
+            Globals.GameOne.ChangeState(new LoadState());
         }
         private void NewGameButton_Click(object sender, EventArgs e)
         {
-            Games.ChangeState(new GameState(Games, _graphicsDevice, _content,null));
+            Globals.GameOne.ChangeState(new GameState(null));
         }
         private void QuitGameButton_Click(object sender, EventArgs e)
         {
-            Games.Exit();
+            Globals.GameOne.Exit();
         }
-
-
-        public override void PostUpdate(GameTime gameTime)
-        {
-            throw new NotImplementedException();
-        }
-
         public override void Update(GameTime gameTime)
         {
             foreach (Structure component in Components)

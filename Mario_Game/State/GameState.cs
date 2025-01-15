@@ -9,31 +9,31 @@ using System.IO;
 
 namespace Mario_Game
 {
-    public class GameState : State
+    public class GameState :Structure
     {
         private Texture2D _playerTexture;
         private Texture2D _CoinTexture;
-        private Coin[] _coin = new Coin[5];
+        private Coin[] _coin = new Coin[10];
         private Hero _hero;
         private Button SaveButton;
         private InputManager _inputManager;
         public SaveData Saves;
-        public GameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content,SaveData saves)
-            : base(game, graphicsDevice, content)
+        public GameState(SaveData saves)
+          
         {
             Saves = saves;
-            Texture2D buttonTexture = _content.Load<Texture2D>("Button");
-            SpriteFont buttonFont = _content.Load<SpriteFont>("File");
+            Texture2D buttonTexture = Globals.Content.Load<Texture2D>("Button");
+            SpriteFont buttonFont = Globals.Content.Load<SpriteFont>("File");
             SaveButton = new(buttonTexture, buttonFont)
             {
                 Position = new Vector2(0, 0),
                 Text = "Save",
             };
             SaveButton.Click += SaveButton_Click;
-            graphicsDevice.Clear(Color.CornflowerBlue);
-            _playerTexture = content.Load<Texture2D>("hero-PlaceHolder");
-            _CoinTexture = content.Load<Texture2D>("coin");
-            if(Saves != null)
+            Globals.Device.Clear(Color.CornflowerBlue);
+            _playerTexture = Globals.Content.Load<Texture2D>("hero-PlaceHolder");
+            _CoinTexture = Globals.Content.Load<Texture2D>("coin");
+            if(Saves != null)   
             {
                 _hero = new(_playerTexture, Saves.SavedPostion, Color.White, 200f, new Coin[10]);
                 _hero.CoinsCollected = saves.SavedCoins;
@@ -41,11 +41,11 @@ namespace Mario_Game
             }
             else
             {
-                _hero = new(_playerTexture, new Vector2(500, 500), Color.White, 200f,new Coin[10]);
+                _hero = new(_playerTexture, new Vector2(1000, 1000), Color.White, 200f,new Coin[10]);
             }
             for (int i = 0; i < _coin.Length; i++)
             {
-                _coin[i] = new Coin(_CoinTexture, new Vector2(100*i, 100*i), Color.White, 0);
+                _coin[i] = new Coin(_CoinTexture, new Vector2(100*(i+1), 100*(i+1)), Color.White, 0);
             }
             _hero.Coins =_coin;
             _inputManager = new();
@@ -61,11 +61,6 @@ namespace Mario_Game
             coin.Draw();
             _hero.Draw();
             spriteBatch.End();
-        }
-
-        public override void PostUpdate(GameTime gameTime)
-        {
-
         }
 
         public override void Update(GameTime gameTime)

@@ -22,14 +22,8 @@ namespace Mario_Game
 
         public abstract void PostUpdate(GameTime gameTime);
 
-        public State(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)
-        {
-            Games = game;
-
-            _graphicsDevice = graphicsDevice;
-
-            _content = content;
-        }
+        public State()
+        {}
 
         public abstract void Update(GameTime gameTime);
     }
