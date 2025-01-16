@@ -13,6 +13,7 @@ namespace Mario_Game
 
         public void Update(Hero _hero)
         {
+            float scale = 2f;
             _direction = Vector2.Zero;
             GamePadCapabilities gamePad = GamePad.GetCapabilities(PlayerIndex.One);
             KeyboardState keyboardState = Keyboard.GetState();
@@ -39,11 +40,11 @@ namespace Mario_Game
                     }
                     if (gamePadState.Buttons.X == ButtonState.Pressed && _hero.Volocity < 200f * 1.25f)
                     {
-                        _hero.Volocity = _hero.Volocity * 1.5f;
+                        _hero.Volocity = _hero.Volocity * scale;
                     }
                     else if (gamePadState.Buttons.X != ButtonState.Pressed && _hero.Volocity > 200f)
                     {
-                        _hero.Volocity = _hero.Volocity * 0.5f;
+                        _hero.Volocity = _hero.Volocity / scale;
                     }
                     if (gamePadState.Buttons.B == ButtonState.Pressed)
                     {
@@ -85,11 +86,11 @@ namespace Mario_Game
             }
             if (keyboardState.IsKeyDown(Keys.LeftShift)&&_hero.Volocity< 200f * 1.25f)
             {
-                _hero.Volocity = _hero.Volocity *1.5f;
+                _hero.Volocity = _hero.Volocity * scale;
             }
             else if (keyboardState.IsKeyUp(Keys.LeftShift)&& _hero.Volocity>200f)
             {
-                _hero.Volocity = _hero.Volocity * 0.5f;
+                _hero.Volocity = _hero.Volocity / scale;
             }
         }
     }
