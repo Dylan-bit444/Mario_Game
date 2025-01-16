@@ -50,11 +50,11 @@ namespace Mario_Game
             FrameTimeLeft = FramTime;
         }
 
-        public void Update()
+        public void Update(float time)
         {
             if (!Active) return;
 
-            FrameTimeLeft -= Globals.TotalSeconds;
+            FrameTimeLeft -= time;
 
             if (FrameTimeLeft <= 0)
             {

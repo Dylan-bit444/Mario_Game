@@ -21,7 +21,7 @@ namespace Mario_Game
             LastKeyPress = key;
         }
 
-        public void Update(Vector2 key)
+        public void Update(Vector2 key,float time)
         {
             if (InputManager.Mickel)
             {
@@ -30,7 +30,7 @@ namespace Mario_Game
             if (Animation.TryGetValue(key, out Animation value))
             {
                 value.Start();
-                Animation[key].Update();
+                Animation[key].Update(time);
                 LastKeyPress = key;
             }
             else

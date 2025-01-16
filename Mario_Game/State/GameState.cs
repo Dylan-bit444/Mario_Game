@@ -57,18 +57,20 @@ namespace Mario_Game
             SaveButton.Draw(gameTime, spriteBatch);
             spriteBatch.DrawString(hudFont, $"Coins: {_hero.CoinsCollected}",new Vector2(1500,0),Color.White);
             foreach (Coin coin in _coin) 
-            coin.Draw();
-            _hero.Draw();
+            coin.Draw(spriteBatch);
+            _hero.Draw(spriteBatch);
             spriteBatch.End();
         }
 
         public override void Update(GameTime gameTime)
         {
+            float time;
+            time = (float)gameTime.ElapsedGameTime.TotalSeconds;
             SaveButton.Update(gameTime);
             _inputManager.Update();
             foreach (Coin coin in _coin) 
-            coin.Update();
-            _hero.Update();
+            coin.Update(time);
+            _hero.Update(time);
         }
         private void SaveButton_Click(object sender, EventArgs e)
         {

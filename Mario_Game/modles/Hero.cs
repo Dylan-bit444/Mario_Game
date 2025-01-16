@@ -23,11 +23,11 @@ namespace Mario_Game
             Coins = coins;
         }
 
-        public void Update()
+        public void Update(float time)
         {
             if (InputManager.Moving)
             {
-                Position += Vector2.Normalize(InputManager.Direction) * Volocity * Globals.TotalSeconds;
+                Position += Vector2.Normalize(InputManager.Direction) * Volocity * time;
             }
             foreach (Coin coin in Coins)
             {
@@ -38,7 +38,7 @@ namespace Mario_Game
                 }
             }
             HitBox = new Rectangle((int)Position.X, (int)Position.Y, Texture.Height/8, Texture.Width/8);
-            Animations.Update(InputManager.Direction);
+            Animations.Update(InputManager.Direction,time);
         }
 
         public void Draw(SpriteBatch spriteBatch)
