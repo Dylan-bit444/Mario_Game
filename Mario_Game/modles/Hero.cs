@@ -41,10 +41,10 @@ namespace Mario_Game
             Animations.Update(InputManager.Direction);
         }
 
-        public void Draw()
+        public void Draw(SpriteBatch spriteBatch)
         {
             if(IsDraw)
-            Animations.Draw(Position);
+            Animations.Draw(Position,spriteBatch);
         }
     }
 }

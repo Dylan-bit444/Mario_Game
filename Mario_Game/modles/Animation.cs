@@ -63,9 +63,9 @@ namespace Mario_Game
             }
         }
 
-        public void Draw(Vector2 pos)
+        public void Draw(Vector2 pos,SpriteBatch spriteBatch)
         {
-            Globals.SpriteBatch.Draw(Texture, pos, Rectangles[CurrentFrame], Color.White, 0, Vector2.Zero, Vector2.One, SpriteEffects.None, 1);
+            spriteBatch.Draw(Texture, pos, Rectangles[CurrentFrame], Color.White, 0, Vector2.Zero, Vector2.One, SpriteEffects.None, 1);
         }
     }
 }

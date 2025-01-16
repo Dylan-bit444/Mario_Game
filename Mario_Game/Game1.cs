@@ -43,18 +43,13 @@ namespace Mario_Game
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            _currentState = new MenuState();
+            _currentState = new MenuState(this,Content);
             
         }
         protected override void Update(GameTime gameTime)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
-                ChangeState(new MenuState()); 
-            Globals.SpriteBatch = _spriteBatch;
-            Globals.Device = GraphicsDevice;
-            Globals.Content = Content;
-            Globals.GameOne = this;
-            Globals.Update(gameTime);
+                ChangeState(new MenuState(this,Content)); 
             if (_nextState != null)
             {
                 _currentState = _nextState;

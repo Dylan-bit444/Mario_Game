@@ -18,21 +18,22 @@ namespace Mario_Game
         private Button SaveButton;
         private InputManager _inputManager;
         public SaveData Saves;
-        public GameState(SaveData saves)
+        private SpriteFont hudFont;
+        public GameState(SaveData saves,ContentManager content)
           
         {
             Saves = saves;
-            Texture2D buttonTexture = Globals.Content.Load<Texture2D>("Button");
-            SpriteFont buttonFont = Globals.Content.Load<SpriteFont>("File");
+            hudFont = content.Load<SpriteFont>("HudText");
+            Texture2D buttonTexture = content.Load<Texture2D>("Button");
+            SpriteFont buttonFont = content.Load<SpriteFont>("File");
             SaveButton = new(buttonTexture, buttonFont)
             {
                 Position = new Vector2(0, 0),
                 Text = "Save",
             };
             SaveButton.Click += SaveButton_Click;
-            Globals.Device.Clear(Color.CornflowerBlue);
-            _playerTexture = Globals.Content.Load<Texture2D>("hero-PlaceHolder");
-            _CoinTexture = Globals.Content.Load<Texture2D>("coin");
+            _playerTexture = content.Load<Texture2D>("hero-PlaceHolder");
+            _CoinTexture = content.Load<Texture2D>("coin");
             if(Saves != null)   
             {
                 _hero = new(_playerTexture, Saves.SavedPostion, Color.White, 200f, new Coin[10]);
@@ -50,10 +51,8 @@ namespace Mario_Game
             _hero.Coins =_coin;
             _inputManager = new();
         }
-        //need to push
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            SpriteFont hudFont = Globals.Content.Load<SpriteFont>("HudText");
             spriteBatch.Begin();
             SaveButton.Draw(gameTime, spriteBatch);
             spriteBatch.DrawString(hudFont, $"Coins: {_hero.CoinsCollected}",new Vector2(1500,0),Color.White);

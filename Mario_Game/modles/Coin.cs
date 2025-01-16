@@ -20,10 +20,10 @@ namespace Mario_Game
             HitBox = new Rectangle((int)Position.X, (int)Position.Y, Texture.Height/6, Texture.Width/6);
         }
 
-        public void Draw()
+        public void Draw(SpriteBatch spriteBatch)
         {
             if(IsDraw) 
-            Animations.Draw(Position);
+            Animations.Draw(Position,spriteBatch);
         }
     }
 }

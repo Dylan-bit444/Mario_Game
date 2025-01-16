@@ -12,10 +12,14 @@ namespace Mario_Game
     public class MenuState : Structure
     {
         private List<Structure> Components;
-        public MenuState() : base()
+        private Game1 GameOne;
+        private ContentManager ContentManagers;
+        public MenuState(Game1 game1,ContentManager content) : base()
         {
-            Texture2D buttonTexture = Globals.Content.Load<Texture2D>("Button");
-            SpriteFont buttonFont = Globals.Content.Load<SpriteFont>("File");
+            ContentManagers = content; 
+            GameOne = game1;
+            Texture2D buttonTexture = content.Load<Texture2D>("Button");
+            SpriteFont buttonFont = content.Load<SpriteFont>("File");
 
             Button newGameButton = new(buttonTexture, buttonFont)
             {
@@ -48,15 +52,15 @@ namespace Mario_Game
         }
         private void LoadGameButton_Click(object sender, EventArgs e)
         {
-            Globals.GameOne.ChangeState(new LoadState());
+            GameOne.ChangeState(new LoadState(ContentManagers,GameOne));
         }
         private void NewGameButton_Click(object sender, EventArgs e)
         {
-            Globals.GameOne.ChangeState(new GameState(null));
+            GameOne.ChangeState(new GameState(null,ContentManagers));
         }
         private void QuitGameButton_Click(object sender, EventArgs e)
         {
-            Globals.GameOne.Exit();
+            GameOne.Exit();
         }
         public override void Update(GameTime gameTime)
         {

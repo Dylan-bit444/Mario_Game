@@ -40,9 +40,9 @@ namespace Mario_Game
             }
         }
 
-        public void Draw(Vector2 position)
+        public void Draw(Vector2 position,SpriteBatch spriteBatch)
         {
-            Animation[LastKeyPress].Draw(position);
+            Animation[LastKeyPress].Draw(position, spriteBatch);
         }
     }
 }
