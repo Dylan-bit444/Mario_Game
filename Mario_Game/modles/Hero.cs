@@ -12,7 +12,7 @@ namespace Mario_Game
         public Hero():base() { }
         public Hero(Texture2D texture, Vector2 _position, Color _color, float _volocity, Coin[] coins) : base(texture, _position, _color, _volocity)
         {
-            float frameTime = 0.0001f;
+            float frameTime = 0.1f;
             Animations.AddAnimation(new Vector2(0, 1), new(Texture, 8, 8, frameTime, 0));
             Animations.AddAnimation(new Vector2(-1, 0), new(Texture, 8, 8, frameTime, 1));
             Animations.AddAnimation(new Vector2(1, 0), new(Texture, 8, 8, frameTime, 2));

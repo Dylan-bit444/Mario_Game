@@ -4,14 +4,14 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Mario_Game
 {
-    public class InputManager
+    internal class InputManager
     {
         public static bool Mickel;
         private static Vector2 _direction = Vector2.Zero;
         public static Vector2 Direction => _direction;
         public static bool Moving => _direction != Vector2.Zero;
 
-        public void Update()
+        public void Update(Hero _hero)
         {
             _direction = Vector2.Zero;
             GamePadCapabilities gamePad = GamePad.GetCapabilities(PlayerIndex.One);
@@ -37,9 +37,13 @@ namespace Mario_Game
                     {
                         _direction -= new Vector2(0, 1);
                     }
-                    if (gamePadState.Buttons.X == ButtonState.Pressed)
+                    if (gamePadState.Buttons.X == ButtonState.Pressed && _hero.Volocity < 200f * 1.25f)
                     {
-                        _direction -= new Vector2(1, 0);
+                        _hero.Volocity = _hero.Volocity * 1.5f;
+                    }
+                    else if (gamePadState.Buttons.X != ButtonState.Pressed && _hero.Volocity > 200f)
+                    {
+                        _hero.Volocity = _hero.Volocity * 0.5f;
                     }
                     if (gamePadState.Buttons.B == ButtonState.Pressed)
                     {
@@ -78,6 +82,14 @@ namespace Mario_Game
             else if (keyboardState.IsKeyDown(Keys.N))
             {
                 Mickel = false;
+            }
+            if (keyboardState.IsKeyDown(Keys.LeftShift)&&_hero.Volocity< 200f * 1.25f)
+            {
+                _hero.Volocity = _hero.Volocity *1.5f;
+            }
+            else if (keyboardState.IsKeyUp(Keys.LeftShift)&& _hero.Volocity>200f)
+            {
+                _hero.Volocity = _hero.Volocity * 0.5f;
             }
         }
     }
