@@ -12,14 +12,15 @@ namespace Mario_Game
         public Hero():base() { }
         public Hero(Texture2D texture, Vector2 _position, Color _color, float _volocity, Coin[] coins) : base(texture, _position, _color, _volocity)
         {
-            Animations.AddAnimation(new Vector2(0, 1), new(Texture, 8, 8, 0.1f, 0));
-            Animations.AddAnimation(new Vector2(-1, 0), new(Texture, 8, 8, 0.1f, 1));
-            Animations.AddAnimation(new Vector2(1, 0), new(Texture, 8, 8, 0.1f, 2));
-            Animations.AddAnimation(new Vector2(0, -1), new(Texture, 8, 8, 0.1f, 3));
-            Animations.AddAnimation(new Vector2(-1, 1), new(Texture, 8, 8, 0.1f, 4));
-            Animations.AddAnimation(new Vector2(-1, -1), new(Texture, 8, 8, 0.1f, 5));
-            Animations.AddAnimation(new Vector2(1, 1), new(Texture, 8, 8, 0.1f, 6));
-            Animations.AddAnimation(new Vector2(1, -1), new(Texture, 8, 8, 0.1f, 7));
+            float frameTime = 0.0001f;
+            Animations.AddAnimation(new Vector2(0, 1), new(Texture, 8, 8, frameTime, 0));
+            Animations.AddAnimation(new Vector2(-1, 0), new(Texture, 8, 8, frameTime, 1));
+            Animations.AddAnimation(new Vector2(1, 0), new(Texture, 8, 8, frameTime, 2));
+            Animations.AddAnimation(new Vector2(0, -1), new(Texture, 8, 8, frameTime, 3));
+            Animations.AddAnimation(new Vector2(-1, 1), new(Texture, 8, 8, frameTime, 4));
+            Animations.AddAnimation(new Vector2(-1, -1), new(Texture, 8, 8, frameTime, 5));
+            Animations.AddAnimation(new Vector2(1, 1), new(Texture, 8, 8, frameTime, 6));
+            Animations.AddAnimation(new Vector2(1, -1), new(Texture, 8, 8, frameTime, 7));
             Coins = coins;
         }
 

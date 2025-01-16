@@ -12,7 +12,7 @@ namespace Mario_Game
         public Coin() : base() { }
         public Coin(Texture2D _texture, Vector2 _position, Color _color, float _volocity) : base(_texture, _position, _color, _volocity)
         {
-            Animations = new(Texture, 6, 1, 0.1f);
+            Animations = new(Texture, 6, 1, 0.7f);
         }
         public void Update(float time)
         {
