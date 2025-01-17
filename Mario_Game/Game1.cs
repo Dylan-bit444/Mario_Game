@@ -52,7 +52,7 @@ namespace Mario_Game
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == Microsoft.Xna.Framework.Input.ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Escape))
             {
                 ChangeState(new PauseState(this, _graphics.GraphicsDevice, Content));
-            }
+            }   
 
             if (_nextState != null)
             {
