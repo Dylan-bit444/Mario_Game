@@ -8,12 +8,18 @@ using System.Collections.Generic;
 using static System.Net.Mime.MediaTypeNames;
 using NewStartMenu.Controls;
 using System;
+using System.IO;
+using System.Diagnostics;
+using System.Windows.Forms.VisualStyles;
 
 namespace Mario_Game
 {
     internal class PauseState : State
     {
         private List<Components> _components;
+
+        private string savedData;
+        private int xCoordinate, yCoordinate;
         public PauseState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
 
@@ -45,11 +51,11 @@ namespace Mario_Game
                 loadMenuButton.Click += LoadMenuButton_Click;
 
                 _components = new List<Components>()
-            {
-                playGameButton,
-                saveGameButton,
-                loadMenuButton
-            };
+                {
+                    playGameButton,
+                    saveGameButton,
+                    loadMenuButton
+                };
             }
         }
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -74,7 +80,13 @@ namespace Mario_Game
 
         private void SaveGameButton_Click(object sender, EventArgs e)
         {
-            Game.ChangeState(new GameState(Game, _graphicsDevice, _content));
+
+            TextWriter tw = new StreamWriter("Saved");
+
+            tw.WriteLine(xCoordinate);
+            tw.WriteLine(yCoordinate);
+            
+
         }
 
         public override void PostUpdate(GameTime gameTime)
@@ -87,5 +99,6 @@ namespace Mario_Game
             foreach (Components component in _components)
                 component.Update(gameTime);
         }
+
     }
 }
