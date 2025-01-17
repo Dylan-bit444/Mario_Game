@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-
 namespace Mario_Game
 {
     public static class Globals
@@ -15,7 +14,8 @@ namespace Mario_Game
 
         public static void Update(GameTime gt)
         {
-            Time = (float)gt.ElapsedGameTime.TotalSeconds;
+            Time = (float)gt.ElapsedGameTime.TotalSeconds - Time;
+            
         }
     }
 }

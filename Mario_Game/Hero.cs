@@ -1,18 +1,21 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
-using SharpDX.Direct3D9;
+using System.Diagnostics;
+
 
 
 namespace Mario_Game
 {
     public class Hero : Sprite
     {
-        private const float Speed = 1f;
-        private const float Gravity = 1f;
-        private const float Jump = 1f;
+        private const float Speed = 300f;
+        private const float Gravity = 30f;
+        private const float Jump = 500f;
         private Vector2 _velocity;
         private bool _onGround = true;
+        private int gravitytimer = 0;
+        private int gravitytiming = 30;
 
         public Hero() : base()
         {
@@ -24,6 +27,7 @@ namespace Mario_Game
         }
         public void UpdateVelocity(GraphicsDeviceManager _graphics)
         {
+            Debug.WriteLine(Globals.Time);
 
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
@@ -35,22 +39,35 @@ namespace Mario_Game
             }
             else _velocity.X = 0;
 
-            if (!_onGround)
+            if (!_onGround && gravitytimer==0)
             {
-                _velocity.Y += Gravity * Globals.Time;
+                _velocity.Y += Gravity;
+                Debug.WriteLine(1);
             }
+            gravitytimer = MathHelper.Max(0, gravitytimer-1);
+
             if (Keyboard.GetState().IsKeyDown(Keys.Space) && _onGround)
             {
                 _velocity.Y = -Jump;
                 _onGround = false;
+                gravitytimer = gravitytiming; 
             }
+            if (Position.Y + Texture.Height > _graphics.PreferredBackBufferHeight)
+            {
+                Debug.WriteLine(2);
+                _onGround = true;
+                Position = new Vector2(Position.X, _graphics.PreferredBackBufferHeight - Texture.Height) ;
+                _velocity.Y = 0;
+            }
+            Debug.WriteLine(_velocity);
+            BoundingBox = new Rectangle((int)Position.X, (int)Position.Y, Texture.Width, Texture.Height);
         }
-        public void Update()
+        public void Update(GraphicsDeviceManager _graphics)
         {
-            //UpdateVelocity(_graphics);
+            UpdateVelocity(_graphics);
             Position += _velocity * Globals.Time;
         }
-        public void UpdatePosition()
+        public void UpdatePosition(GraphicsDeviceManager _graphics)
         {
             _onGround = false;
             var newPos = Position + (_velocity * Globals.Time);

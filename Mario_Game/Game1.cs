@@ -8,15 +8,18 @@ namespace Mario_Game
     {
         private GraphicsDeviceManager _graphics;
         //private SpriteBatch _spriteBatch;
-        private GameManager _gameManager;
+        //private GameManager _gameManager;
         private Hero _hero;
         private SpriteBatch _spriteBatch;
+
 
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            _graphics.PreferredBackBufferWidth = 1024;
+            _graphics.PreferredBackBufferHeight = 768;
         }
 
         protected override void Initialize()
@@ -30,7 +33,8 @@ namespace Mario_Game
         protected override void LoadContent()
         {
             _hero.LoadOwnContent(Content, "Brick");
-
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
+            Globals.SpriteBatch = _spriteBatch;
 
             //load hero
             //_spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -39,18 +43,18 @@ namespace Mario_Game
                 _graphics.PreferredBackBufferHeight - _hero.Texture.Height),
             Color.White, 2.0f, new Rectangle((int)_hero.Position.X, (int)_hero.Position.Y, _hero.Texture.Width, _hero.Texture.Height));
 
-            _gameManager = new GameManager();
+            //_gameManager = new GameManager();
             // TODO: use this.Content to load your game content here
         }
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
-            //Hero.UpdateVelocity(_graphics);
+            Globals.Update(gameTime);
+            _hero.Update(_graphics);
 
             // TODO: Add your update logic here
-            _gameManager.Update();
+            //_gameManager.Update();
 
             base.Update(gameTime);
         }
@@ -61,7 +65,7 @@ namespace Mario_Game
 
             // TODO: Add your drawing code here
             _spriteBatch.Begin();
-             _gameManager.Draw();
+             //_gameManager.Draw();
             _hero.Draw();
            
             _spriteBatch.End();
