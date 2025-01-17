@@ -26,7 +26,7 @@ namespace Mario_Game
             //Position = Vector2.Clamp(Position, _minPos, _maxPos);
             if (Position.Y > Globals.WindowSize.Y)
             {
-                Position = new Vector2(Globals.WindowSize.X / 2 - 100, Globals.WindowSize.Y - 100);
+                Position = new Vector2(Globals.WindowSize.X / 5 , Globals.WindowSize.Y / 2 - 250);
 
             }
         }
