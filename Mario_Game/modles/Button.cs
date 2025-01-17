@@ -76,7 +76,6 @@ namespace Mario_Game
         {
             PreviousMouse = CurrentMouse;
             CurrentMouse = Mouse.GetState();
-
             Rectangle mouseRectangle = new(CurrentMouse.X, CurrentMouse.Y, 1, 1);
 
             IsHovering = false;
