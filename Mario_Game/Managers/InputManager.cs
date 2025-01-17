@@ -91,6 +91,7 @@ namespace Mario_Game
         }
         public void ControlerMenu(List<Structure> Buttons, GamePadCapabilities gamePad)
         {
+            Buttons[1].
         }
     }
 }

@@ -66,17 +66,17 @@ namespace Mario_Game
         }
         public override void Update(GameTime gameTime)
         {
-            //GamePadCapabilities gamePad = GamePad.GetCapabilities(PlayerIndex.One);
-            //if (!gamePad.IsConnected)
-            //{
+            GamePadCapabilities gamePad = GamePad.GetCapabilities(PlayerIndex.One);
+            if (!gamePad.IsConnected)
+            {
                 foreach (Structure component in Components)
                     component.Update(gameTime);
-            //}
-            //else
-            //{
-            //    Input.ControlerMenu(Components, gamePad);
-            //}
         }
+            else
+            {
+                Input.ControlerMenu(Components, gamePad);
+            }
+}
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();

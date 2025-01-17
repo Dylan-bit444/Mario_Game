@@ -14,7 +14,7 @@ namespace Mario_Game
 
         private SpriteFont Font;
 
-        private bool IsHovering;
+        public static bool IsHovering;
 
         private MouseState PreviousMouse;
 
