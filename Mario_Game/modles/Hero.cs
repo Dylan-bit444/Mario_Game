@@ -7,7 +7,7 @@ namespace Mario_Game
     internal class Hero:Sprite
     {
         public AnimationManager Animations = new();
-        public int CoinsCollected=0;
+        public float CoinsCollected=0;
         public Coin[] Coins {get; set;}
         public Hero():base() { }
         public Hero(Texture2D texture, Vector2 _position, Color _color, float _volocity, Coin[] coins) : base(texture, _position, _color, _volocity)

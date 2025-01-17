@@ -42,7 +42,7 @@ namespace Mario_Game
                     var parts = line.Split(',');
                     saveData.SavedPostion = new(float.Parse(parts[0].Trim()), float.Parse(parts[1].Trim()));
                     saveData.SavedAnimation = new(float.Parse(parts[2].Trim()), float.Parse(parts[3].Trim()));
-                    saveData.SavedCoins = int.Parse(parts[4]);
+                    saveData.SavedCoins = float.Parse(parts[4].Trim()); 
                 }
             }
         }

@@ -55,7 +55,7 @@ namespace Mario_Game
         {
             spriteBatch.Begin();
             SaveButton.Draw(gameTime, spriteBatch);
-            spriteBatch.DrawString(hudFont, $"Coins: {_hero.CoinsCollected}",new Vector2(1500,0),Color.White);
+            spriteBatch.DrawString(hudFont, $"Coins: {_hero.CoinsCollected}",new Vector2(1000,0),Color.White);
             foreach (Coin coin in _coin) 
             coin.Draw(spriteBatch);
             _hero.Draw(spriteBatch);

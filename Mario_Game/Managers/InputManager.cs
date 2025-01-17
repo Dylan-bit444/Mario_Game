@@ -13,7 +13,7 @@ namespace Mario_Game
 
         public void Update(Hero _hero)
         {
-            float scale = 2f;
+            float scale = 10f;
             _direction = Vector2.Zero;
             GamePadCapabilities gamePad = GamePad.GetCapabilities(PlayerIndex.One);
             KeyboardState keyboardState = Keyboard.GetState();
@@ -62,7 +62,7 @@ namespace Mario_Game
             }
             else
             {
-                if (keyboardState.IsKeyDown(Keys.A) || keyboardState.IsKeyDown(Keys.Left))
+                if ((keyboardState.IsKeyDown(Keys.A) || keyboardState.IsKeyDown(Keys.Left)))
                 {
                     _direction -= new Vector2(1, 0);
                 }
