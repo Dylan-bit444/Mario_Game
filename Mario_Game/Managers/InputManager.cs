@@ -60,37 +60,40 @@ namespace Mario_Game
                     }
                 }
             }
-            if (keyboardState.IsKeyDown(Keys.A) ||keyboardState.IsKeyDown(Keys.Left))
-            { 
-                _direction -= new Vector2(1, 0);
-            }
-            if (keyboardState.IsKeyDown(Keys.D) || keyboardState.IsKeyDown(Keys.Right))
+            else
             {
-                _direction += new Vector2(1, 0);
+                if (keyboardState.IsKeyDown(Keys.A) || keyboardState.IsKeyDown(Keys.Left))
+                {
+                    _direction -= new Vector2(1, 0);
+                }
+                if (keyboardState.IsKeyDown(Keys.D) || keyboardState.IsKeyDown(Keys.Right))
+                {
+                    _direction += new Vector2(1, 0);
+                }
+                if (keyboardState.IsKeyDown(Keys.W) || keyboardState.IsKeyDown(Keys.Up))
+                {
+                    _direction -= new Vector2(0, 1);
+                }
+                if (keyboardState.IsKeyDown(Keys.S) || keyboardState.IsKeyDown(Keys.Down))
+                {
+                    _direction += new Vector2(0, 1);
+                }
+                if (keyboardState.IsKeyDown(Keys.LeftShift) && _hero.Volocity < 200f * 1.25f)
+                {
+                    _hero.Volocity = _hero.Volocity * scale;
+                }
+                else if (keyboardState.IsKeyUp(Keys.LeftShift) && _hero.Volocity > 200f)
+                {
+                    _hero.Volocity = _hero.Volocity / scale;
+                }
             }
-            if (keyboardState.IsKeyDown(Keys.W) || keyboardState.IsKeyDown(Keys.Up))
-            {
-                _direction -= new Vector2(0, 1); 
-            }
-            if (keyboardState.IsKeyDown(Keys.S) || keyboardState.IsKeyDown(Keys.Down))
-            {
-                _direction += new Vector2(0, 1); 
-            }
-            if (keyboardState.IsKeyDown(Keys.M)&& keyboardState.IsKeyDown(Keys.J))
+            if (keyboardState.IsKeyDown(Keys.M) && keyboardState.IsKeyDown(Keys.J))
             {
                 Mickel = true;
             }
             else if (keyboardState.IsKeyDown(Keys.N))
             {
                 Mickel = false;
-            }
-            if (keyboardState.IsKeyDown(Keys.LeftShift)&&_hero.Volocity< 200f * 1.25f)
-            {
-                _hero.Volocity = _hero.Volocity * scale;
-            }
-            else if (keyboardState.IsKeyUp(Keys.LeftShift)&& _hero.Volocity>200f)
-            {
-                _hero.Volocity = _hero.Volocity / scale;
             }
         }
     }
