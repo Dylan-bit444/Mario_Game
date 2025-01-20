@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.ComponentModel;
 using System;
+using SharpDX.MediaFoundation;
 
 namespace Mario_Game
 {
@@ -13,8 +14,6 @@ namespace Mario_Game
         private MouseState CurrentMouse;
 
         private SpriteFont Font;
-
-        public static bool IsHovering;
 
         private MouseState PreviousMouse;
 
@@ -57,9 +56,10 @@ namespace Mario_Game
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
+            CurrentMouse = Mouse.GetState();
+            Rectangle mouseRectangle = new(CurrentMouse.X, CurrentMouse.Y, 1, 1);
             Color colour = Color.White;
-
-            if (IsHovering)
+            if (mouseRectangle.Intersects(Rectangle))
                 colour = Color.Gray;
 
             spriteBatch.Draw(Texture, Rectangle, colour);
@@ -76,19 +76,9 @@ namespace Mario_Game
         {
             PreviousMouse = CurrentMouse;
             CurrentMouse = Mouse.GetState();
-
-            Rectangle mouseRectangle = new(CurrentMouse.X, CurrentMouse.Y, 1, 1);
-
-            IsHovering = false;
-
-            if (mouseRectangle.Intersects(Rectangle))
+            if (CurrentMouse.LeftButton == ButtonState.Released && PreviousMouse.LeftButton == ButtonState.Pressed)
             {
-                IsHovering = true;
-
-                if (CurrentMouse.LeftButton == ButtonState.Released && PreviousMouse.LeftButton == ButtonState.Pressed)
-                {
-                    Click.Invoke(this, new EventArgs());
-                }
+                Click.Invoke(this, new EventArgs());
             }
         }
 
