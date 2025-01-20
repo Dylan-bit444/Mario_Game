@@ -74,11 +74,15 @@ namespace Mario_Game
 
         public override void Update(GameTime gameTime)
         {
+            Rectangle mouseRectangle = new(CurrentMouse.X, CurrentMouse.Y, 1, 1);
             PreviousMouse = CurrentMouse;
             CurrentMouse = Mouse.GetState();
-            if (CurrentMouse.LeftButton == ButtonState.Released && PreviousMouse.LeftButton == ButtonState.Pressed)
+            if (mouseRectangle.Intersects(Rectangle))
             {
-                Click.Invoke(this, new EventArgs());
+                if (CurrentMouse.LeftButton == ButtonState.Released && PreviousMouse.LeftButton == ButtonState.Pressed)
+                {
+                    Click.Invoke(this, new EventArgs());
+                }
             }
         }
 
