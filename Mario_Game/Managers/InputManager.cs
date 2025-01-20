@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System.Collections.Generic;
 
 namespace Mario_Game
 {
@@ -14,7 +13,7 @@ namespace Mario_Game
 
         public void Update(Hero _hero)
         {
-            float scale = 2f;
+            float scale = 10f;
             _direction = Vector2.Zero;
             GamePadCapabilities gamePad = GamePad.GetCapabilities(PlayerIndex.One);
             KeyboardState keyboardState = Keyboard.GetState();
@@ -46,6 +45,14 @@ namespace Mario_Game
                     else if (gamePadState.Buttons.X != ButtonState.Pressed && _hero.Volocity > 200f)
                     {
                         _hero.Volocity = _hero.Volocity / scale;
+                    }
+                    if (gamePadState.Buttons.B == ButtonState.Pressed)
+                    {
+                        _direction += new Vector2(1, 0);
+                    }
+                    if (gamePadState.Buttons.Y == ButtonState.Pressed)
+                    {
+                        _direction -= new Vector2(0, 1);
                     }
                     if (gamePadState.Buttons.A == ButtonState.Pressed)
                     {
@@ -88,10 +95,6 @@ namespace Mario_Game
             {
                 Mickel = false;
             }
-        }
-        public void ControlerMenu(List<Structure> Buttons, GamePadCapabilities gamePad)
-        {
-            Buttons[1].
         }
     }
 }

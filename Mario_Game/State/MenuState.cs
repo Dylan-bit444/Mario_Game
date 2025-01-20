@@ -14,12 +14,10 @@ namespace Mario_Game
         private List<Structure> Components;
         private Game1 GameOne;
         private ContentManager ContentManagers;
-        private InputManager Input;
         public MenuState(Game1 game1,ContentManager content) : base()
         {
             ContentManagers = content; 
             GameOne = game1;
-            Input = new();
             Texture2D buttonTexture = content.Load<Texture2D>("Button");
             SpriteFont buttonFont = content.Load<SpriteFont>("File");
 
@@ -66,17 +64,9 @@ namespace Mario_Game
         }
         public override void Update(GameTime gameTime)
         {
-            GamePadCapabilities gamePad = GamePad.GetCapabilities(PlayerIndex.One);
-            if (!gamePad.IsConnected)
-            {
-                foreach (Structure component in Components)
-                    component.Update(gameTime);
+            foreach (Structure component in Components)
+                component.Update(gameTime);
         }
-            else
-            {
-                Input.ControlerMenu(Components, gamePad);
-            }
-}
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
