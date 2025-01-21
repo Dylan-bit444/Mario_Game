@@ -13,6 +13,7 @@ namespace Mario_Game
     {
         private List<Button> Components;
         private Game1 GameOne;
+        private InputManager inputManager;
         private ContentManager ContentManagers;
         public MenuState(Game1 game1,ContentManager content) : base()
         {
@@ -49,6 +50,7 @@ namespace Mario_Game
         loadGameButton,
         quitGameButton,
       };
+            inputManager= new InputManager();
         }
         private void LoadGameButton_Click(object sender, EventArgs e)
         {
@@ -64,6 +66,7 @@ namespace Mario_Game
         }
         public override void Update(GameTime gameTime)
         {
+            inputManager.Update(null,Components);
             foreach (Button component in Components)
                 component.Update(gameTime);
         }

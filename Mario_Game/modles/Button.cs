@@ -25,7 +25,7 @@ namespace Mario_Game
 
         public event EventHandler Click;
 
-        public bool Clicked { get; private set; }
+        public bool Selected = false;
 
         public Color PenColour { get; set; }
 
@@ -74,10 +74,22 @@ namespace Mario_Game
 
         public void Update(GameTime gameTime)
         {
+            GamePadCapabilities gamePad = GamePad.GetCapabilities(PlayerIndex.One);
             Rectangle mouseRectangle = new(CurrentMouse.X, CurrentMouse.Y, 1, 1);
             PreviousMouse = CurrentMouse;
             CurrentMouse = Mouse.GetState();
-            if (mouseRectangle.Intersects(Rectangle))
+            if (gamePad.IsConnected)
+            {
+                GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
+                if (Selected)
+                {
+                    if (gamePadState.Buttons.A == ButtonState.Pressed && gamePadState.Buttons.A == ButtonState.Released)
+                    {
+                        Click.Invoke(this, new EventArgs());
+                    }
+                }
+            }
+            else if (mouseRectangle.Intersects(Rectangle))
             {
                 if (CurrentMouse.LeftButton == ButtonState.Released && PreviousMouse.LeftButton == ButtonState.Pressed)
                 {

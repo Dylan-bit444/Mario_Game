@@ -1,7 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using SharpDX.XInput;
 using System;
+using System.Collections.Generic;
+using System.Drawing.Imaging;
 
 namespace Mario_Game
 {
@@ -12,90 +15,119 @@ namespace Mario_Game
         public static Vector2 Direction => _direction;
         public static bool Moving => _direction != Vector2.Zero;
 
-        public void Update(Hero _hero)
+        public void Update(Hero? _hero, List<Button>? menu)
         {
-            float scale = 10f;
-            _direction = Vector2.Zero;
             GamePadCapabilities gamePad = GamePad.GetCapabilities(PlayerIndex.One);
             KeyboardState keyboardState = Keyboard.GetState();
-            if (gamePad.IsConnected)
+            if (_hero != null)
             {
-                GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
-                if (gamePad.HasLeftXThumbStick || gamePad.HasDPadDownButton)
+                float scale = 10f;
+                _direction = Vector2.Zero;
+                if (gamePad.IsConnected)
                 {
-                    if (gamePadState.ThumbSticks.Left.X < -0.5f || gamePadState.DPad.Left == ButtonState.Pressed)
+                    GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
+                    if (gamePad.HasLeftXThumbStick || gamePad.HasDPadDownButton)
+                    {
+                        if (gamePadState.ThumbSticks.Left.X < -0.5f || gamePadState.DPad.Left == ButtonState.Pressed)
+                        {
+                            _direction -= new Vector2(1, 0);
+                        }
+                        if (gamePadState.ThumbSticks.Left.X > 0.5f || gamePadState.DPad.Right == ButtonState.Pressed)
+                        {
+                            _direction += new Vector2(1, 0);
+                        }
+                        if (gamePadState.ThumbSticks.Left.Y < -0.5f || gamePadState.DPad.Down == ButtonState.Pressed)
+                        {
+                            _direction += new Vector2(0, 1);
+                        }
+                        if (gamePadState.ThumbSticks.Left.Y > 0.5f || gamePadState.DPad.Up == ButtonState.Pressed)
+                        {
+                            _direction -= new Vector2(0, 1);
+                        }
+                        if (gamePadState.Buttons.X == ButtonState.Pressed && _hero.Volocity < 200f * 1.25f || gamePadState.Buttons.Y == ButtonState.Pressed && _hero.Volocity < 200f * 1.25f)
+                        {
+                            _hero.Volocity = _hero.Volocity * scale;
+                        }
+                        else if ((gamePadState.Buttons.Y != ButtonState.Pressed && _hero.Volocity > 200f) && (gamePadState.Buttons.X != ButtonState.Pressed && _hero.Volocity > 200f))
+                        {
+                            _hero.Volocity = _hero.Volocity / scale;
+                        }
+                        if (gamePadState.Buttons.B == ButtonState.Pressed)
+                        {
+                            _direction += new Vector2(1, 0);
+                        }
+                        if (gamePadState.Buttons.A == ButtonState.Pressed)
+                        {
+                            _direction += new Vector2(0, 1);
+                        }
+                    }
+                }
+                else
+                {
+                    if ((keyboardState.IsKeyDown(Keys.A) || keyboardState.IsKeyDown(Keys.Left)))
                     {
                         _direction -= new Vector2(1, 0);
                     }
-                    if (gamePadState.ThumbSticks.Left.X > 0.5f || gamePadState.DPad.Right == ButtonState.Pressed)
+                    if (keyboardState.IsKeyDown(Keys.D) || keyboardState.IsKeyDown(Keys.Right))
                     {
                         _direction += new Vector2(1, 0);
                     }
-                    if (gamePadState.ThumbSticks.Left.Y < -0.5f || gamePadState.DPad.Down == ButtonState.Pressed)
-                    {
-                        _direction += new Vector2(0, 1);
-                    }
-                    if (gamePadState.ThumbSticks.Left.Y > 0.5f || gamePadState.DPad.Up == ButtonState.Pressed)
+                    if (keyboardState.IsKeyDown(Keys.W) || keyboardState.IsKeyDown(Keys.Up))
                     {
                         _direction -= new Vector2(0, 1);
                     }
-                    if (gamePadState.Buttons.X == ButtonState.Pressed && _hero.Volocity < 200f * 1.25f || gamePadState.Buttons.Y == ButtonState.Pressed && _hero.Volocity < 200f * 1.25f)
-                    {
-                        _hero.Volocity = _hero.Volocity * scale;
-                    }
-                    else if ((gamePadState.Buttons.Y != ButtonState.Pressed && _hero.Volocity > 200f) && (gamePadState.Buttons.X != ButtonState.Pressed && _hero.Volocity > 200f))
-                    {
-                        _hero.Volocity = _hero.Volocity / scale;
-                    }  
-                    if (gamePadState.Buttons.B == ButtonState.Pressed)
-                    {
-                        _direction += new Vector2(1, 0);
-                    }
-                    if (gamePadState.Buttons.A == ButtonState.Pressed)
+                    if (keyboardState.IsKeyDown(Keys.S) || keyboardState.IsKeyDown(Keys.Down))
                     {
                         _direction += new Vector2(0, 1);
                     }
+                    if (keyboardState.IsKeyDown(Keys.LeftShift) && _hero.Volocity < 200f * 1.25f)
+                    {
+                        _hero.Volocity = _hero.Volocity * scale;
+                    }
+                    else if (keyboardState.IsKeyUp(Keys.LeftShift) && _hero.Volocity > 200f)
+                    {
+                        _hero.Volocity = _hero.Volocity / scale;
+                    }
+                }
+                if (keyboardState.IsKeyDown(Keys.M) && keyboardState.IsKeyDown(Keys.J))
+                {
+                    Mickel = true;
+                }
+                else if (keyboardState.IsKeyDown(Keys.N))
+                {
+                    Mickel = false;
                 }
             }
-            else
+            else if (menu != null)
             {
-                if ((keyboardState.IsKeyDown(Keys.A) || keyboardState.IsKeyDown(Keys.Left)))
+                int count = 0;
+                for (int i = 0; i < menu.Count; i++)
                 {
-                    _direction -= new Vector2(1, 0);
+                    if (!menu[i].Selected)
+                    {
+                        count++;
+                    }
+                    if (count == menu.Count)
+                    {
+                        menu[0].Selected = true;
+                    }
                 }
-                if (keyboardState.IsKeyDown(Keys.D) || keyboardState.IsKeyDown(Keys.Right))
+                if (gamePad.IsConnected)
                 {
-                    _direction += new Vector2(1, 0);
-                }
-                if (keyboardState.IsKeyDown(Keys.W) || keyboardState.IsKeyDown(Keys.Up))
-                {
-                    _direction -= new Vector2(0, 1);
-                }
-                if (keyboardState.IsKeyDown(Keys.S) || keyboardState.IsKeyDown(Keys.Down))
-                {
-                    _direction += new Vector2(0, 1);
-                }
-                if (keyboardState.IsKeyDown(Keys.LeftShift) && _hero.Volocity < 200f * 1.25f)
-                {
-                    _hero.Volocity = _hero.Volocity * scale;
-                }
-                else if (keyboardState.IsKeyUp(Keys.LeftShift) && _hero.Volocity > 200f)
-                {
-                    _hero.Volocity = _hero.Volocity / scale;
+                    GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
+                    if (gamePad.HasLeftXThumbStick || gamePad.HasDPadDownButton)
+                    {
+                        if (gamePadState.ThumbSticks.Left.Y < -0.5f || gamePadState.DPad.Down == ButtonState.Pressed)
+                        {
+                            _direction += new Vector2(0, 1);
+                        }
+                        if (gamePadState.ThumbSticks.Left.Y > 0.5f || gamePadState.DPad.Up == ButtonState.Pressed)
+                        {
+                            _direction -= new Vector2(0, 1);
+                        }
+                    }
                 }
             }
-            if (keyboardState.IsKeyDown(Keys.M) && keyboardState.IsKeyDown(Keys.J))
-            {
-                Mickel = true;
-            }
-            else if (keyboardState.IsKeyDown(Keys.N))
-            {
-                Mickel = false;
-            }
-        }
-        public void Meune (EventHandler Click)
-        {
-
         }
     }
 }

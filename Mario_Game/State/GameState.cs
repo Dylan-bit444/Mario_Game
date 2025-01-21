@@ -67,7 +67,7 @@ namespace Mario_Game
             float time;
             time = (float)gameTime.ElapsedGameTime.TotalSeconds;
             SaveButton.Update(gameTime);
-            _inputManager.Update(_hero);
+            _inputManager.Update(_hero, null);
             foreach (Coin coin in _coin) 
             coin.Update(time);
             _hero.Update(time);
