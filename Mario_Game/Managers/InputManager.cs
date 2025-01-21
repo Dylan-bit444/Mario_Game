@@ -14,6 +14,7 @@ namespace Mario_Game
         private static Vector2 _direction = Vector2.Zero;
         public static Vector2 Direction => _direction;
         public static bool Moving => _direction != Vector2.Zero;
+        private int selectedInList;
 
         public void Update(Hero? _hero, List<Button>? menu)
         {
@@ -98,35 +99,50 @@ namespace Mario_Game
                     Mickel = false;
                 }
             }
-            else if (menu != null)
+            else if (menu != null && gamePad.IsConnected)
             {
                 int count = 0;
-                for (int i = 0; i < menu.Count; i++)
+                for (int i = 0; i < menu.Count-1; i++)
                 {
                     if (!menu[i].Selected)
                     {
                         count++;
                     }
-                    if (count == menu.Count)
+                    else
+                    {
+                        selectedInList = i;
+                    }
+                    if (count == menu.Count - 1)
                     {
                         menu[0].Selected = true;
                     }
                 }
-                if (gamePad.IsConnected)
+                GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
+                if (gamePad.HasLeftXThumbStick || gamePad.HasDPadDownButton)
                 {
-                    GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
-                    if (gamePad.HasLeftXThumbStick || gamePad.HasDPadDownButton)
+                    if (gamePadState.ThumbSticks.Left.Y < -0.5f || gamePadState.DPad.Down == ButtonState.Pressed)
                     {
-                        if (gamePadState.ThumbSticks.Left.Y < -0.5f || gamePadState.DPad.Down == ButtonState.Pressed)
-                        {
-                            _direction += new Vector2(0, 1);
-                        }
-                        if (gamePadState.ThumbSticks.Left.Y > 0.5f || gamePadState.DPad.Up == ButtonState.Pressed)
-                        {
-                            _direction -= new Vector2(0, 1);
-                        }
+                        menu[selectedInList].Selected = false;
+                        selectedInList++;
                     }
+                    if (gamePadState.ThumbSticks.Left.Y > 0.5f || gamePadState.DPad.Up == ButtonState.Pressed)
+                    {
+                        menu[selectedInList].Selected = false;
+                        selectedInList--;
+                    }
+                    if(selectedInList < 0)
+                    {
+                        selectedInList = menu.Count-1;
+                    }
+                    if(selectedInList > menu.Count-1)
+                    {
+                        selectedInList = 0;
+                    }
+                    menu[selectedInList].Selected = true;
+                    foreach (Button component in menu)
+                        component.Update();
                 }
+                
             }
         }
     }

@@ -59,7 +59,7 @@ namespace Mario_Game
             CurrentMouse = Mouse.GetState();
             Rectangle mouseRectangle = new(CurrentMouse.X, CurrentMouse.Y, 1, 1);
             Color colour = Color.White;
-            if (mouseRectangle.Intersects(Rectangle))
+            if (mouseRectangle.Intersects(Rectangle)|| Selected)
                 colour = Color.Gray;
 
             spriteBatch.Draw(Texture, Rectangle, colour);
@@ -72,7 +72,7 @@ namespace Mario_Game
             }
         }
 
-        public void Update(GameTime gameTime)
+        public void Update()
         {
             GamePadCapabilities gamePad = GamePad.GetCapabilities(PlayerIndex.One);
             Rectangle mouseRectangle = new(CurrentMouse.X, CurrentMouse.Y, 1, 1);

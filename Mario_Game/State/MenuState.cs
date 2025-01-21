@@ -68,7 +68,7 @@ namespace Mario_Game
         {
             inputManager.Update(null,Components);
             foreach (Button component in Components)
-                component.Update(gameTime);
+                component.Update();
         }
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
