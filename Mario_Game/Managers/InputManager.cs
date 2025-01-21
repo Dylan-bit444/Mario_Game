@@ -126,12 +126,12 @@ namespace Mario_Game
                 CurrentControler = GamePad.GetState(PlayerIndex.One);
                 if (gamePad.HasLeftXThumbStick || gamePad.HasDPadDownButton)
                 {
-                    if (CurrentControler.ThumbSticks.Left.Y < -0.5f || CurrentControler.DPad.Down == ButtonState.Released && PreviousControler.DPad.Down == ButtonState.Pressed)
+                    if (PreviousControler.ThumbSticks.Left.Y > -0.5f && CurrentControler.ThumbSticks.Left.Y < -0.5f || CurrentControler.DPad.Down == ButtonState.Released && PreviousControler.DPad.Down == ButtonState.Pressed)
                     {
                         menu[selectedInList].Selected = false;
                         selectedInList++;
                     }
-                    if (CurrentControler.ThumbSticks.Left.Y > 0.5f || CurrentControler.DPad.Up == ButtonState.Released && PreviousControler.DPad.Up == ButtonState.Pressed)
+                    if (PreviousControler.ThumbSticks.Left.Y > 0.5f && CurrentControler.ThumbSticks.Left.Y < 0.5f || CurrentControler.DPad.Up == ButtonState.Released && PreviousControler.DPad.Up == ButtonState.Pressed)
                     {
                         menu[selectedInList].Selected = false;
                         selectedInList--;
