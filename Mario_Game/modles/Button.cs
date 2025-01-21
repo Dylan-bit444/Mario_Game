@@ -55,11 +55,9 @@ namespace Mario_Game
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
-        {
-            CurrentMouse = Mouse.GetState();
-            Rectangle mouseRectangle = new(CurrentMouse.X, CurrentMouse.Y, 1, 1);
+        { 
             Color colour = Color.White;
-            if (mouseRectangle.Intersects(Rectangle)|| Selected)
+            if (Selected)
                 colour = Color.Gray;
 
             spriteBatch.Draw(Texture, Rectangle, colour);
@@ -83,7 +81,7 @@ namespace Mario_Game
                 GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
                 if (Selected)
                 {
-                    if (gamePadState.Buttons.A == ButtonState.Pressed && gamePadState.Buttons.A == ButtonState.Released)
+                    if (gamePadState.Buttons.A == ButtonState.Pressed)
                     {
                         Click.Invoke(this, new EventArgs());
                     }
@@ -91,10 +89,15 @@ namespace Mario_Game
             }
             else if (mouseRectangle.Intersects(Rectangle))
             {
+                Selected=true;
                 if (CurrentMouse.LeftButton == ButtonState.Released && PreviousMouse.LeftButton == ButtonState.Pressed)
                 {
                     Click.Invoke(this, new EventArgs());
                 }
+            }
+            else
+            {
+                Selected = false;
             }
         }
 

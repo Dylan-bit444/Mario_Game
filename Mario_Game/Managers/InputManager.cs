@@ -14,6 +14,10 @@ namespace Mario_Game
         private static Vector2 _direction = Vector2.Zero;
         public static Vector2 Direction => _direction;
         public static bool Moving => _direction != Vector2.Zero;
+
+        private GamePadState PreviousControler;
+
+        private GamePadState CurrentControler;
         private int selectedInList;
 
         public void Update(Hero? _hero, List<Button>? menu)
@@ -26,38 +30,39 @@ namespace Mario_Game
                 _direction = Vector2.Zero;
                 if (gamePad.IsConnected)
                 {
-                    GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
+                    PreviousControler=CurrentControler;
+                    CurrentControler = GamePad.GetState(PlayerIndex.One);
                     if (gamePad.HasLeftXThumbStick || gamePad.HasDPadDownButton)
                     {
-                        if (gamePadState.ThumbSticks.Left.X < -0.5f || gamePadState.DPad.Left == ButtonState.Pressed)
+                        if (CurrentControler.ThumbSticks.Left.X < -0.5f || CurrentControler.DPad.Left == ButtonState.Pressed)
                         {
                             _direction -= new Vector2(1, 0);
                         }
-                        if (gamePadState.ThumbSticks.Left.X > 0.5f || gamePadState.DPad.Right == ButtonState.Pressed)
+                        if (CurrentControler.ThumbSticks.Left.X > 0.5f || CurrentControler.DPad.Right == ButtonState.Pressed)
                         {
                             _direction += new Vector2(1, 0);
                         }
-                        if (gamePadState.ThumbSticks.Left.Y < -0.5f || gamePadState.DPad.Down == ButtonState.Pressed)
+                        if (CurrentControler.ThumbSticks.Left.Y < -0.5f || CurrentControler.DPad.Down == ButtonState.Pressed)
                         {
                             _direction += new Vector2(0, 1);
                         }
-                        if (gamePadState.ThumbSticks.Left.Y > 0.5f || gamePadState.DPad.Up == ButtonState.Pressed)
+                        if (CurrentControler.ThumbSticks.Left.Y > 0.5f || CurrentControler.DPad.Up == ButtonState.Pressed)
                         {
                             _direction -= new Vector2(0, 1);
                         }
-                        if (gamePadState.Buttons.X == ButtonState.Pressed && _hero.Volocity < 200f * 1.25f || gamePadState.Buttons.Y == ButtonState.Pressed && _hero.Volocity < 200f * 1.25f)
+                        if (CurrentControler.Buttons.X == ButtonState.Pressed && _hero.Volocity < 200f * 1.25f || CurrentControler.Buttons.Y == ButtonState.Pressed && _hero.Volocity < 200f * 1.25f)
                         {
                             _hero.Volocity = _hero.Volocity * scale;
                         }
-                        else if ((gamePadState.Buttons.Y != ButtonState.Pressed && _hero.Volocity > 200f) && (gamePadState.Buttons.X != ButtonState.Pressed && _hero.Volocity > 200f))
+                        else if ((CurrentControler.Buttons.Y != ButtonState.Pressed && _hero.Volocity > 200f) && (CurrentControler.Buttons.X != ButtonState.Pressed && _hero.Volocity > 200f))
                         {
                             _hero.Volocity = _hero.Volocity / scale;
                         }
-                        if (gamePadState.Buttons.B == ButtonState.Pressed)
+                        if (CurrentControler.Buttons.B == ButtonState.Pressed)
                         {
                             _direction += new Vector2(1, 0);
                         }
-                        if (gamePadState.Buttons.A == ButtonState.Pressed)
+                        if (CurrentControler.Buttons.A == ButtonState.Pressed)
                         {
                             _direction += new Vector2(0, 1);
                         }
@@ -117,25 +122,28 @@ namespace Mario_Game
                         menu[0].Selected = true;
                     }
                 }
-                GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
+                PreviousControler = CurrentControler;
+                CurrentControler = GamePad.GetState(PlayerIndex.One);
                 if (gamePad.HasLeftXThumbStick || gamePad.HasDPadDownButton)
                 {
-                    if (gamePadState.ThumbSticks.Left.Y < -0.5f || gamePadState.DPad.Down == ButtonState.Pressed)
+                    if (CurrentControler.ThumbSticks.Left.Y < -0.5f || CurrentControler.DPad.Down == ButtonState.Released && PreviousControler.DPad.Down == ButtonState.Pressed)
                     {
                         menu[selectedInList].Selected = false;
                         selectedInList++;
                     }
-                    if (gamePadState.ThumbSticks.Left.Y > 0.5f || gamePadState.DPad.Up == ButtonState.Pressed)
+                    if (CurrentControler.ThumbSticks.Left.Y > 0.5f || CurrentControler.DPad.Up == ButtonState.Released && PreviousControler.DPad.Up == ButtonState.Pressed)
                     {
                         menu[selectedInList].Selected = false;
                         selectedInList--;
                     }
                     if(selectedInList < 0)
                     {
+                        menu[0].Selected = false;
                         selectedInList = menu.Count-1;
                     }
                     if(selectedInList > menu.Count-1)
                     {
+                        menu[2].Selected = false;
                         selectedInList = 0;
                     }
                     menu[selectedInList].Selected = true;
@@ -143,6 +151,11 @@ namespace Mario_Game
                         component.Update();
                 }
                 
+            }
+            else
+            {
+                foreach (Button component in menu)
+                    component.Update();
             }
         }
     }
