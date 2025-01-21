@@ -11,7 +11,7 @@ namespace Mario_Game
 {
     public class MenuState : Structure
     {
-        private List<Structure> Components;
+        private List<Button> Components;
         private Game1 GameOne;
         private ContentManager ContentManagers;
         public MenuState(Game1 game1,ContentManager content) : base()
@@ -43,7 +43,7 @@ namespace Mario_Game
 
             quitGameButton.Click += QuitGameButton_Click;
 
-            Components = new List<Structure>()
+            Components = new List<Button>()
       {
         newGameButton,
         loadGameButton,
@@ -64,14 +64,14 @@ namespace Mario_Game
         }
         public override void Update(GameTime gameTime)
         {
-            foreach (Structure component in Components)
+            foreach (Button component in Components)
                 component.Update(gameTime);
         }
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
 
-            foreach (Structure component in Components)
+            foreach (Button component in Components)
                 component.Draw(gameTime, spriteBatch);
 
             spriteBatch.End();

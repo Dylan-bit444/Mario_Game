@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace Mario_Game
 {
@@ -38,21 +39,17 @@ namespace Mario_Game
                     {
                         _direction -= new Vector2(0, 1);
                     }
-                    if (gamePadState.Buttons.X == ButtonState.Pressed && _hero.Volocity < 200f * 1.25f)
+                    if (gamePadState.Buttons.X == ButtonState.Pressed && _hero.Volocity < 200f * 1.25f || gamePadState.Buttons.Y == ButtonState.Pressed && _hero.Volocity < 200f * 1.25f)
                     {
                         _hero.Volocity = _hero.Volocity * scale;
                     }
-                    else if (gamePadState.Buttons.X != ButtonState.Pressed && _hero.Volocity > 200f)
+                    else if ((gamePadState.Buttons.Y != ButtonState.Pressed && _hero.Volocity > 200f) && (gamePadState.Buttons.X != ButtonState.Pressed && _hero.Volocity > 200f))
                     {
                         _hero.Volocity = _hero.Volocity / scale;
-                    }
+                    }  
                     if (gamePadState.Buttons.B == ButtonState.Pressed)
                     {
                         _direction += new Vector2(1, 0);
-                    }
-                    if (gamePadState.Buttons.Y == ButtonState.Pressed)
-                    {
-                        _direction -= new Vector2(0, 1);
                     }
                     if (gamePadState.Buttons.A == ButtonState.Pressed)
                     {
@@ -95,6 +92,10 @@ namespace Mario_Game
             {
                 Mickel = false;
             }
+        }
+        public void Meune (EventHandler Click)
+        {
+
         }
     }
 }

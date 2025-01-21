@@ -7,7 +7,7 @@ using SharpDX.MediaFoundation;
 
 namespace Mario_Game
 {
-    public class Button : Structure
+    public class Button
     {
         #region Fields
 
@@ -54,7 +54,7 @@ namespace Mario_Game
             PenColour = Color.Black;
         }
 
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             CurrentMouse = Mouse.GetState();
             Rectangle mouseRectangle = new(CurrentMouse.X, CurrentMouse.Y, 1, 1);
@@ -72,7 +72,7 @@ namespace Mario_Game
             }
         }
 
-        public override void Update(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
             Rectangle mouseRectangle = new(CurrentMouse.X, CurrentMouse.Y, 1, 1);
             PreviousMouse = CurrentMouse;
