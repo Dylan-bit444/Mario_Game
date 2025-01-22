@@ -48,8 +48,6 @@ namespace Mario_Game
         }
         protected override void Update(GameTime gameTime)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
-                ChangeState(new MenuState(this,Content)); 
             if (_nextState != null)
             {
                 _currentState = _nextState;

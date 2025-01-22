@@ -26,7 +26,7 @@ namespace Mario_Game
         public override void Update(GameTime gameTime)
         {
             Load();
-            GameOne.ChangeState(new GameState(saveData,ContentManagers));
+            GameOne.ChangeState(new GameState(saveData,ContentManagers,GameOne));
         }
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {

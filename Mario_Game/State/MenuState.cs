@@ -58,7 +58,7 @@ namespace Mario_Game
         }
         private void NewGameButton_Click(object sender, EventArgs e)
         {
-            GameOne.ChangeState(new GameState(null,ContentManagers));
+            GameOne.ChangeState(new GameState(null,ContentManagers,GameOne));
         }
         private void QuitGameButton_Click(object sender, EventArgs e)
         {
@@ -66,7 +66,7 @@ namespace Mario_Game
         }
         public override void Update(GameTime gameTime)
         {
-            inputManager.Update(null,Components);
+            inputManager.Update(null,Components,GameOne,ContentManagers);
         }
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
