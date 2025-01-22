@@ -1,10 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using SharpDX.XInput;
 using System;
 using System.Collections.Generic;
 using System.Drawing.Imaging;
+using System.Reflection.Metadata;
 
 namespace Mario_Game
 {
@@ -18,15 +20,15 @@ namespace Mario_Game
         private GamePadState PreviousControler;
 
         private GamePadState CurrentControler;
-        private int selectedInList;
+        private int selectedInList = 0;
 
-        public void Update(Hero? _hero, List<Button>? menu)
+        public void Update(Hero? _hero, List<Button>? menu,Game1 game,ContentManager content)
         {
             GamePadCapabilities gamePad = GamePad.GetCapabilities(PlayerIndex.One);
             KeyboardState keyboardState = Keyboard.GetState();
             if (_hero != null)
-            {
-                float scale = 10f;
+            {//just to push
+                float scale = 2f;
                 _direction = Vector2.Zero;
                 if (gamePad.IsConnected)
                 {
@@ -66,6 +68,10 @@ namespace Mario_Game
                         {
                             _direction += new Vector2(0, 1);
                         }
+                        if(CurrentControler.Buttons.Start == ButtonState.Released && PreviousControler.Buttons.Start == ButtonState.Pressed)
+                        {
+                            game.ChangeState(new MenuState(game, content));
+                        } 
                     }
                 }
                 else
@@ -94,6 +100,8 @@ namespace Mario_Game
                     {
                         _hero.Volocity = _hero.Volocity / scale;
                     }
+                    if(keyboardState.IsKeyDown(Keys.Escape))
+                    game.ChangeState(new MenuState(game, content));
                 }
                 if (keyboardState.IsKeyDown(Keys.M) && keyboardState.IsKeyDown(Keys.J))
                 {
@@ -106,22 +114,6 @@ namespace Mario_Game
             }
             else if (menu != null && gamePad.IsConnected)
             {
-                int count = 0;
-                for (int i = 0; i < menu.Count-1; i++)
-                {
-                    if (!menu[i].Selected)
-                    {
-                        count++;
-                    }
-                    else
-                    {
-                        selectedInList = i;
-                    }
-                    if (count == menu.Count - 1)
-                    {
-                        menu[0].Selected = true;
-                    }
-                }
                 PreviousControler = CurrentControler;
                 CurrentControler = GamePad.GetState(PlayerIndex.One);
                 if (gamePad.HasLeftXThumbStick || gamePad.HasDPadDownButton)
@@ -129,23 +121,24 @@ namespace Mario_Game
                     if (PreviousControler.ThumbSticks.Left.Y > -0.5f && CurrentControler.ThumbSticks.Left.Y < -0.5f || CurrentControler.DPad.Down == ButtonState.Released && PreviousControler.DPad.Down == ButtonState.Pressed)
                     {
                         menu[selectedInList].Selected = false;
+                        if (selectedInList == menu.Count -1)
+                        {
+                            selectedInList = 0;
+                        }
+                        else
                         selectedInList++;
                     }
                     if (PreviousControler.ThumbSticks.Left.Y > 0.5f && CurrentControler.ThumbSticks.Left.Y < 0.5f || CurrentControler.DPad.Up == ButtonState.Released && PreviousControler.DPad.Up == ButtonState.Pressed)
                     {
                         menu[selectedInList].Selected = false;
+                        if (selectedInList == 0)
+                        {
+                            selectedInList = menu.Count - 1;
+                        }
+                        else
                         selectedInList--;
                     }
-                    if(selectedInList < 0)
-                    {
-                        menu[0].Selected = false;
-                        selectedInList = menu.Count-1;
-                    }
-                    if(selectedInList > menu.Count-1)
-                    {
-                        menu[2].Selected = false;
-                        selectedInList = 0;
-                    }
+
                     menu[selectedInList].Selected = true;
                     foreach (Button component in menu)
                         component.Update();
