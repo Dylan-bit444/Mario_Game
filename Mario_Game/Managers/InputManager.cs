@@ -27,7 +27,7 @@ namespace Mario_Game
             GamePadCapabilities gamePad = GamePad.GetCapabilities(PlayerIndex.One);
             KeyboardState keyboardState = Keyboard.GetState();
             if (_hero != null)
-            {//just to push
+            {//just to pus
                 float scale = 2f;
                 _direction = Vector2.Zero;
                 if (gamePad.IsConnected)
