@@ -20,6 +20,7 @@ namespace Mario_Game
 
         private string savedData;
         private int xCoordinate, yCoordinate;
+        private Vector2 ve;
         public PauseState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
 
@@ -76,6 +77,7 @@ namespace Mario_Game
 
             string xCoordinate = tr.ReadLine();
             string yCoordinate = tr.ReadLine();
+            string ve = tr.ReadLine();
 
             tr.Close();
         }
@@ -89,6 +91,8 @@ namespace Mario_Game
         {
 
             TextWriter tw = new StreamWriter("Saved.txt");
+
+            Vector2 ve = (4352, 4952);
 
             tw.WriteLine(xCoordinate);
             tw.WriteLine(yCoordinate);
