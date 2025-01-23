@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Mario_Game.State;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -70,7 +71,7 @@ namespace Mario_Game
                         }
                         if(CurrentControler.Buttons.Start == ButtonState.Released && PreviousControler.Buttons.Start == ButtonState.Pressed)
                         {
-                            game.ChangeState(new MenuState(game, content));
+                            game.ChangeState(new PauseState(game, content,_hero));
                         } 
                     }
                 }

@@ -9,7 +9,7 @@ using Mario_Game;
 
 namespace Mario_Game
 {
-    public class MenuState : Structure
+    internal class MenuState : Structure
     {
         private List<Button> Components;
         private Game1 GameOne;

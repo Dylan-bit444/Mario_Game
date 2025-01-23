@@ -11,7 +11,7 @@ using Mario_Game.modles;
 
 namespace Mario_Game
 {
-    public class LoadState : Structure
+    internal class LoadState : Structure
     {
         public SaveData saveData;
         private ContentManager ContentManagers;

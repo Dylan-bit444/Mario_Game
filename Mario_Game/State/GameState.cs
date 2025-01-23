@@ -9,7 +9,7 @@ using System.IO;
 
 namespace Mario_Game
 {
-    public class GameState :Structure
+    internal class GameState :Structure
     {
         private Texture2D _playerTexture;
         private Texture2D _CoinTexture;
