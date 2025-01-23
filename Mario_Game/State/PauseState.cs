@@ -71,6 +71,13 @@ namespace Mario_Game
         private void LoadMenuButton_Click(object sender, EventArgs e)
         {
             Game.ChangeState(new MenuState(Game,_graphicsDevice,_content));
+
+            TextReader tr = new StreamReader("Saved.txt");
+
+            string xCoordinate = tr.ReadLine();
+            string yCoordinate = tr.ReadLine();
+
+            tr.Close();
         }
 
         private void PlayGameButton_Click(object sender, EventArgs e)
@@ -81,12 +88,12 @@ namespace Mario_Game
         private void SaveGameButton_Click(object sender, EventArgs e)
         {
 
-            TextWriter tw = new StreamWriter("Saved");
+            TextWriter tw = new StreamWriter("Saved.txt");
 
             tw.WriteLine(xCoordinate);
             tw.WriteLine(yCoordinate);
             
-
+            tw.Close();
         }
 
         public override void PostUpdate(GameTime gameTime)
