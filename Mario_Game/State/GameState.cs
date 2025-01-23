@@ -15,7 +15,6 @@ namespace Mario_Game
         private Texture2D _CoinTexture;
         private Coin[] _coin = new Coin[10];
         private Hero _hero;
-        private Button SaveButton;
         private InputManager _inputManager;
         public SaveData Saves;
         private SpriteFont hudFont;
@@ -29,19 +28,13 @@ namespace Mario_Game
             hudFont = content.Load<SpriteFont>("HudText");
             Texture2D buttonTexture = content.Load<Texture2D>("Button");
             SpriteFont buttonFont = content.Load<SpriteFont>("File");
-            SaveButton = new(buttonTexture, buttonFont)
-            {
-                Position = new Vector2(0, 0),
-                Text = "Save",
-            };
-            SaveButton.Click += SaveButton_Click;
             _playerTexture = content.Load<Texture2D>("hero-PlaceHolder");
             _CoinTexture = content.Load<Texture2D>("coin");
             if(Saves != null)   
             {
-                _hero = new(_playerTexture, Saves.SavedPostion, Color.White, 200f, new Coin[10]);
-                _hero.CoinsCollected = saves.SavedCoins;
-                _hero.Animations.LastKeyPress = Saves.SavedAnimation;
+                _hero = new(_playerTexture, saves.Hero.Position, Color.White, 200f, new Coin[10]);
+                _hero.CoinsCollected = saves.Hero.CoinsCollected;
+                _hero.Animations.LastKeyPress = saves.Hero.Animations.LastKeyPress;
             }
             else
             {
@@ -57,7 +50,6 @@ namespace Mario_Game
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
-            SaveButton.Draw(gameTime, spriteBatch);
             spriteBatch.DrawString(hudFont, $"Coins: {_hero.CoinsCollected}",new Vector2(1000,0),Color.White);
             foreach (Coin coin in _coin) 
             coin.Draw(spriteBatch);
@@ -69,7 +61,6 @@ namespace Mario_Game
         {
             float time;
             time = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            SaveButton.Update();
             _inputManager.Update(_hero, null,GameOne,_contentManager);
             foreach (Coin coin in _coin) 
             coin.Update(time);

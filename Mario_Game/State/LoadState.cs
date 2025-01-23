@@ -40,9 +40,10 @@ namespace Mario_Game
                 {
                     string line = reader.ReadLine();
                     var parts = line.Split(',');
-                    saveData.SavedPostion = new(float.Parse(parts[0].Trim()), float.Parse(parts[1].Trim()));
-                    saveData.SavedAnimation = new(float.Parse(parts[2].Trim()), float.Parse(parts[3].Trim()));
-                    saveData.SavedCoins = float.Parse(parts[4].Trim()); 
+                    saveData.Hero = new Hero();
+                    saveData.Hero.Position = new(float.Parse(parts[0].Trim()), float.Parse(parts[1].Trim()));
+                    saveData.Hero.Animations.LastKeyPress = new(float.Parse(parts[2].Trim()), float.Parse(parts[3].Trim()));
+                    saveData.Hero.CoinsCollected = float.Parse(parts[4].Trim()); 
                 }
             }
         }

@@ -78,14 +78,7 @@ namespace Mario_Game
             CurrentMouse = Mouse.GetState();
             if (gamePad.IsConnected)
             {
-                GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
-                if (Selected)
-                {
-                    if (gamePadState.Buttons.A == ButtonState.Pressed)
-                    {
-                        Click.Invoke(this, new EventArgs());
-                    }
-                }
+                Click.Invoke(this, new EventArgs());
             }
             else if (mouseRectangle.Intersects(Rectangle))
             {

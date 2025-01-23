@@ -11,50 +11,78 @@ using System.Threading.Tasks;
 
 namespace Mario_Game.State
 {
-    internal class PauseState:Structure
+    internal class PauseState: Structure
     {
         private List<Button> Components;
         private InputManager inputManager;
         private ContentManager ContentManagers;
+        private SaveData SaveData;
         private Game1 GameOne;
-        private Hero _hero;
 
-        public PauseState(Game1 game, ContentManager content, Hero hero)
+        public PauseState(Game1 game, ContentManager content,Hero _hero)
         {
+            SaveData = new SaveData();
+            SaveData.Hero = _hero;
             ContentManagers = content;
             GameOne = game;
             inputManager = new();
-            Components = new List<Button>();
-            _hero = hero;
             SpriteFont hudFont = content.Load<SpriteFont>("HudText");
             Texture2D buttonTexture = content.Load<Texture2D>("Button");
             SpriteFont buttonFont = content.Load<SpriteFont>("File");
             Button SaveButton = new(buttonTexture, buttonFont)
             {
-                Position = new Vector2(0, 0),
+                Position = new Vector2(661, 150),
                 Text = "Save",
             };
             SaveButton.Click += SaveButton_Click;
+            Button MenuButton = new(buttonTexture, buttonFont)
+            {
+                Position = new Vector2(661, 750),
+                Text = "Main Menu",
+            };
+            MenuButton.Click += MenuButton_Click;
+            Button ResumeButtom = new(buttonTexture, buttonFont)
+            {
+                Position = new Vector2(661, 450),
+                Text = "Resume"
+            };
+            ResumeButtom.Click += ResumeButton_Click;
+            Components = new List<Button>()
+            {
+                SaveButton,
+                ResumeButtom,
+                MenuButton
+                
+            };
         }
         private void SaveButton_Click(object sender, EventArgs e)
         {
             String fileName = "Save_Data.txt";
             using (StreamWriter writer = new(fileName, false))
             {
-                writer.WriteLine($"{_hero.Position.X},{_hero.Position.Y},{_hero.Animations.LastKeyPress.X},{_hero.Animations.LastKeyPress.Y},{_hero.CoinsCollected}");
+                writer.WriteLine($"{SaveData.Hero.Position.X},{SaveData.Hero.Position.Y},{SaveData.Hero.Animations.LastKeyPress.X},{SaveData.Hero.Animations.LastKeyPress.Y},{SaveData.Hero.CoinsCollected}");
             }
         }
-        private void NewGameButton_Click(object sender, EventArgs e)
+        private void MenuButton_Click(object sender, EventArgs e)
         {
             GameOne.ChangeState(new MenuState( GameOne, ContentManagers));
         }
+        private void ResumeButton_Click(object sender, EventArgs e)
+        {
+            GameOne.ChangeState(new GameState(SaveData,ContentManagers,GameOne));
+        }
         public override void Update(GameTime gameTime)
         {
-            throw new NotImplementedException();
+            inputManager.Update(null, Components, GameOne, ContentManagers);
         }
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            throw new NotImplementedException();
+            spriteBatch.Begin();
+
+            foreach (Button component in Components)
+                component.Draw(gameTime, spriteBatch);
+
+            spriteBatch.End();
         }
     }
 }

@@ -10,8 +10,5 @@ namespace Mario_Game.modles
     internal class SaveData
     {
         public Hero Hero {  get; set; }
-        public Vector2 SavedPostion { get; set; }
-        public Vector2 SavedAnimation { get; set; }
-        public float SavedCoins { get; set; }
     }
 }
