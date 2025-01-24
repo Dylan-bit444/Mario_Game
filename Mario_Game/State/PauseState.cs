@@ -15,16 +15,12 @@ namespace Mario_Game.State
     {
         private List<Button> Components;
         private InputManager inputManager;
-        private ContentManager ContentManagers;
         private SaveData SaveData;
-        private Game1 GameOne;
 
-        public PauseState(Game1 game, ContentManager content,Hero _hero)
+        public PauseState(ContentManager content,Hero _hero)
         {
             SaveData = new SaveData();
             SaveData.Hero = _hero;
-            ContentManagers = content;
-            GameOne = game;
             inputManager = new();
             SpriteFont hudFont = content.Load<SpriteFont>("HudText");
             Texture2D buttonTexture = content.Load<Texture2D>("Button");
@@ -55,7 +51,7 @@ namespace Mario_Game.State
                 
             };
         }
-        private void SaveButton_Click(object sender, EventArgs e)
+        private void SaveButton_Click(Button sender, Game1 game, ContentManager content, EventArgs e)
         {
             String fileName = "Save_Data.txt";
             using (StreamWriter writer = new(fileName, false))
@@ -63,17 +59,17 @@ namespace Mario_Game.State
                 writer.WriteLine($"{SaveData.Hero.Position.X},{SaveData.Hero.Position.Y},{SaveData.Hero.Animations.LastKeyPress.X},{SaveData.Hero.Animations.LastKeyPress.Y},{SaveData.Hero.CoinsCollected}");
             }
         }
-        private void MenuButton_Click(object sender, EventArgs e)
+        private void MenuButton_Click(Button sender, Game1 game, ContentManager content, EventArgs e)
         {
-            GameOne.ChangeState(new MenuState( GameOne, ContentManagers));
+            game.ChangeState(new MenuState( content));
         }
-        private void ResumeButton_Click(object sender, EventArgs e)
+        private void ResumeButton_Click(Button sender, Game1 game, ContentManager content, EventArgs e)
         {
-            GameOne.ChangeState(new GameState(SaveData,ContentManagers,GameOne));
+            game.ChangeState(new GameState(SaveData,content));
         }
-        public override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime,Game1 game,ContentManager content)
         {
-            inputManager.Update(null, Components, GameOne, ContentManagers);
+            inputManager.Update(null, Components, game, content);
         }
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {

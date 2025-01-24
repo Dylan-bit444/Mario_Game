@@ -43,7 +43,7 @@ namespace Mario_Game
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            _currentState = new MenuState(this,Content);
+            _currentState = new MenuState(Content);
             
         }
         protected override void Update(GameTime gameTime)
@@ -55,7 +55,7 @@ namespace Mario_Game
                 _nextState = null;
             }
 
-            _currentState.Update(gameTime);
+            _currentState.Update(gameTime,this,Content);
 
             base.Update(gameTime);
         }

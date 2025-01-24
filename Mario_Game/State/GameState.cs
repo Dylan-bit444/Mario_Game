@@ -18,13 +18,9 @@ namespace Mario_Game
         private InputManager _inputManager;
         public SaveData Saves;
         private SpriteFont hudFont;
-        private Game1 GameOne;
-        private ContentManager _contentManager;
-        public GameState(SaveData saves,ContentManager content,Game1 game)  
+        public GameState(SaveData saves,ContentManager content)  
         {
-            _contentManager = content;
             Saves = saves;
-            GameOne = game;
             hudFont = content.Load<SpriteFont>("HudText");
             Texture2D buttonTexture = content.Load<Texture2D>("Button");
             SpriteFont buttonFont = content.Load<SpriteFont>("File");
@@ -57,22 +53,14 @@ namespace Mario_Game
             spriteBatch.End();
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime, Game1 game, ContentManager content)
         {
             float time;
             time = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            _inputManager.Update(_hero, null,GameOne,_contentManager);
+            _inputManager.Update(_hero, null,game,content);
             foreach (Coin coin in _coin) 
             coin.Update(time);
             _hero.Update(time);
-        }
-        private void SaveButton_Click(object sender, EventArgs e)
-        {
-            String fileName = "Save_Data.txt";
-            using (StreamWriter writer = new(fileName, false))
-            {
-                writer.WriteLine($"{_hero.Position.X},{_hero.Position.Y},{_hero.Animations.LastKeyPress.X},{_hero.Animations.LastKeyPress.Y},{_hero.CoinsCollected}");
-            }
         }
     }
 

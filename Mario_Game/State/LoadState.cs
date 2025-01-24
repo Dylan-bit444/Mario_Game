@@ -15,18 +15,15 @@ namespace Mario_Game
     {
         public SaveData saveData;
         private ContentManager ContentManagers;
-        private Game1 GameOne;
-        public LoadState(ContentManager content, Game1 gameOne)
+        public LoadState()
             : base()
         {
             saveData = new SaveData();
-            ContentManagers = content;
-            GameOne = gameOne;
         }
-        public override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime, Game1 game, ContentManager content)
         {
             Load();
-            GameOne.ChangeState(new GameState(saveData,ContentManagers,GameOne));
+            game.ChangeState(new GameState(saveData,content));
         }
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {

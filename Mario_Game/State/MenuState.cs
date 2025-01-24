@@ -12,13 +12,9 @@ namespace Mario_Game
     internal class MenuState : Structure
     {
         private List<Button> Components;
-        private Game1 GameOne;
         private InputManager inputManager;
-        private ContentManager ContentManagers;
-        public MenuState(Game1 game1,ContentManager content) : base()
+        public MenuState(ContentManager content) : base()
         {
-            ContentManagers = content; 
-            GameOne = game1;
             Texture2D buttonTexture = content.Load<Texture2D>("Button");
             SpriteFont buttonFont = content.Load<SpriteFont>("File");
 
@@ -52,21 +48,21 @@ namespace Mario_Game
       };
             inputManager= new InputManager();
         }
-        private void LoadGameButton_Click(object sender, EventArgs e)
+        private void LoadGameButton_Click(Button sender, Game1 game, ContentManager content, EventArgs e)
         {
-            GameOne.ChangeState(new LoadState(ContentManagers,GameOne));
+            game.ChangeState(new LoadState());
         }
-        private void NewGameButton_Click(object sender, EventArgs e)
+        private void NewGameButton_Click(Button sender, Game1 game, ContentManager content, EventArgs e)
         {
-            GameOne.ChangeState(new GameState(null,ContentManagers,GameOne));
+            game.ChangeState(new GameState(null,content));
         }
-        private void QuitGameButton_Click(object sender, EventArgs e)
+        private void QuitGameButton_Click(Button sender, Game1 game, ContentManager content, EventArgs e)
         {
-            GameOne.Exit();
+            game.Exit();
         }
-        public override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime,Game1 game, ContentManager content)
         {
-            inputManager.Update(null,Components,GameOne,ContentManagers);
+            inputManager.Update(null,Components,game,content);
         }
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {

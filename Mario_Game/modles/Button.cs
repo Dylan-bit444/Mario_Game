@@ -4,10 +4,11 @@ using Microsoft.Xna.Framework.Input;
 using System.ComponentModel;
 using System;
 using SharpDX.MediaFoundation;
+using Microsoft.Xna.Framework.Content;
 
 namespace Mario_Game
 {
-    public class Button
+    internal class Button
     {
         #region Fields
 
@@ -22,8 +23,9 @@ namespace Mario_Game
         #endregion
 
         #region Properties
+        public delegate void Clicked(Button? sender, Game1? game, ContentManager? content, EventArgs e);
 
-        public event EventHandler Click;
+        public event Clicked Click;
 
         public bool Selected = false;
 
@@ -70,7 +72,7 @@ namespace Mario_Game
             }
         }
 
-        public void Update()
+        public void Update(Game1 game,ContentManager? content,Hero? hero)
         {
             GamePadCapabilities gamePad = GamePad.GetCapabilities(PlayerIndex.One);
             Rectangle mouseRectangle = new(CurrentMouse.X, CurrentMouse.Y, 1, 1);
@@ -78,14 +80,14 @@ namespace Mario_Game
             CurrentMouse = Mouse.GetState();
             if (gamePad.IsConnected)
             {
-                Click.Invoke(this, new EventArgs());
+                Click.Invoke(this, game,content,new EventArgs());
             }
             else if (mouseRectangle.Intersects(Rectangle))
             {
                 Selected=true;
                 if (CurrentMouse.LeftButton == ButtonState.Released && PreviousMouse.LeftButton == ButtonState.Pressed)
                 {
-                    Click.Invoke(this, new EventArgs());
+                    Click.Invoke(this, game, content, new EventArgs());
                 }
             }
             else

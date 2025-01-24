@@ -28,7 +28,7 @@ namespace Mario_Game
             GamePadCapabilities gamePad = GamePad.GetCapabilities(PlayerIndex.One);
             KeyboardState keyboardState = Keyboard.GetState();
             if (_hero != null)
-            {//just to pus
+            {
                 float scale = 20f;
                 _direction = Vector2.Zero;
                 if (gamePad.IsConnected)
@@ -71,7 +71,7 @@ namespace Mario_Game
                         }
                         if(CurrentControler.Buttons.Start == ButtonState.Released && PreviousControler.Buttons.Start == ButtonState.Pressed)
                         {
-                            game.ChangeState(new PauseState(game, content,_hero));
+                            game.ChangeState(new PauseState(content,_hero));
                         } 
                     }
                 }
@@ -102,7 +102,7 @@ namespace Mario_Game
                         _hero.Volocity = _hero.Volocity / scale;
                     }
                     if(keyboardState.IsKeyDown(Keys.Escape))
-                        game.ChangeState(new PauseState(game, content, _hero));
+                        game.ChangeState(new PauseState(content, _hero));
                 }
                 if (keyboardState.IsKeyDown(Keys.M) && keyboardState.IsKeyDown(Keys.J))
                 {
@@ -144,7 +144,7 @@ namespace Mario_Game
                     menu[selectedInList].Selected = true;
                     if(PreviousControler.Buttons.A == ButtonState.Pressed && CurrentControler.Buttons.A == ButtonState.Released)
                     {
-                        menu[selectedInList].Update();
+                        menu[selectedInList].Update(game,content,_hero);
                     } 
                 }
                 
@@ -152,7 +152,7 @@ namespace Mario_Game
             else
             {
                 foreach (Button component in menu)
-                    component.Update();
+                    component.Update(game, content, _hero);
             }
         }
     }
