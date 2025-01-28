@@ -9,6 +9,7 @@ namespace Mario_Game.modles
 {
     internal class SaveData
     {
-        public Hero Hero = new Hero();
+        public Hero Hero = new ();
+        public Map Map = new ();
     }
 }
