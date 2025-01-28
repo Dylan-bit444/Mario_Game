@@ -54,7 +54,7 @@ namespace Mario_Game.State
             String fileName = "Save_Data.txt";
             using (StreamWriter writer = new(fileName, false))
             {
-                writer.WriteLine($"{SaveData.Hero.Position.X},{SaveData.Hero.Position.Y},{SaveData.Hero.Animations.LastKeyPress.X},{SaveData.Hero.Animations.LastKeyPress.Y},{SaveData.Hero.CoinsCollected}");
+                writer.WriteLine($"{SaveData.Hero.Position.X},{SaveData.Hero.Position.Y},{SaveData.Hero.Animations.LastKeyPress.X},{SaveData.Hero.Animations.LastKeyPress.Y},{SaveData.Hero.CoinsCollected},{SaveData.Hero.IsDraw}");
             }
         }
         private void MenuButton_Click(Button sender, Game1 game, ContentManager content, EventArgs e)

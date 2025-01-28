@@ -29,7 +29,7 @@ namespace Mario_Game
 
         public bool Selected = false;
 
-        public Color PenColour { get; set; }
+        private Color PenColour { get; set; }
 
         public Vector2 Position { get; set; }
 

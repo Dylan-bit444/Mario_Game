@@ -29,7 +29,7 @@ namespace Mario_Game
             KeyboardState keyboardState = Keyboard.GetState();
             if (_hero != null)
             {
-                float scale = 20f;
+                float scale = 2f;
                 _direction = Vector2.Zero;
                 if (gamePad.IsConnected)
                 {
