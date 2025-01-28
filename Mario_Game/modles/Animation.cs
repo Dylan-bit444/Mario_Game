@@ -32,11 +32,6 @@ namespace Mario_Game
             
         }
 
-        public void Stop()
-        {
-            Active = false;
-        }
-
         public void Start()
         {
             Active = true;
@@ -44,20 +39,21 @@ namespace Mario_Game
 
         public void Reset()
         {
+            Active = false;
             CurrentFrame = 0;
             FrameTimeLeft = FramTime;
         }
 
         public void Update(float time)
         {
-            if (!Active) return;
-
-            FrameTimeLeft -= time;
-
-            if (FrameTimeLeft <= 0)
+            if (Active)
             {
-                FrameTimeLeft += FramTime;
-                CurrentFrame = (CurrentFrame + 1) % Frames;
+                FrameTimeLeft -= time;
+                if (FrameTimeLeft <= 0)
+                {
+                    FrameTimeLeft += FramTime;
+                    CurrentFrame = (CurrentFrame + 1) % Frames;
+                }
             }
         }
 

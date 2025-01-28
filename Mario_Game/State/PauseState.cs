@@ -14,14 +14,12 @@ namespace Mario_Game.State
     internal class PauseState: Structure
     {
         private List<Button> Components;
-        private InputManager inputManager;
-        private SaveData SaveData;
+        private InputManager inputManager = new();
+        private SaveData SaveData = new SaveData();
 
         public PauseState(ContentManager content,Hero _hero)
         {
-            SaveData = new SaveData();
             SaveData.Hero = _hero;
-            inputManager = new();
             SpriteFont hudFont = content.Load<SpriteFont>("HudText");
             Texture2D buttonTexture = content.Load<Texture2D>("Button");
             SpriteFont buttonFont = content.Load<SpriteFont>("File");

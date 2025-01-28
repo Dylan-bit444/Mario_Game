@@ -13,21 +13,16 @@ namespace Mario_Game
 {
     internal class LoadState : Structure
     {
-        public SaveData saveData;
-        private ContentManager ContentManagers;
+        public SaveData saveData = new SaveData();
         public LoadState()
             : base()
-        {
-            saveData = new SaveData();
-        }
+        {}
         public override void Update(GameTime gameTime, Game1 game, ContentManager content)
         {
             Load();
             game.ChangeState(new GameState(saveData,content));
         }
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
-        {
-        }
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch){ }
         public void Load()
         {
             String FileName = "Save_Data.txt";
@@ -37,12 +32,11 @@ namespace Mario_Game
                 {
                     string line = reader.ReadLine();
                     var parts = line.Split(',');
-                    saveData.Hero = new Hero();
                     saveData.Hero.Position = new(float.Parse(parts[0].Trim()), float.Parse(parts[1].Trim()));
                     saveData.Hero.Animations.LastKeyPress = new(float.Parse(parts[2].Trim()), float.Parse(parts[3].Trim()));
                     saveData.Hero.CoinsCollected = float.Parse(parts[4].Trim()); 
                 }
             }
         }
-    }//Done
+    }
 }

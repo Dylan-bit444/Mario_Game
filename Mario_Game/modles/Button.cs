@@ -23,7 +23,7 @@ namespace Mario_Game
         #endregion
 
         #region Properties
-        public delegate void Clicked(Button? sender, Game1? game, ContentManager? content, EventArgs e);
+        internal delegate void Clicked(Button sender, Game1 game, ContentManager content, EventArgs e);
 
         public event Clicked Click;
 
@@ -72,7 +72,7 @@ namespace Mario_Game
             }
         }
 
-        public void Update(Game1 game,ContentManager? content,Hero? hero)
+        public void Update(Game1 game,ContentManager content,Hero hero)
         {
             GamePadCapabilities gamePad = GamePad.GetCapabilities(PlayerIndex.One);
             Rectangle mouseRectangle = new(CurrentMouse.X, CurrentMouse.Y, 1, 1);

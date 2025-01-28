@@ -35,7 +35,6 @@ namespace Mario_Game
             }
             else
             {
-                Animation[LastKeyPress].Stop();
                 Animation[LastKeyPress].Reset();
             }
         }
