@@ -11,6 +11,7 @@ using System;
 using System.IO;
 using System.Diagnostics;
 using System.Windows.Forms.VisualStyles;
+using System.Collections;
 
 namespace Mario_Game
 {
@@ -92,7 +93,7 @@ namespace Mario_Game
 
             TextWriter tw = new StreamWriter("Saved.txt");
 
-            Vector2 ve = (4352, 4952);
+            var data = new BitArray(File.ReadAllBytes("Saved.txt"));
 
             tw.WriteLine(xCoordinate);
             tw.WriteLine(yCoordinate);
