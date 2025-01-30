@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace NewStartMenu.States
 {
-    public abstract class State
+    public abstract class Structure
     {
         #region Fields
 
@@ -28,7 +28,7 @@ namespace NewStartMenu.States
 
         public abstract void PostUpdate(GameTime gameTime);
 
-        public State(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)
+        public Structure(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)
         {
             Game = game;
             _graphicsDevice = graphicsDevice;

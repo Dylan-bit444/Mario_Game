@@ -7,6 +7,10 @@ using System.Windows.Forms;
 using System.Text.Json;
 using System.Diagnostics;
 using System.IO;
+using SharpDX.XInput;
+using System.Drawing;
+using SharpDX;
+using SharpDX.MediaFoundation.DirectX;
 
 namespace Mario_Game
 {//Added Branch
@@ -17,12 +21,12 @@ namespace Mario_Game
 
         private PlayerStats pStats;
 
-        private State _currentState;
+        private Structure _currentState;
 
-        private State _nextState;
+        private Structure _nextState;
 
         private const string PATH = "const.Json";
-        public void ChangeState(State state)
+        public void ChangeState(Structure state)
         {
             _nextState = state;
         }
@@ -65,7 +69,7 @@ namespace Mario_Game
 
             _currentState = new MenuState(this, _graphics.GraphicsDevice, Content);
         }
-
+        
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == Microsoft.Xna.Framework.Input.ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Escape))
@@ -83,13 +87,12 @@ namespace Mario_Game
 
             MouseState mouse = Mouse.GetState();
 
-
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
 
             _currentState.Draw(gameTime, _spriteBatch);

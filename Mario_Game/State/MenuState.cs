@@ -11,7 +11,7 @@ using Mario_Game;
 
 namespace NewStartMenu.States
 {
-    internal class MenuState : State
+    internal class MenuState : Structure
     {
         private List<Components> _components;
 

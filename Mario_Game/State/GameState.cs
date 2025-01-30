@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace NewStartMenu.States
 {
-    public class GameState : State
+    public class GameState : Structure
     {
 
 

@@ -15,7 +15,7 @@ using System.Collections;
 
 namespace Mario_Game
 {
-    internal class PauseState : State
+    internal class PauseState : Structure
     {
         private List<Components> _components;
 
@@ -99,6 +99,9 @@ namespace Mario_Game
             tw.WriteLine(yCoordinate);
             
             tw.Close();
+
+            Console.WriteLine(savedData);
+            
         }
 
         public override void PostUpdate(GameTime gameTime)
