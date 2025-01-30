@@ -26,19 +26,25 @@ namespace Mario_Game
             SpriteFont buttonFont = content.Load<SpriteFont>("File");
             _playerTexture = content.Load<Texture2D>("hero-PlaceHolder");
             _CoinTexture = content.Load<Texture2D>("coin");
-            if(Saves != null)   
+            if (Saves != null)
             {
                 _hero = new(_playerTexture, saves.Player.Position, Color.White, 200f, new Coin[10]);
                 _hero.CoinsCollected = saves.Player.CoinsCollected;
                 _hero.Animations.LastKeyPress = saves.Player.Animations.LastKeyPress;
+                for (int i = 0; i < _coin.Length; i++)
+                {
+                    _coin[i] = new Coin(_CoinTexture, new Vector2(100 * (i + 1), 100 * (i + 1)), Color.White, 0);
+                    _coin[i].IsDraw = saves.Drawed[i];
+                }
             }
             else
             {
-                _hero = new(_playerTexture, new Vector2(1000, 1000), Color.White, 200f,new Coin[10]);
-            }
-            for (int i = 0; i < _coin.Length; i++)
-            {
-                _coin[i] = new Coin(_CoinTexture, new Vector2(100*(i+1), 100*(i+1)), Color.White, 0);
+                _hero = new(_playerTexture, new Vector2(1000, 1000), Color.White, 200f, new Coin[10]);
+
+                for (int i = 0; i < _coin.Length; i++)
+                {
+                    _coin[i] = new Coin(_CoinTexture, new Vector2(100 * (i + 1), 100 * (i + 1)), Color.White, 0);
+                }
             }
             _hero.Coins =_coin;
             _inputManager = new();

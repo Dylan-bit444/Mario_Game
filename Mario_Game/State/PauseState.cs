@@ -20,6 +20,10 @@ namespace Mario_Game.State
         public PauseState(ContentManager content,Hero _hero)
         {
             SaveData.Player = _hero;
+            for(int i = 0; i < _hero.Coins.Length; i++)
+            {
+                SaveData.Drawed[i] = _hero.Coins[i].IsDraw;
+            }
             SpriteFont hudFont = content.Load<SpriteFont>("HudText");
             Texture2D buttonTexture = content.Load<Texture2D>("Button");
             SpriteFont buttonFont = content.Load<SpriteFont>("File");

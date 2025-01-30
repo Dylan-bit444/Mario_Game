@@ -35,11 +35,9 @@ namespace Mario_Game
                     saveData.Player.Position = new(float.Parse(line[0]), float.Parse(line[1]));
                     saveData.Player.Animations.LastKeyPress = new(float.Parse(line[2]), float.Parse(line[3]));
                     saveData.Player.CoinsCollected = float.Parse(line[4]);
-                    int i = 5;
-                    foreach (Coin coin in saveData.Player.Coins)
+                    for(int i=0;i< saveData.Drawed.Length; i++)
                     {
-                        i++;
-                        coin.IsDraw = bool.Parse(line[i]);
+                        saveData.Drawed[i] = bool.Parse(line[i+5]);
                     }
                 }
             }
