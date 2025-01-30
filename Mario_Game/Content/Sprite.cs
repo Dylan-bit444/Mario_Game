@@ -1,8 +1,9 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using Mario_Game;
 
 
-namespace Mario_Game
+namespace tile
 {
     public class Sprite
     {
@@ -16,8 +17,8 @@ namespace Mario_Game
         private static Color Color;
         public Vector2 Position { get; protected set; }
         public Vector2 Origin { get; protected set; }
-        
 
+        
         public void Draw()
         {
             Globals.SpriteBatch.Draw(Texture, Position, null, Color.White, 0f, Origin, 1f, SpriteEffects.None, 0f);

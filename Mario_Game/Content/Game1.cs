@@ -1,31 +1,47 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.IO;
+using System.Collections.Generic;
+using tile;
 
 namespace Mario_Game
 {
     public class Game1 : Game
     {
-        private readonly GraphicsDeviceManager _graphics;
+        private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-        private GameManager _gameManager;
-
+        private Dictionary<Vector2, int> tilemap;
+        private List<Rectangle> textureStore;
+        private Texture2D mapSheet;
+        private Hero _hero;
+        private Texture2D heroTexture;
+        private FollowCamera camera;
+        private int tilesize = 80;
+        private Tile[,] tiles;
+        private int[,] tileValuesArray;
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            
+            
+
         }
+       
+
 
         protected override void Initialize()
         {
+            // TODO: Add your initialization logic here
             Globals.WindowSize = new(1024, 768);
             _graphics.PreferredBackBufferWidth = Globals.WindowSize.X;
             _graphics.PreferredBackBufferHeight = Globals.WindowSize.Y;
             _graphics.ApplyChanges();
 
             Globals.Content = Content;
-            _gameManager = new();
+
 
             base.Initialize();
         }
@@ -33,25 +49,46 @@ namespace Mario_Game
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            mapSheet = Content.Load<Texture2D>("Spritesheet");
+            tileValuesArray = TileManager.ReadFile("tileMap.txt");
             Globals.SpriteBatch = _spriteBatch;
+            heroTexture = Content.Load<Texture2D>("hero");
+
+            // TODO: use this.Content to load your game content here
+            _hero = new Hero(heroTexture, Vector2.Zero);
         }
 
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
             Globals.Update(gameTime);
-            _gameManager.Update();
+            InputManager.Update();
+
+            // TODO: Add your update logic here
+            _hero.Update();
+            
 
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
+            
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            _gameManager.Draw();
+            
+            _spriteBatch.Begin();
+            foreach (Tile t in tiles)
+            {
+                t.Draw(_spriteBatch);
+            }
+
+
+
+            _hero.Draw();
+            _spriteBatch.End();
+            
 
             base.Draw(gameTime);
         }
