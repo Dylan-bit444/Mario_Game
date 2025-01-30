@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using Mario_Game.modles;
+using SharpDX.Direct3D9;
 
 namespace Mario_Game
 {
@@ -30,11 +31,16 @@ namespace Mario_Game
             {
                 using (StreamReader reader = new(FileName))
                 {
-                    string line = reader.ReadLine();
-                    var parts = line.Split(',');
-                    saveData.Player.Position = new(float.Parse(parts[0].Trim()), float.Parse(parts[1].Trim()));
-                    saveData.Player.Animations.LastKeyPress = new(float.Parse(parts[2].Trim()), float.Parse(parts[3].Trim()));
-                    saveData.Player.CoinsCollected = float.Parse(parts[4].Trim()); 
+                    string[] line = File.ReadAllLines(FileName);
+                    saveData.Player.Position = new(float.Parse(line[0]), float.Parse(line[1]));
+                    saveData.Player.Animations.LastKeyPress = new(float.Parse(line[2]), float.Parse(line[3]));
+                    saveData.Player.CoinsCollected = float.Parse(line[4]); 
+                    //int i = 5;
+                    //foreach(Coin coin in saveData.Player.Coins)
+                    //{
+                    //    i++;
+                    //    coin.IsDraw = bool.Parse(line[i].Trim());
+                    //} 
                 }
             }
         }
