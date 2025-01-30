@@ -14,6 +14,7 @@ namespace Mario_Game.modles
         {
             Player.Volocity = 200f;
             Player.Color = Color.White;
+            Player.Coins = new Coin[10];
         }
         public Hero Player = new();
         

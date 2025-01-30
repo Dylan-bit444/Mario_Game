@@ -54,7 +54,11 @@ namespace Mario_Game.State
             String fileName = "Save_Data.txt";
             using (StreamWriter writer = new(fileName, false))
             {
-                writer.WriteLine($"{SaveData.Player.Position.X},{SaveData.Player.Position.Y},{SaveData.Player.Animations.LastKeyPress.X},{SaveData.Player.Animations.LastKeyPress.Y},{SaveData.Player.CoinsCollected}");
+                writer.WriteLine($"{SaveData.Player.Position.X}");
+                writer.WriteLine($"{SaveData.Player.Position.Y}");
+                writer.WriteLine($"{SaveData.Player.Animations.LastKeyPress.X}");
+                writer.WriteLine($"{SaveData.Player.Animations.LastKeyPress.Y}");
+                writer.WriteLine($"{SaveData.Player.CoinsCollected}");
                 foreach(Coin coin in SaveData.Player.Coins)
                 {
                     writer.WriteLine($"{coin.IsDraw}");
