@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
@@ -9,7 +10,12 @@ namespace Mario_Game.modles
 {
     internal class SaveData
     {
-        public Hero Hero = new ();
-        public Map Map = new ();
+        public SaveData()
+        {
+            Player.Volocity = 200f;
+            Player.Color = Color.White;
+        }
+        public Hero Player = new();
+        
     }
 }

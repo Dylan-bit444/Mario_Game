@@ -19,7 +19,7 @@ namespace Mario_Game.State
 
         public PauseState(ContentManager content,Hero _hero)
         {
-            SaveData.Hero = _hero;
+            SaveData.Player = _hero;
             SpriteFont hudFont = content.Load<SpriteFont>("HudText");
             Texture2D buttonTexture = content.Load<Texture2D>("Button");
             SpriteFont buttonFont = content.Load<SpriteFont>("File");
@@ -54,7 +54,11 @@ namespace Mario_Game.State
             String fileName = "Save_Data.txt";
             using (StreamWriter writer = new(fileName, false))
             {
-                writer.WriteLine($"{SaveData.Hero.Position.X},{SaveData.Hero.Position.Y},{SaveData.Hero.Animations.LastKeyPress.X},{SaveData.Hero.Animations.LastKeyPress.Y},{SaveData.Hero.CoinsCollected},{SaveData.Hero.IsDraw}");
+                writer.WriteLine($"{SaveData.Player.Position.X},{SaveData.Player.Position.Y},{SaveData.Player.Animations.LastKeyPress.X},{SaveData.Player.Animations.LastKeyPress.Y},{SaveData.Player.CoinsCollected}");
+                foreach(Coin coin in SaveData.Player.Coins)
+                {
+                    writer.WriteLine($"{coin.IsDraw}");
+                }
             }
         }
         private void MenuButton_Click(Button sender, Game1 game, ContentManager content, EventArgs e)

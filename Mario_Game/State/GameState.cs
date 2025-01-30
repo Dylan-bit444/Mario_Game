@@ -28,9 +28,9 @@ namespace Mario_Game
             _CoinTexture = content.Load<Texture2D>("coin");
             if(Saves != null)   
             {
-                _hero = new(_playerTexture, saves.Hero.Position, Color.White, 200f, new Coin[10]);
-                _hero.CoinsCollected = saves.Hero.CoinsCollected;
-                _hero.Animations.LastKeyPress = saves.Hero.Animations.LastKeyPress;
+                _hero = new(_playerTexture, saves.Player.Position, Color.White, 200f, new Coin[10]);
+                _hero.CoinsCollected = saves.Player.CoinsCollected;
+                _hero.Animations.LastKeyPress = saves.Player.Animations.LastKeyPress;
             }
             else
             {
