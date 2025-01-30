@@ -9,7 +9,7 @@ namespace Mario_Game
 {
     public class Hero : Sprite
     {
-        private const float Speed = 300f;
+        private const float Speed = 250f;
         private const float Gravity = 30f;
         private const float Jump = 500f;
         private Vector2 _velocity;
@@ -27,7 +27,7 @@ namespace Mario_Game
         }
         public void UpdateVelocity(GraphicsDeviceManager _graphics)
         {
-            Debug.WriteLine(Globals.Time);
+         
 
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
@@ -42,7 +42,7 @@ namespace Mario_Game
             if (!_onGround && gravitytimer==0)
             {
                 _velocity.Y += Gravity;
-                Debug.WriteLine(1);
+           
             }
             gravitytimer = MathHelper.Max(0, gravitytimer-1);
 
@@ -54,12 +54,12 @@ namespace Mario_Game
             }
             if (Position.Y + Texture.Height > _graphics.PreferredBackBufferHeight)
             {
-                Debug.WriteLine(2);
+          
                 _onGround = true;
                 Position = new Vector2(Position.X, _graphics.PreferredBackBufferHeight - Texture.Height) ;
                 _velocity.Y = 0;
             }
-            Debug.WriteLine(_velocity);
+          
             BoundingBox = new Rectangle((int)Position.X, (int)Position.Y, Texture.Width, Texture.Height);
         }
         public void Update(GraphicsDeviceManager _graphics)
