@@ -49,7 +49,7 @@ namespace Mario_Game
                 }
             }
             _hero.Coins =_coin;
-            _fireBall = new(FireBallTex, new Vector2(100, 100), Color.White, 1);
+            _fireBall = new(FireBallTex, new Vector2(100, 100), Color.White, 1, 5f);
             _inputManager = new();
         }
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
