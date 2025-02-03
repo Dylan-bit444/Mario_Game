@@ -18,11 +18,13 @@ namespace Mario_Game
         private InputManager _inputManager;
         public SaveData Saves;
         private SpriteFont hudFont;
+        private FireBall _fireBall;
         public GameState(SaveData saves,ContentManager content)  
         {
             Saves = saves;
             hudFont = content.Load<SpriteFont>("HudText");
             Texture2D buttonTexture = content.Load<Texture2D>("Button");
+            Texture2D FireBallTex = content.Load<Texture2D>("fire");
             SpriteFont buttonFont = content.Load<SpriteFont>("File");
             _playerTexture = content.Load<Texture2D>("hero-PlaceHolder");
             _CoinTexture = content.Load<Texture2D>("coin");
@@ -47,6 +49,7 @@ namespace Mario_Game
                 }
             }
             _hero.Coins =_coin;
+            _fireBall = new(FireBallTex, new Vector2(100, 100), Color.White, 1);
             _inputManager = new();
         }
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -56,6 +59,7 @@ namespace Mario_Game
             foreach (Coin coin in _coin) 
             coin.Draw(spriteBatch);
             _hero.Draw(spriteBatch);
+            _fireBall.Draws(spriteBatch);
             spriteBatch.End();
         }
 
@@ -67,6 +71,7 @@ namespace Mario_Game
             foreach (Coin coin in _coin) 
             coin.Update(time);
             _hero.Update(time);
+            _fireBall.Update();
         }
     }
 
