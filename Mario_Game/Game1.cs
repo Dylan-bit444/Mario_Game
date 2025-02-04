@@ -28,8 +28,8 @@ namespace Mario_Game
             Content.RootDirectory = "Content";
             _graphics.IsFullScreen = true;
             IsFixedTimeStep = false;
-            _graphics.PreferredBackBufferWidth = 2000;
-            _graphics.PreferredBackBufferHeight = 2000;
+            _graphics.PreferredBackBufferWidth = 1950;
+            _graphics.PreferredBackBufferHeight = 1100;
             _graphics.ApplyChanges();
 
         }
@@ -55,7 +55,7 @@ namespace Mario_Game
                 _nextState = null;
             }
 
-            _currentState.Update(gameTime,this,Content);
+            _currentState.Update(gameTime,this,Content,_graphics);
 
             base.Update(gameTime);
         }

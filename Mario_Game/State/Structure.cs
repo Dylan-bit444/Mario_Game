@@ -9,6 +9,6 @@ namespace Mario_Game
     {
         public abstract void Draw(GameTime gameTime, SpriteBatch spriteBatch);
 
-        public abstract void Update(GameTime gameTime,Game1 game, ContentManager content);
+        public abstract void Update(GameTime gameTime,Game1 game, ContentManager content, GraphicsDeviceManager graphics);
     }
 }

@@ -18,7 +18,7 @@ namespace Mario_Game
         public LoadState()
             : base()
         {}
-        public override void Update(GameTime gameTime, Game1 game, ContentManager content)
+        public override void Update(GameTime gameTime, Game1 game, ContentManager content, GraphicsDeviceManager graphics)
         {
             Load();
             game.ChangeState(new GameState(saveData,content));

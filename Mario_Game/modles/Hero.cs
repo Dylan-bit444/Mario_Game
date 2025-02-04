@@ -10,7 +10,7 @@ namespace Mario_Game
         public float CoinsCollected=0;
         public Coin[] Coins {get; set;}
         public Hero():base() { }
-        public Hero(Texture2D texture, Vector2 _position, Color _color, float _volocity, Coin[] coins) : base(texture, _position, _color, _volocity)
+        public Hero(Texture2D texture, Vector2 _position, Color _color, float _volocity, int frameRows, int frameCollums, Coin[] coins) : base(texture, _position, _color, _volocity, frameRows, frameCollums)
         {
             float frameTime = 0.1f;
             Animations.AddAnimation(new Vector2(0, 1), new(Texture, 8, 8, frameTime, 0));
@@ -38,7 +38,6 @@ namespace Mario_Game
                     CoinsCollected++;
                 }
             }
-            HitBox = new Rectangle((int)Position.X, (int)Position.Y, Texture.Height/8, Texture.Width/8);
             Animations.Update(InputManager.Direction,time);
         }
 

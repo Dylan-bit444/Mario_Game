@@ -30,26 +30,26 @@ namespace Mario_Game
             _CoinTexture = content.Load<Texture2D>("coin");
             if (Saves != null)
             {
-                _hero = new(_playerTexture, saves.Player.Position, Color.White, 200f, new Coin[10]);
+                _hero = new(_playerTexture, saves.Player.Position, Color.White, 200f, 8, 8, new Coin[10]);
                 _hero.CoinsCollected = saves.Player.CoinsCollected;
                 _hero.Animations.LastKeyPress = saves.Player.Animations.LastKeyPress;
                 for (int i = 0; i < _coin.Length; i++)
                 {
-                    _coin[i] = new Coin(_CoinTexture, new Vector2(100 * (i + 1), 100 * (i + 1)), Color.White, 0);
+                    _coin[i] = new Coin(_CoinTexture, new Vector2(100 * (i + 1), 100 * (i + 1)), Color.White, 0, 6, 1);
                     _coin[i].IsDraw = saves.Drawed[i];
                 }
             }
             else
             {
-                _hero = new(_playerTexture, new Vector2(1000, 1000), Color.White, 200f, new Coin[10]);
+                _hero = new(_playerTexture, new Vector2(1000, 1000), Color.White, 200f, 8, 8, new Coin[10]);
 
                 for (int i = 0; i < _coin.Length; i++)
                 {
-                    _coin[i] = new Coin(_CoinTexture, new Vector2(100 * (i + 1), 100 * (i + 1)), Color.White, 0);
+                    _coin[i] = new Coin(_CoinTexture, new Vector2(100 * (i + 1), 100 * (i + 1)), Color.White, 0, 6,1);
                 }
             }
             _hero.Coins =_coin;
-            _fireBall = new(FireBallTex, new Vector2(100, 100), Color.White, 1, 5f);
+            _fireBall = new(FireBallTex, new Vector2(100, 100), Color.White, 5, 1, 1,5f);
             _inputManager = new();
         }
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -63,7 +63,7 @@ namespace Mario_Game
             spriteBatch.End();
         }
 
-        public override void Update(GameTime gameTime, Game1 game, ContentManager content)
+        public override void Update(GameTime gameTime, Game1 game, ContentManager content, GraphicsDeviceManager graphics)
         {
             float time;
             time = (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -71,7 +71,7 @@ namespace Mario_Game
             foreach (Coin coin in _coin) 
             coin.Update(time);
             _hero.Update(time);
-            _fireBall.Update();
+            _fireBall.Update(graphics);
         }
     }
 

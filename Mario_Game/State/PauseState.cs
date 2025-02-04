@@ -77,7 +77,7 @@ namespace Mario_Game.State
         {
             game.ChangeState(new GameState(SaveData,content));
         }
-        public override void Update(GameTime gameTime,Game1 game,ContentManager content)
+        public override void Update(GameTime gameTime,Game1 game,ContentManager content,GraphicsDeviceManager graphics)
         {
             inputManager.Update(null, Components, game, content);
         }

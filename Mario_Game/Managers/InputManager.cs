@@ -14,6 +14,7 @@ namespace Mario_Game
     internal class InputManager
     {
         public static bool Mickel;
+        public static bool Fire;
         private static Vector2 _direction = Vector2.Zero;
         public static Vector2 Direction => _direction;
         public static bool Moving => _direction != Vector2.Zero;
@@ -112,6 +113,10 @@ namespace Mario_Game
                 {
                     Mickel = false;
                 }
+                if(keyboardState.IsKeyDown(Keys.F)) 
+                    Fire = true;
+                else if(keyboardState.IsKeyDown(Keys.E))
+                    Fire = false;
             }
             else if (menu != null && gamePad.IsConnected)
             {
