@@ -1,3 +1,4 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/Users/13EdmondsA/source/repos/Mario/Mario_Game/Content/Controls/Button.png","C:/Users/13EdmondsA/source/repos/Mario/Mario_Game/Content/bin/Windows/Controls/Button.xnb","TextureProcessor","Texture2DContent",160,120085,0.1990748
-"C:/Users/13EdmondsA/source/repos/Mario/Mario_Game/Content/Fonts/Fonts.spritefont","C:/Users/13EdmondsA/source/repos/Mario/Mario_Game/Content/bin/Windows/Fonts/Fonts.xnb","FontDescriptionProcessor","SpriteFontContent",2068,21535,0.1261065
+"C:/Users/13EdmondsA/source/repos/Mario/Mario_Game/Content/Ball.png","C:/Users/13EdmondsA/source/repos/Mario/Mario_Game/Content/bin/Windows/Ball.xnb","TextureProcessor","Texture2DContent",136,2585,0.1725667
+"C:/Users/13EdmondsA/source/repos/Mario/Mario_Game/Content/Controls/Button.png","C:/Users/13EdmondsA/source/repos/Mario/Mario_Game/Content/bin/Windows/Controls/Button.xnb","TextureProcessor","Texture2DContent",160,120085,0.0068264
+"C:/Users/13EdmondsA/source/repos/Mario/Mario_Game/Content/Fonts/Fonts.spritefont","C:/Users/13EdmondsA/source/repos/Mario/Mario_Game/Content/bin/Windows/Fonts/Fonts.xnb","FontDescriptionProcessor","SpriteFontContent",2068,37919,0.1321548

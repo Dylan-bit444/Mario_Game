@@ -5,12 +5,9 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
 using NewStartMenu;
 using System.Collections.Generic;
-using static System.Net.Mime.MediaTypeNames;
 using NewStartMenu.Controls;
 using System;
 using System.IO;
-using System.Diagnostics;
-using System.Windows.Forms.VisualStyles;
 using System.Collections;
 
 namespace Mario_Game
@@ -19,9 +16,11 @@ namespace Mario_Game
     {
         private List<Components> _components;
 
-        private string savedData;
+        private int savedData;
         private int xCoordinate, yCoordinate;
         private Vector2 ve;
+        private bool isseen;
+
         public PauseState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
 
@@ -100,7 +99,9 @@ namespace Mario_Game
             
             tw.Close();
 
-            Console.WriteLine(savedData);
+            Console.WriteLine(tw);
+
+            Game.ChangeState(new PauseState(Game, _graphicsDevice, _content));
             
         }
 

@@ -4,10 +4,12 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/13EdmondsA/source/repos/Mario/Mario_Game/Content/Ball.png</File>
     <File>C:/Users/13EdmondsA/source/repos/Mario/Mario_Game/Content/Controls/Button.png</File>
     <File>C:/Users/13EdmondsA/source/repos/Mario/Mario_Game/Content/Fonts/Fonts.spritefont</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>

@@ -7,16 +7,15 @@ using System.Windows.Forms;
 using System.Text.Json;
 using System.Diagnostics;
 using System.IO;
-using SharpDX.XInput;
-using System.Drawing;
-using SharpDX;
-using SharpDX.MediaFoundation.DirectX;
+
+
 
 namespace Mario_Game
 {//Added Branch
     public class Game1 : Game
     {
         private GraphicsDeviceManager _graphics;
+
         private SpriteBatch _spriteBatch;
 
         private PlayerStats pStats;
@@ -24,6 +23,8 @@ namespace Mario_Game
         private Structure _currentState;
 
         private Structure _nextState;
+
+        private Rectangle _objectTexture; 
 
         private const string PATH = "const.Json";
         public void ChangeState(Structure state)
@@ -51,23 +52,13 @@ namespace Mario_Game
 
         protected override void LoadContent()
         {
-            pStats = new PlayerStats()
-            {
-                Name = "ALanna",
-                Score = 37424,
-                LivesLeft = 3,
-            };
-
-            // Save(pStats);
-
-            pStats = Load();
-            Trace.WriteLine($"{pStats.Name}{pStats.Score}{pStats.LivesLeft}");
-
-
+            _objectTexture = Content.Load<Texture2D>("Ball");
 
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             _currentState = new MenuState(this, _graphics.GraphicsDevice, Content);
+
+            
         }
         
         protected override void Update(GameTime gameTime)
@@ -92,13 +83,18 @@ namespace Mario_Game
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
+            _spriteBatch.Begin();
+
+            GraphicsDevice.Clear(Color.CornflowerBlue);
 
 
             _currentState.Draw(gameTime, _spriteBatch);
 
+            _objectTexture.Draw( _spriteBatch);
 
             base.Draw(gameTime);
+
+            _spriteBatch.End();
         }
 
         private void Save(PlayerStats stats)
