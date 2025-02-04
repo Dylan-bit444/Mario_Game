@@ -44,7 +44,7 @@ namespace Mario_Game
                 }
                 else if (InputManager.Direction.X == -1 || Animations.LastKeyPress.X == -1 && InputManager.Direction.X == 0)
                 {
-                    Ball.Position = new Vector2(100, Position.Y + (Texture.Height / 8) / 2);
+                    Ball.Position = new Vector2(Position.X- 40, Position.Y + (Texture.Height / 8) / 2);
                     if (Ball.Volocity > 0)
                     {
                         Ball.Volocity = -Ball.Volocity;
