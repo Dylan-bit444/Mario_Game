@@ -102,6 +102,8 @@ namespace Mario_Game
                     {
                         _hero.Volocity = _hero.Volocity / scale;
                     }
+                    if(keyboardState.IsKeyDown(Keys.C)&& !_hero.Ball.IsDraw)
+                        _hero.Ball.Sommoned = true;
                     if(keyboardState.IsKeyDown(Keys.Escape))
                         game.ChangeState(new PauseState(content, _hero));
                 }

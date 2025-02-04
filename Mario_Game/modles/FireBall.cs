@@ -14,6 +14,7 @@ namespace Mario_Game.modles
         private Vector2 Origin { get { return new Vector2(Texture.Width / 2, Texture.Height / 2); } }
         private float Rotation;
         private float Xpos = 10;
+        public bool Sommoned;
         private float RotationVelocity { get; set; }
 
         public FireBall():base() { }
@@ -50,9 +51,10 @@ namespace Mario_Game.modles
             }
             Rotation -= MathHelper.ToRadians(RotationVelocity);
         }
-        public void Draws(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture,Position,null,Color.White,Rotation,Origin,1,SpriteEffects.None,1f);
+            if(IsDraw) 
+                spriteBatch.Draw(Texture,Position,null,Color.White,Rotation,Origin,1,SpriteEffects.None,1f);
         }
     }
 }

@@ -28,9 +28,11 @@ namespace Mario_Game
             SpriteFont buttonFont = content.Load<SpriteFont>("File");
             _playerTexture = content.Load<Texture2D>("hero-PlaceHolder");
             _CoinTexture = content.Load<Texture2D>("coin");
+            _fireBall = new(FireBallTex, new Vector2(100, 1000), Color.White, 8, 1, 1, 5f);
+            _fireBall.IsDraw =false;
             if (Saves != null)
             {
-                _hero = new(_playerTexture, saves.Player.Position, Color.White, 200f, 8, 8, new Coin[10]);
+                _hero = new(_playerTexture, saves.Player.Position, Color.White, 200f, 8, 8, new Coin[10],_fireBall);
                 _hero.CoinsCollected = saves.Player.CoinsCollected;
                 _hero.Animations.LastKeyPress = saves.Player.Animations.LastKeyPress;
                 for (int i = 0; i < _coin.Length; i++)
@@ -41,7 +43,7 @@ namespace Mario_Game
             }
             else
             {
-                _hero = new(_playerTexture, new Vector2(1000, 1000), Color.White, 200f, 8, 8, new Coin[10]);
+                _hero = new(_playerTexture, new Vector2(1000, 1000), Color.White, 200f, 8, 8, new Coin[10],_fireBall);
 
                 for (int i = 0; i < _coin.Length; i++)
                 {
@@ -49,7 +51,6 @@ namespace Mario_Game
                 }
             }
             _hero.Coins =_coin;
-            _fireBall = new(FireBallTex, new Vector2(100, 100), Color.White, 5, 1, 1,5f);
             _inputManager = new();
         }
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -59,7 +60,7 @@ namespace Mario_Game
             foreach (Coin coin in _coin) 
             coin.Draw(spriteBatch);
             _hero.Draw(spriteBatch);
-            _fireBall.Draws(spriteBatch);
+            _fireBall.Draw(spriteBatch);
             spriteBatch.End();
         }
 
@@ -70,8 +71,7 @@ namespace Mario_Game
             _inputManager.Update(_hero, null,game,content);
             foreach (Coin coin in _coin) 
             coin.Update(time);
-            _hero.Update(time);
-            _fireBall.Update(graphics);
+            _hero.Update(time,graphics);
         }
     }
 
