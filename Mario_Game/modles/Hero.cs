@@ -1,6 +1,7 @@
 ﻿using Mario_Game.modles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Diagnostics;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace Mario_Game
@@ -33,15 +34,21 @@ namespace Mario_Game
             {
                 Ball.IsDraw = true;
                 Ball.Sommoned = false;
-                if (Animations.LastKeyPress.X == 1 && Ball.Volocity < 0)
+                if (InputManager.Direction.X == 1 || Animations.LastKeyPress.X == 1 && InputManager.Direction.X == 0)
                 {
                     Ball.Position = new Vector2(10 + Position.X + Texture.Width / 8, Position.Y + (Texture.Height / 8) / 2);
-                    Ball.Volocity = -Ball.Volocity;
+                    if(Ball.Volocity < 0)
+                    {
+                        Ball.Volocity = -Ball.Volocity;
+                    }
                 }
-                else if (Animations.LastKeyPress.X == -1 && Ball.Volocity > 0)
+                else if (InputManager.Direction.X == -1 || Animations.LastKeyPress.X == -1 && InputManager.Direction.X == 0)
                 {
-                    Ball.Position = new Vector2(Position.X - 10, Position.Y + (Texture.Height / 8) / 2);
-                    Ball.Volocity = -Ball.Volocity;
+                    Ball.Position = new Vector2(100, Position.Y + (Texture.Height / 8) / 2);
+                    if (Ball.Volocity > 0)
+                    {
+                        Ball.Volocity = -Ball.Volocity;
+                    }
                 }
             }
             if (Collided(Ball.HitBox))
