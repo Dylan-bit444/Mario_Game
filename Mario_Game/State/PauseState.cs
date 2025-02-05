@@ -81,7 +81,7 @@ namespace Mario_Game.State
         {
             inputManager.Update(null, Components, game, content);
         }
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDeviceManager graphics)
         {
             spriteBatch.Begin();
 

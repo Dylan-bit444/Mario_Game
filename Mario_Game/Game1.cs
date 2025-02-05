@@ -63,7 +63,7 @@ namespace Mario_Game
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            _currentState.Draw(gameTime, _spriteBatch);
+            _currentState.Draw(gameTime, _spriteBatch, _graphics);
 
             base.Draw(gameTime);
         }

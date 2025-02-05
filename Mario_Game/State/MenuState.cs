@@ -64,13 +64,11 @@ namespace Mario_Game
         {
             inputManager.Update(null,Components,game,content);
         }
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDeviceManager graphics)
         {
             spriteBatch.Begin();
-
             foreach (Button component in Components)
                 component.Draw(gameTime, spriteBatch);
-
             spriteBatch.End();
         }
     }

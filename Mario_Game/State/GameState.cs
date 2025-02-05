@@ -53,9 +53,9 @@ namespace Mario_Game
             _hero.Coins =_coin;
             _inputManager = new();
         }
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDeviceManager graphics)
         {
-            spriteBatch.Begin();
+            spriteBatch.Begin(transformMatrix: Follow(_hero, graphics));
             spriteBatch.DrawString(hudFont, $"Coins: {_hero.CoinsCollected}",new Vector2(1000,0),Color.White);
             foreach (Coin coin in _coin) 
             coin.Draw(spriteBatch);
@@ -72,6 +72,20 @@ namespace Mario_Game
             foreach (Coin coin in _coin) 
             coin.Update(time);
             _hero.Update(time,graphics);
+        }
+        private Matrix Follow(Sprite target, GraphicsDeviceManager graphics)
+        {
+            var position = Matrix.CreateTranslation(
+              -target.Position.X - (target.HitBox.Width / 2),
+              0,
+              0);
+
+            var offset = Matrix.CreateTranslation(
+                graphics.PreferredBackBufferWidth / 2,
+                0,
+                0);
+
+            return (position * offset);
         }
     }
 

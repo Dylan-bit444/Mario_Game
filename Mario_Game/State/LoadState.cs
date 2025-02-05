@@ -23,7 +23,7 @@ namespace Mario_Game
             Load();
             game.ChangeState(new GameState(saveData,content));
         }
-        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch){ }
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDeviceManager graphics){ }
         public void Load()
         {
             String FileName = "Save_Data.txt";
