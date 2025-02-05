@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using System.Text.Json;
 using System.Diagnostics;
 using System.IO;
+using System;
 
 
 
@@ -18,13 +19,13 @@ namespace Mario_Game
 
         private SpriteBatch _spriteBatch;
 
-        private PlayerStats pStats;
-
         private Structure _currentState;
 
         private Structure _nextState;
 
-        private Rectangle _objectTexture; 
+        private Texture2D _objectTexture;
+
+        private Object _object;
 
         private const string PATH = "const.Json";
         public void ChangeState(Structure state)
@@ -45,7 +46,7 @@ namespace Mario_Game
         protected override void Initialize()
         {
 
-            IsMouseVisible = true;
+            IsMouseVisible = true; 
 
             base.Initialize();
         }
@@ -58,7 +59,7 @@ namespace Mario_Game
 
             _currentState = new MenuState(this, _graphics.GraphicsDevice, Content);
 
-            
+            _object = new Object(_objectTexture, new Vector2 (_graphics.PreferredBackBufferWidth / 2 - _objectTexture.Width / 2, _graphics.PreferredBackBufferHeight / 2 - _objectTexture.Height), Color.White, 2f, new Rectangle());
         }
         
         protected override void Update(GameTime gameTime)
@@ -78,6 +79,7 @@ namespace Mario_Game
 
             MouseState mouse = Mouse.GetState();
 
+
             base.Update(gameTime);
         }
 
@@ -90,7 +92,8 @@ namespace Mario_Game
 
             _currentState.Draw(gameTime, _spriteBatch);
 
-            _objectTexture.Draw( _spriteBatch);
+            _object.Draw(_spriteBatch);
+
 
             base.Draw(gameTime);
 

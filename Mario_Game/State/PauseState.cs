@@ -66,7 +66,7 @@ namespace Mario_Game
             foreach (Components component in _components)
                 component.Draw(gameTime, spriteBatch);
 
-            spriteBatch.End();
+            
         }
 
         private void LoadMenuButton_Click(object sender, EventArgs e)

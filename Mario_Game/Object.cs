@@ -14,6 +14,8 @@ namespace Mario_Game
 
         public Rectangle Boundingbox { get; set; }
         public Texture2D Texture { get; set; }
+        public bool HitLeft { get; set; }
+        public bool HitRight { get; set; }
 
         public Object(Texture2D _texture, Vector2 _position, Color _colour, float _velocity, Rectangle _box)
         {
@@ -36,10 +38,16 @@ namespace Mario_Game
             spriteBatch.Draw(Texture, Position, Colour);
         }
 
-        public void Move()
+        public void Move(GraphicsDeviceManager _graphics, Object _object)
         {
             Boundingbox = new Rectangle((int)Position.X, (int)Position.Y, Texture.Width, Texture.Height);
-        }
 
+            if (IsVisible && Position.X + Texture.Width >= _graphics.PreferredBackBufferWidth)
+            {
+                HitRight = true;
+                HitLeft = false;
+            }
+            else if 
+        }
     }
 }

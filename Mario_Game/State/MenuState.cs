@@ -55,12 +55,8 @@ namespace NewStartMenu.States
         }
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
-
             foreach (Components component in _components)
                 component.Draw(gameTime, spriteBatch);
-
-            spriteBatch.End();
         }
 
         private void LoadGameButton_Click(object sender, EventArgs e)

@@ -20,6 +20,8 @@ namespace NewStartMenu.States
 
         protected Game1 Game;
 
+
+
         #endregion
 
         #region Methods
