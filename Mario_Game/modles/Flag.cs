@@ -20,7 +20,7 @@ namespace Mario_Game.modles
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture,Position,Color);   
+            spriteBatch.Draw(Texture,Position,HitBox,Color.White);   
         }
     }
 }

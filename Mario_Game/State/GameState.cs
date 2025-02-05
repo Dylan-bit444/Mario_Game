@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Diagnostics;
 using System.IO;
 
 namespace Mario_Game
@@ -12,7 +13,7 @@ namespace Mario_Game
     internal class GameState : Structure
     {
         private Texture2D _playerTexture;
-        private Texture2D _CoinTexture;
+        private Texture2D _CoinTexture, flagTex;
         private Coin[] _coin = new Coin[10];
         private Hero _hero;
         private InputManager _inputManager;
@@ -24,12 +25,16 @@ namespace Mario_Game
         {
             Saves = saves;
             hudFont = content.Load<SpriteFont>("HudText");
-            Texture2D flagTex = content.Load<Texture2D>("Flag");
             Texture2D buttonTexture = content.Load<Texture2D>("Button");
             Texture2D FireBallTex = content.Load<Texture2D>("fire");
             SpriteFont buttonFont = content.Load<SpriteFont>("File");
             _playerTexture = content.Load<Texture2D>("hero-PlaceHolder");
             _CoinTexture = content.Load<Texture2D>("coin");
+            
+            flagTex = content.Load<Texture2D>("Flag");
+            _flag = new(null, new Vector2(100, 100), Color.White, 0, 1, 1);
+            _flag.Texture = content.Load<Texture2D>("Flag");
+
             _fireBall = new(FireBallTex, new Vector2(100, 1000), Color.White, 8, 1, 1, 5f);
             _fireBall.IsDraw =false;
             if (Saves != null)
@@ -54,7 +59,7 @@ namespace Mario_Game
             }
             _hero.Coins =_coin;
             _inputManager = new();
-            _flag = new(flagTex,new Vector2(100,100),Color.White,0,1,1);
+            
         }
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDeviceManager graphics)
         {
