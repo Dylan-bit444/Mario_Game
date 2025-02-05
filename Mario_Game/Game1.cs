@@ -22,6 +22,8 @@ namespace Mario_Game
         private int[,] tileValuesArray;
         private Texture2D spriteSheet;
         private Tile[,] tiles;
+        
+ 
 
         public Game1()
         {
@@ -78,7 +80,7 @@ namespace Mario_Game
                 _graphics.PreferredBackBufferHeight - _hero.Texture.Height),
             Color.White, 2.0f, new Rectangle((int)_hero.Position.X, (int)_hero.Position.Y, _hero.Texture.Width, _hero.Texture.Height));
 
-            tileValuesArray = TileManager.ReadFile("Map.txt");
+            tileValuesArray = TileManager.ReadFile("../../../Content/Map.txt");
             spriteSheet = Content.Load<Texture2D>("MC");
 
             tiles = TileManager.ChooseTile(tileValuesArray, spriteSheet, _graphics.GraphicsDevice);
@@ -92,6 +94,12 @@ namespace Mario_Game
                 Exit();
             Globals.Update(gameTime);
             _hero.Update(_graphics);
+            foreach (Tile tile in tiles)
+            {
+                tile.CheckCollided(_hero.BoundingBox);
+            }
+
+           
 
 
 

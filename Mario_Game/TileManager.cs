@@ -2,6 +2,7 @@
 using System.IO;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using System.Diagnostics;
 
 namespace Mario_Game
 {
@@ -64,42 +65,41 @@ namespace Mario_Game
             Rectangle sourceRectangle;
             Color[] data = null;
             Vector2 newPosition;
+            bool collides = false;
 
             for (int i = 0; i < tileTypes.GetLength(0); i++)
             {
                 for (int j = 0; j < tileTypes.GetLength(1); j++)
                 {
+                    collides = true;
                     switch (tileValuesArray[i, j])
                     {
                         case 0:
-                            sourceRectangle = new Rectangle(tileValuesArray[j, i] * 80, 0, 80, 80);
+                            sourceRectangle = new Rectangle(tileValuesArray[i, j] * 80, 0, 80, 80);
+                            
                             break;
                         case 1:
-                            sourceRectangle = new Rectangle(tileValuesArray[j, i] * 80, 0, 80, 80);
+                            sourceRectangle = new Rectangle(tileValuesArray[i, j] * 80, 0, 80, 80);
+                            
                             break;
                         case 2:
-                            sourceRectangle = new Rectangle(tileValuesArray[j, i] * 80, 0, 80, 80);
+                            sourceRectangle = new Rectangle(tileValuesArray[i, j] * 80, 0, 80, 80);
                             break;
                         case 3:
-                            sourceRectangle = new Rectangle(tileValuesArray[j, i] * 80, 0, 80, 80);
+                            sourceRectangle = new Rectangle(tileValuesArray[i, j] * 80, 0, 80, 80);
                             break;
                         case 4:
-                            sourceRectangle = new Rectangle(tileValuesArray[j, i] * 80, 0, 80, 80);
+                            sourceRectangle = new Rectangle(tileValuesArray[i, j] * 80, 0, 80, 80);
                             break;
                         case 5:
-                            sourceRectangle = new Rectangle(tileValuesArray[j, i] * 80, 0, 80, 80);
+                            sourceRectangle = new Rectangle(tileValuesArray[i, j] * 80, 0, 80, 80);
                             break;
                         case 6:
-                            sourceRectangle = new Rectangle(tileValuesArray[j, i] * 80, 0, 80, 80);
+                            sourceRectangle = new Rectangle(tileValuesArray[i, j] * 80, 0, 80, 80);
                             break;
                         case 7:
-                            sourceRectangle = new Rectangle(tileValuesArray[j, i] * 80, 0, 80, 80);
-                            break;
-                        case 8:
-                            sourceRectangle = new Rectangle(tileValuesArray[j, i] * 80, 0, 80, 80);
-                            break;
-                        case 9:
-                            sourceRectangle = new Rectangle(tileValuesArray[j, i] * 80, 0, 80, 80);
+                            sourceRectangle = new Rectangle(tileValuesArray[i, j] + 160, 160, 80, 80);
+                            collides = false;
                             break;
                         default:
                             sourceRectangle = new Rectangle(0, 0, 80, 80);//Default to the firt tile in the sheet
@@ -110,7 +110,7 @@ namespace Mario_Game
                     newPosition = new Vector2(i * 80, j * 80);
                     Texture2D tileTexture = new Texture2D(graphicsDev, sourceRectangle.Width, sourceRectangle.Height);
                     tileTexture.SetData(data);
-                    tileTypes[i, j] = new Tile(tileTexture, 80, newPosition);
+                    tileTypes[i, j] = new Tile(tileTexture, 80, newPosition, collides);
                 }
             }
             return tileTypes;
