@@ -96,7 +96,8 @@ namespace Mario_Game
             _hero.Update(_graphics);
             foreach (Tile tile in tiles)
             {
-                tile.CheckCollided(_hero.BoundingBox);
+                tile.CheckCollided(_hero);
+                _hero.UpdateVelocity(_graphics, tile);
             }
 
            

@@ -16,6 +16,10 @@ namespace Mario_Game
         private bool _onGround = true;
         private int gravitytimer = 0;
         private int gravitytiming = 30;
+        private Tile noTile;
+
+        public bool CanMoveLeft { get; set; }
+        public bool CanMoveRight { get; set; }
 
         public Hero() : base()
         {
@@ -24,18 +28,34 @@ namespace Mario_Game
         public Hero(Texture2D texture, Vector2 position, Color _colour, float _velocity, Rectangle _boundingbox)
             : base(texture, position, _colour, _velocity, _boundingbox)
         {
+            noTile = new Tile();
+            CanMoveRight = true;
+            CanMoveLeft = true;
         }
-        public void UpdateVelocity(GraphicsDeviceManager _graphics)
+        public void UpdateVelocity(GraphicsDeviceManager _graphics, Tile inTile)
         {
-         
-
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
-                _velocity.X = -Speed;
+                if (CanMoveLeft)
+                {
+                    _velocity.X = -Speed;
+                }
+                if (!CanMoveLeft)
+                {
+                    _velocity.X = +Speed;
+                }
+                
             }
             else if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
-                _velocity.X = +Speed;
+                if (CanMoveRight)
+                {
+                    _velocity.X = 0;
+                }
+                if(!CanMoveRight)
+                {
+                    _velocity.X = 0;
+                }
             }
             else _velocity.X = 0;
 
@@ -64,7 +84,6 @@ namespace Mario_Game
         }
         public void Update(GraphicsDeviceManager _graphics)
         {
-            UpdateVelocity(_graphics);
             Position += _velocity * Globals.Time;
         }
         public void UpdatePosition(GraphicsDeviceManager _graphics)
