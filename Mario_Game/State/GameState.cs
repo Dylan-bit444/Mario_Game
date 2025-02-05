@@ -19,10 +19,12 @@ namespace Mario_Game
         public SaveData Saves;
         private SpriteFont hudFont;
         private FireBall _fireBall;
+        private Flag _flag;
         public GameState(SaveData saves,ContentManager content)  
         {
             Saves = saves;
             hudFont = content.Load<SpriteFont>("HudText");
+            Texture2D flagTex = content.Load<Texture2D>("Flag");
             Texture2D buttonTexture = content.Load<Texture2D>("Button");
             Texture2D FireBallTex = content.Load<Texture2D>("fire");
             SpriteFont buttonFont = content.Load<SpriteFont>("File");
@@ -52,6 +54,7 @@ namespace Mario_Game
             }
             _hero.Coins =_coin;
             _inputManager = new();
+            _flag = new(flagTex,new Vector2(100,100),Color.White,0,1,1);
         }
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDeviceManager graphics)
         {
@@ -60,6 +63,7 @@ namespace Mario_Game
             foreach (Coin coin in _coin) 
             coin.Draw(spriteBatch);
             _hero.Draw(spriteBatch);
+            _flag.Draw(spriteBatch);
             _fireBall.Draw(spriteBatch);
             spriteBatch.End();
         }
@@ -72,20 +76,22 @@ namespace Mario_Game
             foreach (Coin coin in _coin) 
             coin.Update(time);
             _hero.Update(time,graphics);
+            _flag.Update(game, _hero, new MenuState(content));
         }
-        private Matrix Follow(Sprite target, GraphicsDeviceManager graphics)
+        private Matrix Follow(Hero target, GraphicsDeviceManager graphics)
         {
-            var position = Matrix.CreateTranslation(
+            Matrix position = Matrix.CreateTranslation(
               -target.Position.X - (target.HitBox.Width / 2),
               0,
               0);
 
-            var offset = Matrix.CreateTranslation(
+            Matrix offset = Matrix.CreateTranslation(
                 graphics.PreferredBackBufferWidth / 2,
                 0,
                 0);
 
-            return (position * offset);
+
+            return (position * offset );
         }
     }
 
