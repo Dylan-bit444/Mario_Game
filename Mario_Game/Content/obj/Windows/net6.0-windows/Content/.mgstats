@@ -1,0 +1,8 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/13WrightD/source/repos/Mario_Game/Mario_Game/Content/Button.png","C:/Users/13WrightD/source/repos/Mario_Game/Mario_Game/Content/bin/Windows/Content/Button.xnb","TextureProcessor","Texture2DContent",2481,360085,0.2100977
+"C:/Users/13WrightD/source/repos/Mario_Game/Mario_Game/Content/coin.png","C:/Users/13WrightD/source/repos/Mario_Game/Mario_Game/Content/bin/Windows/Content/coin.xnb","TextureProcessor","Texture2DContent",8810,24661,0.0049702
+"C:/Users/13WrightD/source/repos/Mario_Game/Mario_Game/Content/File.spritefont","C:/Users/13WrightD/source/repos/Mario_Game/Mario_Game/Content/bin/Windows/Content/File.xnb","FontDescriptionProcessor","SpriteFontContent",2077,529439,0.1648102
+"C:/Users/13WrightD/source/repos/Mario_Game/Mario_Game/Content/fire.png","C:/Users/13WrightD/source/repos/Mario_Game/Mario_Game/Content/bin/Windows/Content/fire.xnb","TextureProcessor","Texture2DContent",1958,2685,0.1963518
+"C:/Users/13WrightD/source/repos/Mario_Game/Mario_Game/Content/Flag.png","C:/Users/13WrightD/source/repos/Mario_Game/Mario_Game/Content/bin/Windows/Content/Flag.xnb","TextureProcessor","Texture2DContent",13450,5760085,0.2871666
+"C:/Users/13WrightD/source/repos/Mario_Game/Mario_Game/Content/hero-PlaceHolder.png","C:/Users/13WrightD/source/repos/Mario_Game/Mario_Game/Content/bin/Windows/Content/hero-PlaceHolder.xnb","TextureProcessor","Texture2DContent",311725,2560085,0.0831435
+"C:/Users/13WrightD/source/repos/Mario_Game/Mario_Game/Content/HudText.spritefont","C:/Users/13WrightD/source/repos/Mario_Game/Mario_Game/Content/bin/Windows/Content/HudText.xnb","FontDescriptionProcessor","SpriteFontContent",2077,136223,0.0294265
