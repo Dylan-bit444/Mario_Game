@@ -64,10 +64,7 @@ namespace Mario_Game
         
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == Microsoft.Xna.Framework.Input.ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Escape))
-            {
-                ChangeState(new PauseState(this, _graphics.GraphicsDevice, Content));
-            }
+            
 
             if (_nextState != null)
             {
@@ -79,6 +76,7 @@ namespace Mario_Game
 
             MouseState mouse = Mouse.GetState();
 
+            
 
             base.Update(gameTime);
         }

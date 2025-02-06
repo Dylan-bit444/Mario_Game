@@ -6,13 +6,8 @@ using System.Threading.Tasks;
 
 namespace Mario_Game
 {
-    public class PlayerStats
+    internal class PlayerStats
     {
-        public string Name { get; set; }
-
-        public double Score { get; set; }
-
-        public int LivesLeft { get; set; }
 
     }
 }
