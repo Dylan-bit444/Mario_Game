@@ -42,7 +42,7 @@ namespace Mario_Game
                 }
                 if (!CanMoveLeft)
                 {
-                    _velocity.X = +Speed;
+                    _velocity.X = 0;
                 }
                 
             }
@@ -50,7 +50,7 @@ namespace Mario_Game
             {
                 if (CanMoveRight)
                 {
-                    _velocity.X = 0;
+                    _velocity.X = +Speed;
                 }
                 if(!CanMoveRight)
                 {
