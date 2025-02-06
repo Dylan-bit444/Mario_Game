@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Mario_Game
 {
-    internal class PowerUp
+    internal class PowerUp:Sprite
     {
+        public PowerUp(): base() { }
+        
+        public PowerUp(Texture2D _texture, Vector2 _position, Color _color, float _volocity, int frameLength, int frameRows) : base(_texture, _position, _color, _volocity, frameLength, frameRows) { }
     }
 }

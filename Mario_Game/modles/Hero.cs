@@ -12,7 +12,7 @@ namespace Mario_Game
         public float CoinsCollected=0;
         public FireBall Ball;
         public Coin[] Coins {get; set;}
-        public int HitPoints = 1;
+        public int HitPoints = 2;
         public Hero():base() { }
         public Hero(Texture2D texture, Vector2 _position, Color _color, float _volocity, int frameRows, int frameCollums, Coin[] coins,FireBall fire) : base(texture, _position, _color, _volocity, frameRows, frameCollums)
         { 
