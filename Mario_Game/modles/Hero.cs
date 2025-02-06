@@ -12,6 +12,7 @@ namespace Mario_Game
         public float CoinsCollected=0;
         public FireBall Ball;
         public Coin[] Coins {get; set;}
+        public int HitPoints = 1;
         public Hero():base() { }
         public Hero(Texture2D texture, Vector2 _position, Color _color, float _volocity, int frameRows, int frameCollums, Coin[] coins,FireBall fire) : base(texture, _position, _color, _volocity, frameRows, frameCollums)
         { 
@@ -30,7 +31,7 @@ namespace Mario_Game
 
         public void Update(float time, GraphicsDeviceManager graphics)
         {
-            if (Ball.Sommoned)
+            if (Ball.Sommoned && HitPoints == 2)
             {
                 Ball.IsDraw = true;
                 Ball.Sommoned = false;

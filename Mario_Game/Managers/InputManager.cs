@@ -34,7 +34,7 @@ namespace Mario_Game
                 _direction = Vector2.Zero;
                 if (gamePad.IsConnected)
                 {
-                    PreviousControler=CurrentControler;
+                    PreviousControler = CurrentControler;
                     CurrentControler = GamePad.GetState(PlayerIndex.One);
                     if (gamePad.HasLeftXThumbStick || gamePad.HasDPadDownButton)
                     {
@@ -54,8 +54,12 @@ namespace Mario_Game
                         {
                             _direction -= new Vector2(0, 1);
                         }
-                        if (CurrentControler.Buttons.X == ButtonState.Pressed && _hero.Volocity < 200f * 1.25f || CurrentControler.Buttons.Y == ButtonState.Pressed && _hero.Volocity < 200f * 1.25f)
+                        if (CurrentControler.Buttons.X == ButtonState.Pressed && _hero.Volocity < 200f * 1.25f  || CurrentControler.Buttons.Y == ButtonState.Pressed && _hero.Volocity < 200f * 1.25f )
                         {
+                            if (!_hero.Ball.IsDraw)
+                            {
+                                _hero.Ball.Sommoned = true;
+                            }
                             _hero.Volocity = _hero.Volocity * scale;
                         }
                         else if ((CurrentControler.Buttons.Y != ButtonState.Pressed && _hero.Volocity > 200f) && (CurrentControler.Buttons.X != ButtonState.Pressed && _hero.Volocity > 200f))
@@ -70,10 +74,10 @@ namespace Mario_Game
                         {
                             _direction += new Vector2(0, 1);
                         }
-                        if(CurrentControler.Buttons.Start == ButtonState.Released && PreviousControler.Buttons.Start == ButtonState.Pressed)
+                        if (CurrentControler.Buttons.Start == ButtonState.Released && PreviousControler.Buttons.Start == ButtonState.Pressed)
                         {
-                            game.ChangeState(new PauseState(content,_hero));
-                        } 
+                            game.ChangeState(new PauseState(content, _hero));
+                        }
                     }
                 }
                 else
@@ -102,10 +106,14 @@ namespace Mario_Game
                     {
                         _hero.Volocity = _hero.Volocity / scale;
                     }
-                    if(keyboardState.IsKeyDown(Keys.C)&& !_hero.Ball.IsDraw)
+                    if (keyboardState.IsKeyDown(Keys.C) && !_hero.Ball.IsDraw)
+                    {
                         _hero.Ball.Sommoned = true;
-                    if(keyboardState.IsKeyDown(Keys.Escape))
+                    }
+                    if (keyboardState.IsKeyDown(Keys.Escape))
+                    {
                         game.ChangeState(new PauseState(content, _hero));
+                    }
                 }
                 if (keyboardState.IsKeyDown(Keys.M) && keyboardState.IsKeyDown(Keys.J))
                 {
