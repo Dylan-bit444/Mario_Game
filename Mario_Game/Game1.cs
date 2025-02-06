@@ -1,13 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using NewStartMenu.States;
-using System.Windows.Forms;
 using System.Text.Json;
 using System.Diagnostics;
 using System.IO;
-using System;
 
 
 
@@ -75,8 +72,6 @@ namespace Mario_Game
             _currentState.Update(gameTime);
 
             MouseState mouse = Mouse.GetState();
-
-            
 
             base.Update(gameTime);
         }

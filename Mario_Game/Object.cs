@@ -43,31 +43,9 @@ namespace Mario_Game
         public void Move(GraphicsDeviceManager _graphics, Object _object)
         {
             IsVisible = true;
-            HitLeft = true;
 
             Boundingbox = new Rectangle((int)Position.X, (int)Position.Y, Texture.Width, Texture.Height);
 
-
-            if (IsVisible && Position.X + Texture.Width >= _graphics.PreferredBackBufferWidth)
-            {
-                HitRight = true;
-                HitLeft = false;
-            }
-
-            if (IsVisible && Position.X <= 0)
-            {
-                HitRight = false;
-                HitLeft = true;
-            }
-
-            if (HitRight)
-            {
-                Velocity -= 1;
-            }
-            if (HitLeft)
-            {
-                Velocity += 1;
-            }
         }
     }
 }

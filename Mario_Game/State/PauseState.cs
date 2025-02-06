@@ -61,12 +61,8 @@ namespace Mario_Game
         }
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {       
-            spriteBatch.Begin();
-
             foreach (Components component in _components)
                 component.Draw(gameTime, spriteBatch);
-
-            
         }
 
         private void LoadMenuButton_Click(object sender, EventArgs e)
