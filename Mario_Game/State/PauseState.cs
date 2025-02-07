@@ -16,13 +16,6 @@ namespace Mario_Game
     {
         private List<Components> _components;
 
-        private int savedData;
-        private int xCoordinate, yCoordinate;
-        private Vector2 ve;
-        private bool isseen;
-        private GraphicsDeviceManager graphicsDevice;
-        private Game game;
-        private ContentManager content;
 
         public PauseState(Game1 game, GraphicsDeviceManager graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
@@ -89,18 +82,7 @@ namespace Mario_Game
         private void SaveGameButton_Click(object sender, EventArgs e)
         {
 
-            TextWriter tw = new StreamWriter("Saved.txt");
-
-            var data = new BitArray(File.ReadAllBytes("Saved.txt"));
-
-            tw.WriteLine(xCoordinate);
-            tw.WriteLine(yCoordinate);
-            
-            tw.Close();
-
-            Console.WriteLine(tw);
-
-            Game.ChangeState(new PauseState(Game, _graphicsDevice, _content));
+            Game.ChangeState(new PauseState(Game, graphicsDevice, _content));
             
         }
 

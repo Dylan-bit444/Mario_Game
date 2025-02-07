@@ -16,11 +16,10 @@ namespace NewStartMenu.States
 
         protected ContentManager _content;
 
-        protected GraphicsDeviceManager _graphicsDevice;
+        protected GraphicsDeviceManager graphicsDevice;
 
         protected Game1 Game;
 
-        private GraphicsDeviceManager graphicsDevice;
 
         #endregion
 

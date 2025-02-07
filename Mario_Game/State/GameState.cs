@@ -7,15 +7,13 @@ namespace NewStartMenu.States
 {
     public class GameState : Structure
     {
-        private Game1 Games;
-        private GraphicsDeviceManager graphics;
         private ContentManager contentManager;
 
-        public GameState(Game1 game, GraphicsDeviceManager graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
+        public GameState(Game1 game, GraphicsDeviceManager _graphicsDevice, ContentManager content) : base(game, _graphicsDevice, content)
         {
-            Games = game;
-            graphics = graphicsDevice;
-            contentManager = content;
+            Game = game;
+            graphicsDevice = _graphicsDevice;
+            _content = content;
         }
            
             public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -24,11 +22,17 @@ namespace NewStartMenu.States
 
             public override void PostUpdate(GameTime gameTime)
             { 
+                
             }
             public override void Update(GameTime gameTime)
             {
 
-            
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+            {
+                Game.ChangeState(new PauseState(Game, graphicsDevice, contentManager));
+            }
+
+
         }
     }
 }

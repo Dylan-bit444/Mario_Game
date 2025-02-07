@@ -8,13 +8,15 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel;
 using Mario_Game;
+using System.Drawing;
+using Microsoft.Xna.Framework.Input;
 
 namespace NewStartMenu.States
 {
     internal class MenuState : Structure
     {
         private List<Components> _components;
-        private GraphicsDeviceManager graphicsDevice;
+
         public MenuState(Game1 game, GraphicsDeviceManager graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
             Texture2D buttonTexture = content.Load<Texture2D>("Controls/Button");
@@ -76,12 +78,17 @@ namespace NewStartMenu.States
 
         public override void Update(GameTime gameTime)
         {
+            
+
             foreach (Components component in _components)
                 component.Update(gameTime);
+
+            
         }
         private void QuitGameButton_Click(object sender, EventArgs e)
         {
             Game.Exit();
         }
+
     }
 }
