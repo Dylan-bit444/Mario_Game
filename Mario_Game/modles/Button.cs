@@ -59,8 +59,12 @@ namespace Mario_Game
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         { 
             Color colour = Color.White;
+            PenColour = Color.Black;
             if (Selected)
+            {
                 colour = Color.Gray;
+                PenColour = Color.White;
+            }
 
             spriteBatch.Draw(Texture, Rectangle, colour);
 
