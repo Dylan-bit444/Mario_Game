@@ -109,7 +109,18 @@ namespace Mario_Game
 
             base.Update(gameTime);
         }
+        private Matrix Follow(Hero target, GraphicsDeviceManager graphics)
+        {
+            Matrix position = Matrix.CreateTranslation(-target.Position.X - (target.BoundingBox.Width / 2))
+                ,0
+                ,0);
 
+            Matrix offset = Matrix.CreateTranslation(graphics.PrefferedBufferWidth / 2,
+                0,
+                0);
+
+            return (position * offset);
+        }
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);

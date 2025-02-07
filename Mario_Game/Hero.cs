@@ -9,9 +9,9 @@ namespace Mario_Game
 {
     public class Hero : Sprite
     {
-        private const float Speed = 250f;
-        private const float Gravity = 30f;
-        private const float Jump = 500f;
+        private const float Speed = 350f;
+        private const float Gravity = 3.5f;
+        private const float Jump = 5000f;
         private Vector2 _velocity;
         private bool _onGround = true;
         private int gravitytimer = 0;
@@ -20,6 +20,8 @@ namespace Mario_Game
 
         public bool CanMoveLeft { get; set; }
         public bool CanMoveRight { get; set; }
+        public bool CanMoveDown {get ; set; }
+
 
         public Hero() : base()
         {
@@ -34,6 +36,8 @@ namespace Mario_Game
         }
         public void UpdateVelocity(GraphicsDeviceManager _graphics, Tile inTile)
         {
+            Vector2 prevPos = Position;
+
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
                 if (CanMoveLeft)
@@ -42,22 +46,29 @@ namespace Mario_Game
                 }
                 if (!CanMoveLeft)
                 {
-                    _velocity.X = 0;
+                    Position = new Vector2(prevPos.X + 9, Position.Y);
+                    CanMoveLeft = true;
+                    CanMoveRight = true;
                 }
-                
+
             }
             else if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
                 if (CanMoveRight)
                 {
-                    _velocity.X = +Speed;
+                    _velocity.X = Speed;
                 }
-                if(!CanMoveRight)
+                if (!CanMoveRight)
                 {
-                    _velocity.X = 0;
+                    Position = new Vector2(prevPos.X - 9, Position.Y);
+                    CanMoveLeft = true;
+                    CanMoveRight = true;
                 }
             }
-            else _velocity.X = 0;
+            else
+            {
+                _velocity.X = 0;
+            }
 
             if (!_onGround && gravitytimer==0)
             {
@@ -82,6 +93,7 @@ namespace Mario_Game
           
             BoundingBox = new Rectangle((int)Position.X, (int)Position.Y, Texture.Width, Texture.Height);
         }
+
         public void Update(GraphicsDeviceManager _graphics)
         {
             Position += _velocity * Globals.Time;
