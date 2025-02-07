@@ -111,13 +111,16 @@ namespace Mario_Game
         }
         private Matrix Follow(Hero target, GraphicsDeviceManager graphics)
         {
-            Matrix position = Matrix.CreateTranslation(-target.Position.X - (target.BoundingBox.Width / 2))
-                ,0
-                ,0);
+            Matrix position = Matrix.CreateTranslation(
+              -target.Position.X - (target.BoundingBox.Width / 2),
+              0,
+              0);
 
-            Matrix offset = Matrix.CreateTranslation(graphics.PrefferedBufferWidth / 2,
+            Matrix offset = Matrix.CreateTranslation(
+                graphics.PreferredBackBufferWidth / 2,
                 0,
                 0);
+
 
             return (position * offset);
         }
