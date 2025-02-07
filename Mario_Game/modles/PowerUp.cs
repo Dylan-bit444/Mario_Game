@@ -11,9 +11,12 @@ namespace Mario_Game
         
         public void Update(Hero hero)
         {
-            if(Collided(hero.HitBox))
+            if (IsDraw)
             {
-                hero.HitPoints++;
+                if (Collided(hero.HitBox))
+                {
+                    hero.HitPoints++;
+                }
             }
         }
     }

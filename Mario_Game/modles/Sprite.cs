@@ -41,5 +41,12 @@ namespace Mario_Game
               this.HitBox.Right > sprite.HitBox.Left &&
               this.HitBox.Left < sprite.HitBox.Right;
         }
+        protected bool IsTouchingBottom(Sprite sprite)
+        {
+            return this.HitBox.Top + this.Position.Y < sprite.HitBox.Bottom &&
+              this.HitBox.Bottom > sprite.HitBox.Bottom &&
+              this.HitBox.Right > sprite.HitBox.Left &&
+              this.HitBox.Left < sprite.HitBox.Right;
+        }
     }
 }
