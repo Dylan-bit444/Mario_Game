@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Mario_Game.modles
 {
-    internal class Power_Block
+    internal class Power_Block:Sprite
     {
+
     }
 }

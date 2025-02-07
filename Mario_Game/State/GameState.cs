@@ -30,10 +30,8 @@ namespace Mario_Game
             SpriteFont buttonFont = content.Load<SpriteFont>("File");
             _playerTexture = content.Load<Texture2D>("hero-PlaceHolder");
             _CoinTexture = content.Load<Texture2D>("coin");
-            
             flagTex = content.Load<Texture2D>("Flag");
-            _flag = new(null, new Vector2(100, 100), Color.White, 0, 1, 1);
-            _flag.Texture = content.Load<Texture2D>("Flag");
+            _flag = new(flagTex, new Vector2(110, 100), Color.White, 1, 1, 1);
 
             _fireBall = new(FireBallTex, new Vector2(100, 1000), Color.White, 8, 1, 1, 5f);
             _fireBall.IsDraw =false;
