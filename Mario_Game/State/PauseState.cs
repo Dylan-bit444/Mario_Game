@@ -20,8 +20,11 @@ namespace Mario_Game
         private int xCoordinate, yCoordinate;
         private Vector2 ve;
         private bool isseen;
+        private GraphicsDeviceManager graphicsDevice;
+        private Game game;
+        private ContentManager content;
 
-        public PauseState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
+        public PauseState(Game1 game, GraphicsDeviceManager graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
 
             Texture2D buttonTexture = content.Load<Texture2D>("Controls/Button");
@@ -67,7 +70,7 @@ namespace Mario_Game
 
         private void LoadMenuButton_Click(object sender, EventArgs e)
         {
-            Game.ChangeState(new MenuState(Game,_graphicsDevice,_content));
+            Game.ChangeState(new MenuState(Game, graphicsDevice,_content));
 
             TextReader tr = new StreamReader("Saved.txt");
 
@@ -80,7 +83,7 @@ namespace Mario_Game
 
         private void PlayGameButton_Click(object sender, EventArgs e)
         {
-            Game.ChangeState(new GameState(Game, _graphicsDevice, _content));
+            Game.ChangeState(new GameState(Game, graphicsDevice, _content));
         }
 
         private void SaveGameButton_Click(object sender, EventArgs e)

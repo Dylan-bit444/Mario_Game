@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Microsoft.VisualBasic.Devices;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -45,6 +46,31 @@ namespace Mario_Game
             IsVisible = true;
 
             Boundingbox = new Rectangle((int)Position.X, (int)Position.Y, Texture.Width, Texture.Height);
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+            {
+                Game.ChangeState(new PauseState(game, graphicsDevice, content));
+            }
+            if (Position.X + Texture.Width >= graphics.PreferredBackBufferWidth)
+            {
+                HitRight = true;
+                HitLeft = false;
+            }
+
+            if (Position.X <= 0)
+            {
+                HitRight = false;
+                HitLeft = true;
+            }
+
+            if (HitRight)
+            {
+                Velocity -= 1;
+            }
+            if (HitLeft)
+            {
+                Velocity += 1;
+            }
 
         }
     }

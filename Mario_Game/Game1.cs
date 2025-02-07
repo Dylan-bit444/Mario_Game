@@ -38,6 +38,7 @@ namespace Mario_Game
             _graphics.PreferredBackBufferWidth = 2000;
             _graphics.PreferredBackBufferHeight = 2000;
             _graphics.ApplyChanges();
+            _objectTexture = Content.Load<Texture2D>("Ball");
         }
 
         protected override void Initialize()
@@ -50,11 +51,10 @@ namespace Mario_Game
 
         protected override void LoadContent()
         {
-            _objectTexture = Content.Load<Texture2D>("Ball");
 
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            _currentState = new MenuState(this, _graphics.GraphicsDevice, Content);
+            _currentState = new MenuState(this, _graphics, Content);
 
             _object = new Object(_objectTexture, new Vector2 (_graphics.PreferredBackBufferWidth / 2 - _objectTexture.Width / 2, _graphics.PreferredBackBufferHeight / 2 - _objectTexture.Height), Color.White, 2f, new Rectangle());
         }

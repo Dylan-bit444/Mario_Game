@@ -16,11 +16,11 @@ namespace NewStartMenu.States
 
         protected ContentManager _content;
 
-        protected GraphicsDevice _graphicsDevice;
+        protected GraphicsDeviceManager _graphicsDevice;
 
         protected Game1 Game;
 
-
+        private GraphicsDeviceManager graphicsDevice;
 
         #endregion
 
@@ -30,10 +30,10 @@ namespace NewStartMenu.States
 
         public abstract void PostUpdate(GameTime gameTime);
 
-        public Structure(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)
+        public Structure(Game1 game, GraphicsDeviceManager _graphicsDevice, ContentManager content)
         {
             Game = game;
-            _graphicsDevice = graphicsDevice;
+            graphicsDevice = _graphicsDevice;
             _content = content;
         }
 

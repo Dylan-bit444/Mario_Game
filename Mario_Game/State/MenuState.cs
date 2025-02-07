@@ -14,8 +14,8 @@ namespace NewStartMenu.States
     internal class MenuState : Structure
     {
         private List<Components> _components;
-
-        public MenuState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
+        private GraphicsDeviceManager graphicsDevice;
+        public MenuState(Game1 game, GraphicsDeviceManager graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
             Texture2D buttonTexture = content.Load<Texture2D>("Controls/Button");
             SpriteFont buttonFont = content.Load<SpriteFont>("Fonts/Fonts");
@@ -66,7 +66,7 @@ namespace NewStartMenu.States
 
         private void NewGameButton_Click(object sender, EventArgs e)
         {
-           Game.ChangeState(new GameState(Game,_graphicsDevice,_content));
+           Game.ChangeState(new GameState(Game, graphicsDevice,_content));
         }
 
         public override void PostUpdate(GameTime gameTime)
