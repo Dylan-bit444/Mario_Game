@@ -10,6 +10,11 @@ namespace Mario_Game
         private SpriteBatch _spriteBatch;
         private States _states;
 
+        public void ChangeState(Structure state)
+        {
+            _nextState = state;
+        }
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -28,7 +33,7 @@ namespace Mario_Game
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            
+            _currentState = new MenuState(this, _graphics, Content);
 
             // TODO: use this.Content to load your game content here
         }
@@ -39,6 +44,14 @@ namespace Mario_Game
                 Exit();
 
             // TODO: Add your update logic here
+            if (_nextState != null)
+            {
+                _currentState = _nextState;
+
+                _nextState = null;
+            }
+            _currentState.Update(gameTime);
+
 
             base.Update(gameTime);
         }
@@ -48,7 +61,7 @@ namespace Mario_Game
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-            
+            _currentState.Draw(gameTime, _spriteBatch);
 
             base.Draw(gameTime);
         }
