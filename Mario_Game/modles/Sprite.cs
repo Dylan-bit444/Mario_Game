@@ -35,7 +35,7 @@ namespace Mario_Game
                 return false;
             }
         }
-        public bool IsTouchingTop(Sprite sprite)
+        protected bool IsTouchingTop(Sprite sprite)
         {
             return this.HitBox.Bottom + this.Position.Y > sprite.HitBox.Top &&
               this.HitBox.Top < sprite.HitBox.Top &&
@@ -44,7 +44,6 @@ namespace Mario_Game
         }
         protected bool IsTouchingBottom(Sprite sprite)
         {
-            Debug.WriteLine(this.HitBox.Bottom);
             return this.HitBox.Top + this.Position.Y < sprite.HitBox.Bottom &&
               this.HitBox.Bottom > sprite.HitBox.Bottom &&
               this.HitBox.Right > sprite.HitBox.Left &&

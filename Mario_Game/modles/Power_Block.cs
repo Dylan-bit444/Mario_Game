@@ -1,7 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System.Diagnostics;
 
 namespace Mario_Game.modles
 {
@@ -17,7 +15,7 @@ namespace Mario_Game.modles
 
         public void Update(Hero _hero,Texture2D Mush,Texture2D Flower)
         {
-            if (IsTouchingTop(_hero))
+            if (IsTouchingBottom(_hero))
             {
                 if(_hero.HitPoints == 1)
                 {
