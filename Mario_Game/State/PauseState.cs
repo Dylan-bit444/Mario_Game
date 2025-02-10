@@ -95,6 +95,8 @@ namespace Mario_Game
         {
             foreach (Components component in _components)
                 component.Update(gameTime);
+
+
         }
 
     }

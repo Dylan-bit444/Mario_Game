@@ -26,13 +26,7 @@ namespace NewStartMenu.States
             }
             public override void Update(GameTime gameTime)
             {
-
-            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
-            {
                 Game.ChangeState(new PauseState(Game, graphicsDevice, contentManager));
             }
-
-
-        }
     }
 }

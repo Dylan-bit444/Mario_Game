@@ -5,6 +5,7 @@ using NewStartMenu.States;
 using System.Text.Json;
 using System.Diagnostics;
 using System.IO;
+using Microsoft.Xna.Framework.Content;
 
 
 
@@ -61,7 +62,6 @@ namespace Mario_Game
         
         protected override void Update(GameTime gameTime)
         {
-            
 
             if (_nextState != null)
             {
