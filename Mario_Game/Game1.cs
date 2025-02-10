@@ -8,6 +8,7 @@ namespace Mario_Game
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        private States _states;
 
         public Game1()
         {
@@ -23,9 +24,11 @@ namespace Mario_Game
             base.Initialize();
         }
 
-        protected override void LoadContent()
+        protected override void LoadContent()   
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            
 
             // TODO: use this.Content to load your game content here
         }
@@ -45,6 +48,7 @@ namespace Mario_Game
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            
 
             base.Draw(gameTime);
         }

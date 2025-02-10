@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Mario_Game.Button;
 
 namespace Mario_Game
 {
@@ -15,7 +16,6 @@ namespace Mario_Game
         protected Game Game;
         protected GraphicsDeviceManager GraphicsDevice;
         protected ContentManager ContentManager;
-        protected Button Button;
 
         public States(Game _game, GraphicsDeviceManager _graphicsDevice, ContentManager _content)
         {
@@ -33,7 +33,7 @@ namespace Mario_Game
 
         static void MenuState()
         { }
-            private List<Components> _components;
+            private List<Button> _components;
         public States(Game1 game, GraphicsDeviceManager graphicsDevice, ContentManager content)
         {
             Texture2D buttonTexture = content.Load<Texture2D>("Controls/Button");
@@ -63,7 +63,7 @@ namespace Mario_Game
 
             quitGameButton.Click += QuitGameButton_Click;
 
-            _components = new List<Components>()
+            _components = new List<Button>()
             {
                 newGameButton,
                 loadGameButton,
@@ -74,18 +74,17 @@ namespace Mario_Game
         }
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            foreach (Components component in _components)
+            foreach (Button component in _components)
                 component.Draw(gameTime, spriteBatch);
         }
 
-        private void LoadGameButton_Click(object sender, EventArgs e)
+        private void LoadGameButton_Click(object? sender, Game1 game, ContentManager content, EventArgs e)
         {
             Console.WriteLine("Load Game");
         }
 
-        private void NewGameButton_Click(object sender, EventArgs e)
+        private void NewGameButton_Click(object? sender, Game1 game, ContentManager content, EventArgs e)
         {
-            Game.ChangeState(new GameState(Game, graphicsDevice, _content));
         }
 
         public void PostUpdate(GameTime gameTime)
@@ -93,18 +92,18 @@ namespace Mario_Game
             throw new NotImplementedException();
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, Game1 game, ContentManager content)
         {
 
 
-            foreach (Components component in _components)
-                component.Update(gameTime);
+            foreach (Button component in _components)
+                component.Update(gameTime, game, content);
 
 
         }
-        private void QuitGameButton_Click(object sender, EventArgs e)
+        private void QuitGameButton_Click(object? sender, Game1 game, ContentManager content, EventArgs e)
         {
-            Game.Exit();
+            game.Exit();
         }
     }
 
