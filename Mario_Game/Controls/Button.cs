@@ -20,7 +20,7 @@ namespace NewStartMenu.Controls
         private Texture2D _texture;
 
         #endregion
-
+        
         #region Properties
 
         public event EventHandler Click;
