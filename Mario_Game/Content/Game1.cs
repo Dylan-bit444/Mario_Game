@@ -1,9 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System.IO;
 using System.Collections.Generic;
-using tile;
 
 namespace Mario_Game
 {
@@ -16,10 +14,10 @@ namespace Mario_Game
         private Texture2D mapSheet;
         private Hero _hero;
         private Texture2D heroTexture;
-        private FollowCamera camera;
         private int tilesize = 80;
         private Tile[,] tiles;
         private int[,] tileValuesArray;
+        private Matrix _translaton;
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -56,6 +54,13 @@ namespace Mario_Game
 
             // TODO: use this.Content to load your game content here
             _hero = new Hero(heroTexture, Vector2.Zero);
+            tiles = TileManager.ChooseTile(tileValuesArray, mapSheet, _graphics.GraphicsDevice);
+        }
+        private void CalculateTranslation()
+        {
+            var dy = (Globals.WindowSize.X / 2) - _hero.Position.X;
+            var dx = (Globals.WindowSize.Y / 2) - _hero.Position.Y;
+            _translaton = Matrix.CreateTranslation(dy, dx,0f);
         }
 
         protected override void Update(GameTime gameTime)
@@ -67,6 +72,7 @@ namespace Mario_Game
 
             // TODO: Add your update logic here
             _hero.Update();
+            CalculateTranslation();
             
 
             base.Update(gameTime);
@@ -78,7 +84,7 @@ namespace Mario_Game
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(transformMatrix: _translaton);
             foreach (Tile t in tiles)
             {
                 t.Draw(_spriteBatch);

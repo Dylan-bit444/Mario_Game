@@ -78,22 +78,22 @@ namespace Mario_Game
                     switch (tileValuesArray[i, j])
                     {
                         case 0:
-                            sourceRectangle = new Rectangle(tileValuesArray[j, i] * 80, 0, 80, 80);
+                            sourceRectangle = new Rectangle(tileValuesArray[i, j] * 80, 0, 80, 80);
                             break;
                         case 1:
-                            sourceRectangle = new Rectangle(tileValuesArray[j, i] * 80, 0, 80, 80);
+                            sourceRectangle = new Rectangle(tileValuesArray[i, j] * 80, 0, 80, 80);
                             break;
                         case 2:
-                            sourceRectangle = new Rectangle(tileValuesArray[j, i] * 80, 0, 80, 80);
+                            sourceRectangle = new Rectangle(tileValuesArray[i, j] * 80, 0, 80, 80);
                             break;
                         case 3:
-                            sourceRectangle = new Rectangle(tileValuesArray[j, i] * 80, 0, 80, 80);
+                            sourceRectangle = new Rectangle(tileValuesArray[i, j] * 80, 0, 80, 80);
                             break;
                         case 4:
-                            sourceRectangle = new Rectangle(tileValuesArray[j, i] * 80, 0, 80, 80);
+                            sourceRectangle = new Rectangle(tileValuesArray[i, j] * 80, 0, 80, 80);
                             break;
                         case 5:
-                            sourceRectangle = new Rectangle(tileValuesArray[j, i] * 80, 0, 80, 80);
+                            sourceRectangle = new Rectangle(tileValuesArray[i, j] * 80, 0, 80, 80);
                             break;
                         default:
                             sourceRectangle = new Rectangle(0, 0, 80, 80);//Default to the firt tile in the sheet
