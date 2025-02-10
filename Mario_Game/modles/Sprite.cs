@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Diagnostics;
 namespace Mario_Game
 {
     internal class Sprite
@@ -34,7 +35,7 @@ namespace Mario_Game
                 return false;
             }
         }
-        protected bool IsTouchingTop(Sprite sprite)
+        public bool IsTouchingTop(Sprite sprite)
         {
             return this.HitBox.Bottom + this.Position.Y > sprite.HitBox.Top &&
               this.HitBox.Top < sprite.HitBox.Top &&
@@ -43,6 +44,7 @@ namespace Mario_Game
         }
         protected bool IsTouchingBottom(Sprite sprite)
         {
+            Debug.WriteLine(this.HitBox.Bottom);
             return this.HitBox.Top + this.Position.Y < sprite.HitBox.Bottom &&
               this.HitBox.Bottom > sprite.HitBox.Bottom &&
               this.HitBox.Right > sprite.HitBox.Left &&

@@ -12,8 +12,6 @@ namespace Mario_Game
 {
     internal class GameState : Structure
     {
-        private Texture2D _playerTexture;
-        private Texture2D _CoinTexture, flagTex;
         private Coin[] _coin = new Coin[10];
         private Hero _hero;
         private InputManager _inputManager;
@@ -21,6 +19,7 @@ namespace Mario_Game
         private SpriteFont hudFont;
         private FireBall _fireBall;
         private Flag _flag;
+        private Power_Block _power;
         public GameState(SaveData saves,ContentManager content)  
         {
             Saves = saves;
@@ -28,11 +27,12 @@ namespace Mario_Game
             Texture2D buttonTexture = content.Load<Texture2D>("Button");
             Texture2D FireBallTex = content.Load<Texture2D>("fire");
             SpriteFont buttonFont = content.Load<SpriteFont>("File");
-            _playerTexture = content.Load<Texture2D>("hero-PlaceHolder");
-            _CoinTexture = content.Load<Texture2D>("coin");
-            flagTex = content.Load<Texture2D>("Flag");
+            Texture2D _playerTexture = content.Load<Texture2D>("hero-PlaceHolder");
+            Texture2D _CoinTexture = content.Load<Texture2D>("coin");
+            Texture2D flagTex = content.Load<Texture2D>("Flag");
+            Texture2D PowerTex = content.Load<Texture2D>("Question_Block");
             _flag = new(flagTex, new Vector2(110, 100), Color.White, 1, 1, 1);
-
+            _power = new Power_Block(PowerTex,new Vector2(200,400),Color.White,0,1,1);
             _fireBall = new(FireBallTex, new Vector2(100, 1000), Color.White, 8, 1, 1, 5f);
             _fireBall.IsDraw =false;
             if (Saves != null)
@@ -68,6 +68,7 @@ namespace Mario_Game
             _hero.Draw(spriteBatch);
             _flag.Draw(spriteBatch);
             _fireBall.Draw(spriteBatch);
+            _power.Draw(spriteBatch);
             spriteBatch.End();
         }
 
@@ -75,6 +76,7 @@ namespace Mario_Game
         {
             float time;
             time = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            _power.Update(_hero, content.Load<Texture2D>("Mushroom"), content.Load<Texture2D>("Fire_Flower"));
             _inputManager.Update(_hero, null,game,content);
             foreach (Coin coin in _coin) 
             coin.Update(time);
