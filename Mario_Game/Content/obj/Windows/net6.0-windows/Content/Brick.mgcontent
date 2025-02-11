@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>C:/Users/simon/Source/Repos/Mario_Game/Mario_Game/Content/Brick.png</SourceFile>
-  <SourceTime>2025-01-14T10:47:21.376612+00:00</SourceTime>
+  <SourceTime>2025-02-07T14:15:37.2925469+00:00</SourceTime>
   <DestFile>C:/Users/simon/Source/Repos/Mario_Game/Mario_Game/Content/bin/Windows/Content/Brick.xnb</DestFile>
-  <DestTime>2025-01-23T09:57:04.9522714+00:00</DestTime>
+  <DestTime>2025-02-07T14:31:03.5062288+00:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T12:44:56+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

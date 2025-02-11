@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using SharpDX.Direct2D1;
 using System.Collections.Generic;
 using System.IO;
 
@@ -11,8 +12,6 @@ namespace Mario_Game
     public class Game1 : Game
     {
         private GraphicsDeviceManager _graphics;
-        //private SpriteBatch _spriteBatch;
-        //private GameManager _gameManager;
         private Hero _hero;
         private SpriteBatch _spriteBatch;
         private Dictionary<Vector2, int> tilemap;
@@ -77,7 +76,7 @@ namespace Mario_Game
             //load hero
             _hero = new Hero(_hero.Texture,
                 new Vector2(_graphics.PreferredBackBufferWidth / 2 - _hero.Texture.Width / 2,
-                _graphics.PreferredBackBufferHeight - _hero.Texture.Height),
+                _graphics.PreferredBackBufferHeight/2/* - _hero.Texture.Height*/),
             Color.White, 2.0f, new Rectangle((int)_hero.Position.X, (int)_hero.Position.Y, _hero.Texture.Width, _hero.Texture.Height));
 
             tileValuesArray = TileManager.ReadFile("../../../Content/Map.txt");
@@ -124,19 +123,18 @@ namespace Mario_Game
 
             return (position * offset);
         }
+
+
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
-            _spriteBatch.Begin();
-             //_gameManager.Draw();
+            _spriteBatch.Begin(transformMatrix: Follow(_hero, _graphics));
             _hero.Draw();
             foreach (Tile t in tiles)
             {
                 t.Draw(_spriteBatch);
             }
-
 
             _spriteBatch.End();
 

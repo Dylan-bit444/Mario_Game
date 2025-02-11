@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Diagnostics;
+
 
 namespace Mario_Game
 {
@@ -28,16 +28,15 @@ namespace Mario_Game
             
             if (Collidable && BoundingBox.Intersects(inHero.BoundingBox))
             {
-                Debug.WriteLine("BANG");
                 Collidable = true;
-                inHero.CanMoveLeft = false;
-                inHero.CanMoveRight = false;
+                //inHero.CanMoveLeft = false;
+                //inHero.CanMoveRight = false;
                 return true;
             }
             return false;
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+ public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(TileTexture, Position, Color.White);
         }

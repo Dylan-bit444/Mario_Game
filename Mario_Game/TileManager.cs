@@ -2,7 +2,7 @@
 using System.IO;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
-using System.Diagnostics;
+
 
 namespace Mario_Game
 {
@@ -80,6 +80,7 @@ namespace Mario_Game
                             break;
                         case 1:
                             sourceRectangle = new Rectangle(tileValuesArray[i, j] * 80, 0, 80, 80);
+                            collides = false;
                             
                             break;
                         case 2:
@@ -116,4 +117,4 @@ namespace Mario_Game
             return tileTypes;
         }
     }
-}
+    }
