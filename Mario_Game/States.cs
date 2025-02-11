@@ -3,33 +3,37 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Reflection.Metadata;
 
 namespace Mario_Game
 {
-        public class States
+    public class States
+    {
+        protected Game Game;
+        protected GraphicsDeviceManager GraphicsDevice;
+        protected ContentManager ContentManager;
+        private StateType _state;
+        private List<Button> _components;
+
+
+        public enum StateType 
+        { 
+            playGame,
+            pauseGame,
+            gameOver, 
+            menuState
+        }
+
+        public void SetState(StateType inState)
         {
-            protected Game Game;
-            protected GraphicsDeviceManager GraphicsDevice;
-            protected ContentManager ContentManager;
-
-            public States(Game _game, GraphicsDeviceManager _graphicsDevice, ContentManager _content)
+            if (inState == StateType.playGame)
             {
-
-            }
-            static void GameState()
-            {
-                
+                MenuState(ContentManager);   
             }
 
-            static void PauseState()
-            {
+        }
 
-            }
-
-        static void MenuState()
-        { }
-            private List<Button> _components;
-        public States(Game1 game, GraphicsDeviceManager graphicsDevice, ContentManager content)
+        public void MenuState(ContentManager content)
         {
             Texture2D buttonTexture = content.Load<Texture2D>("Controls/Button");
             SpriteFont buttonFont = content.Load<SpriteFont>("Fonts/Fonts");
@@ -64,8 +68,9 @@ namespace Mario_Game
                 loadGameButton,
                 quitGameButton,
             };
-
-
+        }
+        public States(Game1 game, GraphicsDeviceManager graphicsDevice, ContentManager content)
+        {
         }
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
@@ -102,4 +107,4 @@ namespace Mario_Game
         }
     }
             
-        }
+}
