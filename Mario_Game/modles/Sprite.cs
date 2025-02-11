@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Diagnostics;
 namespace Mario_Game
 {
     internal class Sprite
@@ -22,8 +21,8 @@ namespace Mario_Game
         public float Volocity { get; set; }
         public Texture2D Texture { get; set; }
         public bool IsDraw = true;
-        private int FrameHight = 0;
-        private int FrameWidth = 0;
+        private int FrameHight;
+        private int FrameWidth;
         public bool Collided(Rectangle box)
         {
             if (HitBox.Intersects(box))
@@ -35,6 +34,23 @@ namespace Mario_Game
                 return false;
             }
         }
+        #region Colloision
+        protected bool IsTouchingLeft(Sprite sprite)
+        {
+            return this.HitBox.Right + this.Position.X > sprite.HitBox.Left &&
+              this.HitBox.Left < sprite.HitBox.Left &&
+              this.HitBox.Bottom > sprite.HitBox.Top &&
+              this.HitBox.Top < sprite.HitBox.Bottom;
+        }
+
+        protected bool IsTouchingRight(Sprite sprite)
+        {
+            return this.HitBox.Left + this.Position.X < sprite.HitBox.Right &&
+              this.HitBox.Right > sprite.HitBox.Right &&
+              this.HitBox.Bottom > sprite.HitBox.Top &&
+              this.HitBox.Top < sprite.HitBox.Bottom;
+        }
+
         protected bool IsTouchingTop(Sprite sprite)
         {
             return this.HitBox.Bottom + this.Position.Y > sprite.HitBox.Top &&
@@ -42,6 +58,7 @@ namespace Mario_Game
               this.HitBox.Right > sprite.HitBox.Left &&
               this.HitBox.Left < sprite.HitBox.Right;
         }
+
         protected bool IsTouchingBottom(Sprite sprite)
         {
             return this.HitBox.Top + this.Position.Y < sprite.HitBox.Bottom &&
@@ -49,5 +66,7 @@ namespace Mario_Game
               this.HitBox.Right > sprite.HitBox.Left &&
               this.HitBox.Left < sprite.HitBox.Right;
         }
+
+        #endregion
     }
 }

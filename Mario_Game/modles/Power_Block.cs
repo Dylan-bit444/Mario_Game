@@ -10,12 +10,12 @@ namespace Mario_Game.modles
 
         public Power_Block(Texture2D _texture, Vector2 _position, Color _color, float _volocity, int frameLength, int frameRows):base(_texture, _position, _color, _volocity, frameLength, frameRows)
         {
-            HeldPower = new PowerUp(Texture,new Vector2(Position.X,Position.Y-Texture.Height),Color.White,5,1,1);
+            HeldPower = new PowerUp(Texture,new Vector2(Position.X,Position.Y-_texture.Height),Color.White,5,1,1);
         }
 
         public void Update(Hero _hero,Texture2D Mush,Texture2D Flower)
         {
-            if (IsTouchingBottom(_hero))
+            if (IsTouchingTop(_hero))
             {
                 if(_hero.HitPoints == 1)
                 {
