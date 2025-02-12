@@ -97,14 +97,14 @@ namespace Mario_Game
             BoundingBox = new Rectangle((int)Position.X, (int)Position.Y, Texture.Width, Texture.Height);
         }
 
-        public void Update(GraphicsDeviceManager _graphics)
+        public void Update(GraphicsDeviceManager _graphics, float Time)
         {
-            Position += _velocity * Globals.Time;
+            Position += _velocity * Time;
         }
-        public void UpdatePosition(GraphicsDeviceManager _graphics)
+        public void UpdatePosition(GraphicsDeviceManager _graphics, float Time)
         {
             _onGround = false;
-            var newPos = Position + (_velocity * Globals.Time);
+            var newPos = Position + (_velocity * Time);
         }
     }
 

@@ -1,11 +1,7 @@
-﻿using Mario_Game;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
-using System.IO;
-using System;
 using System.IO;
 
 
@@ -82,11 +78,11 @@ namespace Mario_Game
 
             base.Initialize();
         }
-        protected override void LoadContent()
+        protected void LoadContent(SpriteBatch SpriteBatch)
         {
             _hero.LoadOwnContent(Content, "Brick");
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            Globals.SpriteBatch = _spriteBatch;
+            SpriteBatch = _spriteBatch;
 
             //load hero
             _hero = new SimonHero(_hero.Texture,
@@ -104,12 +100,12 @@ namespace Mario_Game
             _currentState = new MenuState(Content);
             
         }
-        protected override void Update(GameTime gameTime)
+        protected void Update(GameTime gameTime, float Time)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            Globals.Update(gameTime);
-            _hero.Update(_graphics);
+            Update(gameTime);
+            _hero.Update(_graphics, Time);
             foreach (Tile tile in tiles)
             {
                 tile.CheckCollided(_hero);
@@ -154,7 +150,7 @@ namespace Mario_Game
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             _spriteBatch.Begin(transformMatrix: Follow(_hero, _graphics));
-            _hero.Draw();
+            _hero.Draw(_graphics);
             foreach (Tile t in tiles)
             {
                 t.Draw(_spriteBatch);

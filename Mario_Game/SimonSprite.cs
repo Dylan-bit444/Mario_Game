@@ -34,9 +34,9 @@ namespace Mario_Game
             Texture = myContent.Load<Texture2D>(contentFilename);
         }
 
-        public void Draw()
+        public void Draw(SpriteBatch _SpriteBatch)
         {
-            Globals.SpriteBatch.Draw(Texture, Position, Colour);
+            _SpriteBatch.Draw(Texture, Position, Colour);
         }
         public bool CheckCollided(Rectangle inBox)
         {
