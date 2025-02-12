@@ -1,4 +1,6 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/simon/Source/Repos/Mario_Game/Mario_Game/Content/bin/Windows/MC.png","C:/Users/simon/Source/Repos/Mario_Game/Mario_Game/Content/bin/Windows/Content/bin/Windows/MC.xnb","TextureProcessor","Texture2DContent",12179,460885,0.2356308
+"C:/Users/simon/Source/Repos/Mario_Game/Mario_Game/Content/Brick.png","C:/Users/simon/Source/Repos/Mario_Game/Mario_Game/Content/bin/Windows/Content/Brick.xnb","TextureProcessor","Texture2DContent",285,20085,0.0035971
 "C:/Users/13WrightD/source/repos/Mario_Game/Mario_Game/Content/Button.png","C:/Users/13WrightD/source/repos/Mario_Game/Mario_Game/Content/bin/Windows/Content/Button.xnb","TextureProcessor","Texture2DContent",2481,360085,0.460171
 "C:/Users/13WrightD/source/repos/Mario_Game/Mario_Game/Content/coin.png","C:/Users/13WrightD/source/repos/Mario_Game/Mario_Game/Content/bin/Windows/Content/coin.xnb","TextureProcessor","Texture2DContent",8810,24661,0.0043957
 "C:/Users/13WrightD/source/repos/Mario_Game/Mario_Game/Content/File.spritefont","C:/Users/13WrightD/source/repos/Mario_Game/Mario_Game/Content/bin/Windows/Content/File.xnb","FontDescriptionProcessor","SpriteFontContent",2077,529439,0.3514846

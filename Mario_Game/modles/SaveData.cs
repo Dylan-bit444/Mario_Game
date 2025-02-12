@@ -16,7 +16,7 @@ namespace Mario_Game.modles
             Player.Color = Color.White;
             Player.Coins=new Coin[10];
         }
-        public Hero Player = new();
+        public SimonHero Player = new();
         public bool[] Drawed = new bool[10];
         
     }

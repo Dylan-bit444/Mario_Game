@@ -76,7 +76,7 @@ namespace Mario_Game
             }
         }
 
-        public void Update(Game1 game,ContentManager content,Hero hero)
+        public void Update(Game1 game,ContentManager content,SimonHero hero)
         {
             GamePadCapabilities gamePad = GamePad.GetCapabilities(PlayerIndex.One);
             Rectangle mouseRectangle = new(CurrentMouse.X, CurrentMouse.Y, 1, 1);

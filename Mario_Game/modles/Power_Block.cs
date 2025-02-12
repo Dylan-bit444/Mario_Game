@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Mario_Game.modles
 {
-    internal class Power_Block:Sprite
+    internal class Power_Block:SimonSprite
     {
         private PowerUp HeldPower;
         public Power_Block():base(){ }
@@ -13,7 +13,7 @@ namespace Mario_Game.modles
             HeldPower = new PowerUp(Texture,new Vector2(Position.X,Position.Y-_texture.Height),Color.White,5,1,1);
         }
 
-        public void Update(Hero _hero,Texture2D Mush,Texture2D Flower)
+        public void Update(SimonHero _hero,Texture2D Mush,Texture2D Flower)
         {
             if (IsTouchingTop(_hero))
             {

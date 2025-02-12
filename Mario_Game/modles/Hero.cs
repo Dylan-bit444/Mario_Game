@@ -6,15 +6,15 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace Mario_Game
 {
-    internal class Hero:Sprite
+    internal class SimonHero:SimonSprite
     {
         public AnimationManager Animations = new();
         public float CoinsCollected=0;
         public FireBall Ball;
         public Coin[] Coins {get; set;}
         public int HitPoints = 1;
-        public Hero():base() { }
-        public Hero(Texture2D texture, Vector2 _position, Color _color, float _volocity, int frameRows, int frameCollums, Coin[] coins,FireBall fire) : base(texture, _position, _color, _volocity, frameRows, frameCollums)
+        public SimonHero():base() { }
+        public SimonHero(Texture2D texture, Vector2 _position, Color _color, float _volocity, int frameRows, int frameCollums, Coin[] coins,FireBall fire) : base(texture, _position, _color, _volocity, frameRows, frameCollums)
         { 
             Ball = fire;
             float frameTime = 0.1f;

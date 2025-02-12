@@ -2,11 +2,11 @@
 using Microsoft.Xna.Framework.Graphics;
 namespace Mario_Game
 {
-    internal class Sprite
+    internal class SimonSprite
     {
-        public Sprite()
+        public SimonSprite()
         { }
-        public Sprite(Texture2D _texture, Vector2 _position, Color _color, float _volocity, int frameLength,int frameRows)
+        public SimonSprite(Texture2D _texture, Vector2 _position, Color _color, float _volocity, int frameLength,int frameRows)
         {
             Texture = _texture;
             Position = _position;
@@ -35,7 +35,7 @@ namespace Mario_Game
             }
         }
         #region Colloision
-        protected bool IsTouchingLeft(Sprite sprite)
+        protected bool IsTouchingLeft(SimonSprite sprite)
         {
             return this.HitBox.Right + this.Position.X > sprite.HitBox.Left &&
               this.HitBox.Left < sprite.HitBox.Left &&
@@ -43,7 +43,7 @@ namespace Mario_Game
               this.HitBox.Top < sprite.HitBox.Bottom;
         }
 
-        protected bool IsTouchingRight(Sprite sprite)
+        protected bool IsTouchingRight(SimonSprite sprite)
         {
             return this.HitBox.Left + this.Position.X < sprite.HitBox.Right &&
               this.HitBox.Right > sprite.HitBox.Right &&
@@ -51,7 +51,7 @@ namespace Mario_Game
               this.HitBox.Top < sprite.HitBox.Bottom;
         }
 
-        protected bool IsTouchingTop(Sprite sprite)
+        protected bool IsTouchingTop(SimonSprite sprite)
         {
             return this.HitBox.Bottom + this.Position.Y > sprite.HitBox.Top &&
               this.HitBox.Top < sprite.HitBox.Top &&
@@ -59,7 +59,7 @@ namespace Mario_Game
               this.HitBox.Left < sprite.HitBox.Right;
         }
 
-        protected bool IsTouchingBottom(Sprite sprite)
+        protected bool IsTouchingBottom(SimonSprite sprite)
         {
             return this.HitBox.Top + this.Position.Y < sprite.HitBox.Bottom &&
               this.HitBox.Bottom > sprite.HitBox.Bottom &&
