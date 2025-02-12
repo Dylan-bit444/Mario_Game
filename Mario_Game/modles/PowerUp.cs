@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Mario_Game
 {
-    internal class PowerUp:SimonSprite
+    internal class PowerUp:Sprite
     {
         public PowerUp(): base() { }
         
@@ -12,7 +12,7 @@ namespace Mario_Game
             IsDraw = false;
         }
         
-        public void Update(SimonHero hero)
+        public void Update(Hero hero)
         {
             if (IsDraw)
             {

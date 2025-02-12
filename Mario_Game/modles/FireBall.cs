@@ -9,7 +9,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Mario_Game.modles
 {
-    internal class FireBall:SimonSprite
+    internal class FireBall:Sprite
     {
         private Vector2 Origin { get { return new Vector2(Texture.Width / 2, Texture.Height / 2); } }
         private float Rotation;

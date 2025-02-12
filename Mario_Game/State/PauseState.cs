@@ -17,7 +17,7 @@ namespace Mario_Game.State
         private InputManager inputManager = new();
         private SaveData SaveData = new SaveData();
 
-        public PauseState(ContentManager content,SimonHero _hero)
+        public PauseState(ContentManager content,Hero _hero)
         {
             SaveData.Player = _hero;
             for(int i = 0; i < _hero.Coins.Length; i++)

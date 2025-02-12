@@ -75,7 +75,7 @@ namespace Mario_Game
         
         protected override void Initialize()
         {
-            _hero = new Hero();
+            _hero = new SimonHero();
             
             // TODO: Add your initialization logic here
             IsMouseVisible = true;
@@ -89,7 +89,7 @@ namespace Mario_Game
             Globals.SpriteBatch = _spriteBatch;
 
             //load hero
-            _hero = new Hero(_hero.Texture,
+            _hero = new SimonHero(_hero.Texture,
                 new Vector2(_graphics.PreferredBackBufferWidth / 2 - _hero.Texture.Width / 2,
                 _graphics.PreferredBackBufferHeight/2/* - _hero.Texture.Height*/),
             Color.White, 2.0f, new Rectangle((int)_hero.Position.X, (int)_hero.Position.Y, _hero.Texture.Width, _hero.Texture.Height));

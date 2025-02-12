@@ -6,7 +6,7 @@ using SharpDX.Direct3D9;
 
 namespace Mario_Game
 {
-    internal class Coin:SimonSprite
+    internal class Coin:Sprite
     {
         public static Animation Animations;
         public Coin() : base() { }

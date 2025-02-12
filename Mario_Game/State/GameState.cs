@@ -10,7 +10,7 @@ namespace Mario_Game
     internal class GameState : Structure
     {
         private Coin[] _coin = new Coin[10];
-        private SimonHero _hero;
+        private Hero _hero;
         private InputManager _inputManager;
         public SaveData Saves;
         private SpriteFont hudFont;
@@ -80,7 +80,7 @@ namespace Mario_Game
             _hero.Update(time,graphics);
             _flag.Update(game, _hero, new MenuState(content));
         }
-        private Matrix Follow(SimonHero target, GraphicsDeviceManager graphics)
+        private Matrix Follow(Hero target, GraphicsDeviceManager graphics)
         {
             Matrix position = Matrix.CreateTranslation(
               -target.Position.X - (target.HitBox.Width / 2),

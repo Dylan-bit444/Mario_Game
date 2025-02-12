@@ -24,7 +24,7 @@ namespace Mario_Game
         private GamePadState CurrentControler;
         private int selectedInList = 0;
 
-        public void Update(SimonHero? _hero, List<Button>? menu,Game1 game,ContentManager content)
+        public void Update(Hero? _hero, List<Button>? menu,Game1 game,ContentManager content)
         {
             GamePadCapabilities gamePad = GamePad.GetCapabilities(PlayerIndex.One);
             KeyboardState keyboardState = Keyboard.GetState();
