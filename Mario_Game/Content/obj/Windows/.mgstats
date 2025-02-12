@@ -1,4 +1,5 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/13WrightD/source/repos/Mario_Game/Mario_Game/Content/Brick.png","C:/Users/13WrightD/source/repos/Mario_Game/Mario_Game/Content/bin/Windows/Brick.xnb","TextureProcessor","Texture2DContent",285,20085,0.2716924
 "C:/Users/13WrightD/source/repos/Mario_Game/Mario_Game/Content/Button.png","C:/Users/13WrightD/source/repos/Mario_Game/Mario_Game/Content/bin/Windows/Button.xnb","TextureProcessor","Texture2DContent",2481,360085,0.1414875
 "C:/Users/13WrightD/source/repos/Mario_Game/Mario_Game/Content/coin.png","C:/Users/13WrightD/source/repos/Mario_Game/Mario_Game/Content/bin/Windows/coin.xnb","TextureProcessor","Texture2DContent",8810,24661,0.0027702
 "C:/Users/13WrightD/source/repos/Mario_Game/Mario_Game/Content/File.spritefont","C:/Users/13WrightD/source/repos/Mario_Game/Mario_Game/Content/bin/Windows/File.xnb","FontDescriptionProcessor","SpriteFontContent",2077,529439,0.1820741
@@ -9,5 +10,3 @@ Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Siz
 "C:/Users/13WrightD/source/repos/Mario_Game/Mario_Game/Content/HudText.spritefont","C:/Users/13WrightD/source/repos/Mario_Game/Mario_Game/Content/bin/Windows/HudText.xnb","FontDescriptionProcessor","SpriteFontContent",2077,136223,0.0318707
 "C:/Users/13WrightD/source/repos/Mario_Game/Mario_Game/Content/Mushroom.png","C:/Users/13WrightD/source/repos/Mario_Game/Mario_Game/Content/bin/Windows/Mushroom.xnb","TextureProcessor","Texture2DContent",1817,3565,0.0025848
 "C:/Users/13WrightD/source/repos/Mario_Game/Mario_Game/Content/Question_Block.png","C:/Users/13WrightD/source/repos/Mario_Game/Mario_Game/Content/bin/Windows/Question_Block.xnb","TextureProcessor","Texture2DContent",1664,6485,0.0038176
-"C:/Users/simon/source/repos/Mario_Game/Mario_Game/Content/bin/Windows/MC.png","C:/Users/simon/source/repos/Mario_Game/Mario_Game/Content/bin/Windows/bin/Windows/MC.xnb","TextureProcessor","Texture2DContent",12179,460885,0.2101263
-"C:/Users/simon/source/repos/Mario_Game/Mario_Game/Content/Brick.png","C:/Users/simon/source/repos/Mario_Game/Mario_Game/Content/bin/Windows/Brick.xnb","TextureProcessor","Texture2DContent",285,20085,0.007303

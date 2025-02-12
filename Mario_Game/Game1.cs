@@ -6,7 +6,6 @@ using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using System.IO;
 using System;
-using System.IO;
 
 
 
@@ -106,8 +105,6 @@ namespace Mario_Game
         }
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
             Globals.Update(gameTime);
             _hero.Update(_graphics);
             foreach (Tile tile in tiles)

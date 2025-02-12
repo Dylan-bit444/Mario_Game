@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Mario_Game.modles
 {
-    internal class Power_Block:SimonSprite
+    internal class Power_Block:Sprite
     {
         private PowerUp HeldPower;
         public Power_Block():base(){ }
