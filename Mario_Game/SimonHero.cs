@@ -18,9 +18,9 @@ namespace Mario_Game
         private int gravitytiming = 30;
         private Tile noTile;
 
-        //public bool CanMoveLeft { get; set; }
-        //public bool CanMoveRight { get; set; }
-        //public bool CanMoveDown {get ; set; }
+        public bool CanMoveLeft { get; set; }
+        public bool CanMoveRight { get; set; }
+        public bool CanMoveDown { get; set; }
 
 
         public SimonHero() : base()
@@ -31,9 +31,9 @@ namespace Mario_Game
             : base(texture, position, _colour, _velocity, _boundingbox)
         {
             noTile = new Tile();
-            //CanMoveRight = true;
-            //CanMoveLeft = true;
-            //CanMoveDown = true;
+            CanMoveRight = true;
+            CanMoveLeft = true;
+            CanMoveDown = true;
         }
         public void UpdateVelocity(GraphicsDeviceManager _graphics, Tile inTile)
         {
@@ -42,50 +42,50 @@ namespace Mario_Game
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
                 _velocity.X = -Speed;
-                //if (CanMoveLeft)
-                //{
-                //    _velocity.X = -Speed;
-                //}
-                //if (!CanMoveLeft)
-                //{
-                //    Position = new Vector2(prevPos.X + 9, Position.Y);
-                //    CanMoveLeft = true;
-                //    CanMoveRight = true;
-                //}
+                if (CanMoveLeft)
+                {
+                    _velocity.X = -Speed;
+                }
+                if (!CanMoveLeft)
+                {
+                    Position = new Vector2(prevPos.X + 9, Position.Y);
+                    CanMoveLeft = true;
+                    CanMoveRight = true;
+                }
 
             }
             else if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
                 _velocity.X = +Speed;
-                //if (CanMoveRight)
-                //{
-                //    _velocity.X = Speed;
-                //}
-                //if (!CanMoveRight)
-                //{
-                //    Position = new Vector2(prevPos.X - 9, Position.Y);
-                //    CanMoveLeft = true;
-                //    CanMoveRight = true;
-                //}
+                if (CanMoveRight)
+                {
+                    _velocity.X = Speed;
+                }
+                if (!CanMoveRight)
+                {
+                    Position = new Vector2(prevPos.X - 9, Position.Y);
+                    CanMoveLeft = true;
+                    CanMoveRight = true;
+                }
             }
             else
             {
                 _velocity.X = 0;
             }
 
-            //if (!_onGround && gravitytimer==0)
-            //{
-            //    _velocity.Y += Gravity;
-           
-            //}
-            //gravitytimer = MathHelper.Max(0, gravitytimer-1);
+            if (!_onGround && gravitytimer == 0)
+            {
+                _velocity.Y += Gravity;
 
-            //if (Keyboard.GetState().IsKeyDown(Keys.Space) && _onGround)
-            //{
-            //    _velocity.Y = -Jump;
-            //    _onGround = false;
-            //    gravitytimer = gravitytiming; 
-            //}
+            }
+            gravitytimer = MathHelper.Max(0, gravitytimer - 1);
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Space) && _onGround)
+            {
+                _velocity.Y = -Jump;
+                _onGround = false;
+                gravitytimer = gravitytiming;
+            }
             if (Position.Y + Texture.Height > _graphics.PreferredBackBufferHeight)
             {
                 Position = new Vector2(Position.X, prevPos.Y+9);
