@@ -59,8 +59,7 @@ namespace Mario_Game
         private void CalculateTranslation()
         {
             var dy = (Globals.WindowSize.X / 2) - _hero.Position.X;
-            var dx = (Globals.WindowSize.Y / 2) - _hero.Position.Y;
-            _translaton = Matrix.CreateTranslation(dy, dx,0f);
+            _translaton = Matrix.CreateTranslation(dy, 0,0f);
         }
 
         protected override void Update(GameTime gameTime)
