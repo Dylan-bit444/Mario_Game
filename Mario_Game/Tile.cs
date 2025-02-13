@@ -23,18 +23,6 @@ namespace Mario_Game
             Position = inPosition;
             BoundingBox = new Rectangle((int)Position.X, (int)Position.Y, inTexture.Width, inTexture.Height);
         }
-        public bool CheckCollided(SimonHero inHero)
-        {
-            
-            if (Collidable && BoundingBox.Intersects(inHero.BoundingBox))
-            {
-                Collidable = true;
-                //inHero.CanMoveLeft = false;
-                //inHero.CanMoveRight = false;
-                return true;
-            }
-            return false;
-        }
 
  public void Draw(SpriteBatch spriteBatch)
         {

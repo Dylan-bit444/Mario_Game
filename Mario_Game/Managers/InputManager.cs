@@ -173,14 +173,14 @@ namespace Mario_Game
             }
             if (!_hero._onGround && _hero.gravitytimer == 0)
             {
-                _hero._velocity.Y += _hero.Gravity;
+                _hero._velocity.Y += Hero.Gravity;
 
             }
             _hero.gravitytimer = MathHelper.Max(0, _hero.gravitytimer - 1);
 
             if (Keyboard.GetState().IsKeyDown(Keys.Space) && _hero._onGround)
             {
-                _hero._velocity.Y = -_hero.Jump;
+                _hero._velocity.Y = -Hero.Jump;
                 _hero._onGround = false;
                 _hero.gravitytimer = _hero.gravitytiming;
             }

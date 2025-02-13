@@ -16,7 +16,7 @@ namespace Mario_Game
     {
         GraphicsDeviceManager _graphics;
         SpriteBatch _spriteBatch;
-        private SimonHero _hero;
+        private Hero _hero;
         private Dictionary<Vector2, int> tilemap;
         private List<Rectangle> textureStore;
         private int tileSize = 80;
@@ -75,7 +75,7 @@ namespace Mario_Game
         
         protected override void Initialize()
         {
-            _hero = new SimonHero();
+            _hero = new Hero();
             
             // TODO: Add your initialization logic here
             IsMouseVisible = true;
@@ -89,7 +89,7 @@ namespace Mario_Game
             Globals.SpriteBatch = _spriteBatch;
 
             //load hero
-            _hero = new SimonHero(_hero.Texture,
+            _hero = new Hero(_hero.Texture,
                 new Vector2(_graphics.PreferredBackBufferWidth / 2 - _hero.Texture.Width / 2,
                 _graphics.PreferredBackBufferHeight/2/* - _hero.Texture.Height*/),
             Color.White, 2.0f, new Rectangle((int)_hero.Position.X, (int)_hero.Position.Y, _hero.Texture.Width, _hero.Texture.Height));
@@ -109,12 +109,6 @@ namespace Mario_Game
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             Globals.Update(gameTime);
-            _hero.Update(_graphics);
-            foreach (Tile tile in tiles)
-            {
-                tile.CheckCollided(_hero);
-                _hero.UpdateVelocity(_graphics, tile);
-            }
 
            
 
@@ -132,7 +126,7 @@ namespace Mario_Game
 
             base.Update(gameTime);
         }
-        private Matrix Follow(SimonHero target, GraphicsDeviceManager graphics)
+        private Matrix Follow(Hero target, GraphicsDeviceManager graphics)
         {
             Matrix position = Matrix.CreateTranslation(
               -target.Position.X - (target.BoundingBox.Width / 2),
