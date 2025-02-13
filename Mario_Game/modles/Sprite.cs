@@ -25,8 +25,8 @@ namespace Mario_Game
         public bool IsVisible { get; set; }
         public Rectangle BoundingBox { get; set; }
         public bool IsDraw = true;
-        private int FrameHight;
-        private int FrameWidth;
+        public int FrameHight;
+        public int FrameWidth;
 
         public bool Collided(Rectangle box)
         {
