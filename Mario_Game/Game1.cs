@@ -145,12 +145,12 @@ namespace Mario_Game
         }
 
 
-        protected override void Draw(GameTime gameTime)
+        protected void Draw(GameTime gameTime, SpriteBatch _SpriteBatch)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             _spriteBatch.Begin(transformMatrix: Follow(_hero, _graphics));
-            _hero.Draw(_graphics);
+            _hero.Draw(_SpriteBatch);
             foreach (Tile t in tiles)
             {
                 t.Draw(_spriteBatch);

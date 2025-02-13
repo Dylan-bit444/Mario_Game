@@ -4,20 +4,22 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/simon/source/repos/Mario_Game/Mario_Game/Content/bin/Windows/MC.png</File>
-    <File>C:/Users/simon/source/repos/Mario_Game/Mario_Game/Content/Brick.png</File>
-    <File>C:/Users/13WrightD/source/repos/Mario_Game/Mario_Game/Content/Button.png</File>
-    <File>C:/Users/13WrightD/source/repos/Mario_Game/Mario_Game/Content/coin.png</File>
-    <File>C:/Users/13WrightD/source/repos/Mario_Game/Mario_Game/Content/File.spritefont</File>
-    <File>C:/Users/13WrightD/source/repos/Mario_Game/Mario_Game/Content/Fire_Flower.png</File>
-    <File>C:/Users/13WrightD/source/repos/Mario_Game/Mario_Game/Content/fire.png</File>
-    <File>C:/Users/13WrightD/source/repos/Mario_Game/Mario_Game/Content/Flag.png</File>
-    <File>C:/Users/13WrightD/source/repos/Mario_Game/Mario_Game/Content/hero-PlaceHolder.png</File>
-    <File>C:/Users/13WrightD/source/repos/Mario_Game/Mario_Game/Content/HudText.spritefont</File>
-    <File>C:/Users/13WrightD/source/repos/Mario_Game/Mario_Game/Content/Mushroom.png</File>
-    <File>C:/Users/13WrightD/source/repos/Mario_Game/Mario_Game/Content/Question_Block.png</File>
+    <File>C:/Users/13EdmondsA/source/repos/Mario_Game/Mario_Game2/Mario_Game/Content/Brick.png</File>
+    <File>C:/Users/13EdmondsA/source/repos/Mario_Game/Mario_Game2/Mario_Game/Content/Button.png</File>
+    <File>C:/Users/13EdmondsA/source/repos/Mario_Game/Mario_Game2/Mario_Game/Content/coin.png</File>
+    <File>C:/Users/13EdmondsA/source/repos/Mario_Game/Mario_Game2/Mario_Game/Content/File.spritefont</File>
+    <File>C:/Users/13EdmondsA/source/repos/Mario_Game/Mario_Game2/Mario_Game/Content/Fire_Flower.png</File>
+    <File>C:/Users/13EdmondsA/source/repos/Mario_Game/Mario_Game2/Mario_Game/Content/fire.png</File>
+    <File>C:/Users/13EdmondsA/source/repos/Mario_Game/Mario_Game2/Mario_Game/Content/Flag.png</File>
+    <File>C:/Users/13EdmondsA/source/repos/Mario_Game/Mario_Game2/Mario_Game/Content/hero-PlaceHolder.png</File>
+    <File>C:/Users/13EdmondsA/source/repos/Mario_Game/Mario_Game2/Mario_Game/Content/HudText.spritefont</File>
+    <File>C:/Users/13EdmondsA/source/repos/Mario_Game/Mario_Game2/Mario_Game/Content/MC.png</File>
+    <File>C:/Users/13EdmondsA/source/repos/Mario_Game/Mario_Game2/Mario_Game/Content/Mushroom.png</File>
+    <File>C:/Users/13EdmondsA/source/repos/Mario_Game/Mario_Game2/Mario_Game/Content/Question_Block.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

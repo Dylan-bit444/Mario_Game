@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/13WrightD/source/repos/Mario_Game/Mario_Game/Content/fire.png</SourceFile>
-  <SourceTime>2025-02-07T13:59:33.2584346+00:00</SourceTime>
-  <DestFile>C:/Users/13WrightD/source/repos/Mario_Game/Mario_Game/Content/bin/Windows/Content/fire.xnb</DestFile>
-  <DestTime>2025-02-07T14:05:56.2318839+00:00</DestTime>
+  <SourceFile>C:/Users/13EdmondsA/source/repos/Mario_Game/Mario_Game2/Mario_Game/Content/fire.png</SourceFile>
+  <SourceTime>2025-02-12T11:55:50.789508+00:00</SourceTime>
+  <DestFile>C:/Users/13EdmondsA/source/repos/Mario_Game/Mario_Game2/Mario_Game/Content/bin/Windows/Content/fire.xnb</DestFile>
+  <DestTime>2025-02-13T09:18:26.0230926+00:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T12:44:56+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
