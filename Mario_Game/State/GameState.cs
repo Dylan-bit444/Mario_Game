@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 
 namespace Mario_Game
 {
@@ -17,6 +18,14 @@ namespace Mario_Game
         private FireBall _fireBall;
         private Flag _flag;
         private Power_Block _power;
+        private SimonHero hero;
+        private Dictionary<Vector2, int> tilemap;
+        private List<Rectangle> textureStore;
+        private int tileSize = 80;
+        private Texture2D Spritesheet;
+        private int[,] tileValuesArray;
+        private Texture2D spriteSheet;
+        private Tile[,] tiles;
         public GameState(SaveData saves,ContentManager content)  
         {
             Saves = saves;
@@ -30,7 +39,9 @@ namespace Mario_Game
             Texture2D PowerTex = content.Load<Texture2D>("Question_Block");
             _flag = new(flagTex, new Vector2(110, 100), Color.White, 1, 1, 1);
             _power = new Power_Block(PowerTex,new Vector2(200,400),Color.White,0,1,1);
-            _fireBall = new(FireBallTex, new Vector2(100, 1000), Color.White, 8, 1, 1, 5f);
+            _fireBall = new(FireBallTex, new Vector2(100, 1000), Color.White, 8, 1, 1, 5f);#
+            hero = new SimonHero();
+            
             _fireBall.IsDraw =false;
             if (Saves != null)
             {
