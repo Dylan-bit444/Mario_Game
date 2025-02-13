@@ -1,14 +1,17 @@
-﻿using Mario_Game;
-using Mario_Game.modles;
+﻿using Mario_Game.modles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+
+using System.Collections.Generic;
+using System.IO;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace Mario_Game
 {
     internal class GameState : Structure
     {
+        #region Dylan
         private Coin[] _coin = new Coin[10];
         private Hero _hero;
         private InputManager _inputManager;
@@ -17,7 +20,32 @@ namespace Mario_Game
         private FireBall _fireBall;
         private Flag _flag;
         private Power_Block _power;
-        public GameState(SaveData saves,ContentManager content)  
+        #endregion
+
+        #region Simon
+        GraphicsDevice _graphics;
+        SpriteBatch _spriteBatch;
+        private SimonHero hero;
+        private Dictionary<Vector2, int> tilemap;
+        private List<Rectangle> textureStore;
+        private int tileSize = 80;
+        private Texture2D Spritesheet;
+        private int[,] tileValuesArray;
+        private Texture2D spriteSheet;
+        private Tile[,] tiles;
+
+        private Structure _currentState;
+
+        private Structure _nextState;
+
+        public void ChangeState(Structure state)
+        {
+            _nextState = state;
+        }
+        #endregion
+
+        public GameState(SaveData saves,ContentManager content,GraphicsDeviceManager _graphics)  
+
         {
             Saves = saves;
             hudFont = content.Load<SpriteFont>("HudText");
@@ -31,6 +59,18 @@ namespace Mario_Game
             _flag = new(flagTex, new Vector2(110, 100), Color.White, 1, 1, 1);
             _power = new Power_Block(PowerTex,new Vector2(200,400),Color.White,0,1,1);
             _fireBall = new(FireBallTex, new Vector2(100, 1000), Color.White, 8, 1, 1, 5f);
+
+            tiles = TileManager.ChooseTile(tileValuesArray, spriteSheet, graphics);
+            Texture2D hero = content.Load<Texture2D>("Brick");
+
+            _hero = new SimonHero(_hero.Texture,
+                new Vector2(_graphics.PreferredBackBufferWidth / 2 - _hero.Texture.Width / 2,
+                _graphics.PreferredBackBufferHeight / 2 - _hero.Texture.Height),
+            Color.White, 2.0f, new Rectangle((int)_hero.Position.X, (int)_hero.Position.Y, _hero.Texture.Width, _hero.Texture.Height));
+
+            tileValuesArray = TileManager.ReadFile("../../../Content/Map.txt");
+            spriteSheet = content.Load<Texture2D>("MC");
+
             _fireBall.IsDraw =false;
             if (Saves != null)
             {
@@ -51,10 +91,38 @@ namespace Mario_Game
                 {
                     _coin[i] = new Coin(_CoinTexture, new Vector2(100 * (i + 1), 100 * (i + 1)), Color.White, 0, 6,1);
                 }
+
+
             }
             _hero.Coins =_coin;
             _inputManager = new();
-            
+
+
+            static Dictionary<Vector2, int> LoadMap(string filepath)
+            {
+                Dictionary<Vector2, int> result = new();
+                StreamReader reader = new(filepath);
+
+                int y = 0;
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    string[] items = line.Split(',');
+                    for (int x = 0; x < items.Length; x++)
+                    {
+                        if (int.TryParse(items[x], out int value))
+                        {
+                            if (value > 0)
+                            {
+                                result[new Vector2(x, y)] = value;
+                            }
+                        }
+
+                    }
+                    y++;
+                }
+                return result;
+            }
         }
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch, GraphicsDeviceManager graphics)
         {
@@ -67,9 +135,17 @@ namespace Mario_Game
             _fireBall.Draw(spriteBatch);
             _power.Draw(spriteBatch);
             spriteBatch.End();
+
+
+            _spriteBatch.Begin(transformMatrix: Follow(_hero, graphics));
+            _hero.Draw(spriteBatch);
+            foreach (Tile t in tiles)
+            {
+                t.Draw(_spriteBatch);
+            }
         }
 
-        public override void Update(GameTime gameTime, Game1 game, ContentManager content, GraphicsDeviceManager graphics)
+        public void Update(GameTime gameTime, Game1 game, ContentManager content, GraphicsDeviceManager graphics, float Time)
         {
             float time;
             time = (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -79,6 +155,26 @@ namespace Mario_Game
             coin.Update(time);
             _hero.Update(time,graphics);
             _flag.Update(game, _hero, new MenuState(content));
+
+
+            _hero.Update(Time, graphics);
+            foreach (Tile tile in tiles)
+            {
+                tile.CheckCollided(_hero);
+                _hero.UpdateVelocity(graphics, tile);
+            }
+
+
+
+
+            if (_nextState != null)
+            {
+                _currentState = _nextState;
+
+                _nextState = null;
+            }
+
+            _currentState.Update(gameTime, game, content, graphics);
         }
         private Matrix Follow(Hero target, GraphicsDeviceManager graphics)
         {
@@ -94,6 +190,9 @@ namespace Mario_Game
 
 
             return (position * offset );
+
+
+
         }
     }
 
