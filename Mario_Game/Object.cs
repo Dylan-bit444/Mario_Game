@@ -28,7 +28,6 @@ namespace Mario_Game
 
         public Object(Texture2D _texture, Vector2 _position, Color _colour, float _velocity, Rectangle _box)
         {
-            IsVisible = true;
             Texture = _texture;
             Position = _position;
             Colour = _colour;
@@ -49,7 +48,6 @@ namespace Mario_Game
 
         public void Move(GraphicsDeviceManager _graphics, Object _object)
         {
-            IsVisible = true;
 
             Boundingbox = new Rectangle((int)Position.X, (int)Position.Y, Texture.Width, Texture.Height);
 

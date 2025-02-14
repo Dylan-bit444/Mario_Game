@@ -24,7 +24,6 @@ namespace Mario_Game
         static void GameState()
         {
             
-
         }
 
         static void PauseState()

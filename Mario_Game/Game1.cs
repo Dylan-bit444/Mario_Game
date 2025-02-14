@@ -5,7 +5,6 @@ using NewStartMenu.States;
 using System.Text.Json;
 using System.Diagnostics;
 using System.IO;
-using Microsoft.Xna.Framework.Content;
 
 
 
@@ -21,9 +20,11 @@ namespace Mario_Game
 
         private Structure _nextState;
 
-        private Texture2D _objectTexture;
+        Texture2D _objectTexture;
 
         private Object _object;
+
+        int speed = 1;
 
         private const string PATH = "const.Json";
         public void ChangeState(Structure state)
@@ -39,13 +40,15 @@ namespace Mario_Game
             _graphics.PreferredBackBufferWidth = 2000;
             _graphics.PreferredBackBufferHeight = 2000;
             _graphics.ApplyChanges();
-            _objectTexture = Content.Load<Texture2D>("Ball");
+            
+            IsMouseVisible = true;
         }
 
         protected override void Initialize()
         {
+           
 
-            IsMouseVisible = true; 
+            _object = new Object(Texture2D _texture, Vector2 ();
 
             base.Initialize();
         }
@@ -57,11 +60,14 @@ namespace Mario_Game
 
             _currentState = new MenuState(this, _graphics, Content);
 
-            _object = new Object(_objectTexture, new Vector2 (_graphics.PreferredBackBufferWidth / 2 - _objectTexture.Width / 2, _graphics.PreferredBackBufferHeight / 2 - _objectTexture.Height), Color.White, 2f, new Rectangle());
+            _objectTexture = Content.Load<Texture2D>("Ball");
+
+            _object = new Rectangle();
         }
         
         protected override void Update(GameTime gameTime)
         {
+
 
             if (_nextState != null)
             {
@@ -71,6 +77,7 @@ namespace Mario_Game
             }
             _currentState.Update(gameTime);
 
+              
             MouseState mouse = Mouse.GetState();
 
             base.Update(gameTime);
@@ -85,7 +92,7 @@ namespace Mario_Game
 
             _currentState.Draw(gameTime, _spriteBatch);
 
-            _object.Draw(_spriteBatch);
+            _object.Draw(gameTime, _spriteBatch);
 
 
             base.Draw(gameTime);
