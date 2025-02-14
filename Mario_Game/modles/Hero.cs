@@ -40,13 +40,13 @@ namespace Mario_Game
             Coins = coins;
         }
 
-        public void Update(float time, GraphicsDeviceManager graphics)
+        public void Update(float time, GraphicsDeviceManager graphics, bool fire, Vector2 Direction, bool Moving)
         {
             if (Ball.Sommoned && HitPoints == 3)
             {
                 Ball.IsDraw = true;
                 Ball.Sommoned = false;
-                if (InputManager.Direction.X == 1 || Animations.LastKeyPress.X == 1 && InputManager.Direction.X == 0)
+                if (Direction.X == 1 || Animations.LastKeyPress.X == 1 &&Direction.X == 0)
                 {
                     Ball.Position = new Vector2(10 + Position.X + Texture.Width / 8, Position.Y + (Texture.Height / 8) / 2);
                     if(Ball.Volocity < 0)
@@ -54,7 +54,7 @@ namespace Mario_Game
                         Ball.Volocity = -Ball.Volocity;
                     }
                 }
-                else if (InputManager.Direction.X == -1 || Animations.LastKeyPress.X == -1 && InputManager.Direction.X == 0)
+                else if (Direction.X == -1 || Animations.LastKeyPress.X == -1 &&Direction.X == 0)
                 {
                     Ball.Position = new Vector2(Position.X- 40, Position.Y + (Texture.Height / 8) / 2);
                     if (Ball.Volocity > 0)
@@ -67,9 +67,9 @@ namespace Mario_Game
             {
                 Ball.IsDraw = false;
             }
-            if (InputManager.Moving)
+            if (Moving)
             {
-                Position += Vector2.Normalize(InputManager.Direction) * Volocity * time;
+                Position += Vector2.Normalize(Direction) * Volocity * time;
             }
             foreach (Coin coin in Coins)
             {
@@ -80,8 +80,8 @@ namespace Mario_Game
                 }
             }
             if(Ball.IsDraw)
-                Ball.Update(graphics);
-            Animations.Update(InputManager.Direction,time);
+                Ball.Update(graphics,fire);
+            Animations.Update(Direction,time);
         }
 
         public void Draw(SpriteBatch spriteBatch)

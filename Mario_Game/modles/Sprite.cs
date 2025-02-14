@@ -39,14 +39,39 @@ namespace Mario_Game
                 return false;
             }
         }
-        public void LoadOwnContent(ContentManager myContent, string contentFilename)
+        #region Colloision
+        protected bool IsTouchingLeft(Sprite sprite)
         {
-            myContent.RootDirectory = "Content";
-            Texture = myContent.Load<Texture2D>(contentFilename);
+            return this.HitBox.Right + this.Position.X > sprite.HitBox.Left &&
+              this.HitBox.Left < sprite.HitBox.Left &&
+              this.HitBox.Bottom > sprite.HitBox.Top &&
+              this.HitBox.Top < sprite.HitBox.Bottom;
         }
-        public void Draw()
+
+        protected bool IsTouchingRight(Sprite sprite)
         {
-            Globals.SpriteBatch.Draw(Texture, Position, Color);
+            return this.HitBox.Left + this.Position.X < sprite.HitBox.Right &&
+              this.HitBox.Right > sprite.HitBox.Right &&
+              this.HitBox.Bottom > sprite.HitBox.Top &&
+              this.HitBox.Top < sprite.HitBox.Bottom;
         }
+
+        protected bool IsTouchingTop(Sprite sprite)
+        {
+            return this.HitBox.Bottom + this.Position.Y > sprite.HitBox.Top &&
+              this.HitBox.Top < sprite.HitBox.Top &&
+              this.HitBox.Right > sprite.HitBox.Left &&
+              this.HitBox.Left < sprite.HitBox.Right;
+        }
+
+        protected bool IsTouchingBottom(Sprite sprite)
+        {
+            return this.HitBox.Top + this.Position.Y < sprite.HitBox.Bottom &&
+              this.HitBox.Bottom > sprite.HitBox.Bottom &&
+              this.HitBox.Right > sprite.HitBox.Left &&
+              this.HitBox.Left < sprite.HitBox.Right;
+        }
+
+        #endregion
     }
 }

@@ -22,9 +22,9 @@ namespace Mario_Game.modles
         { 
             RotationVelocity = rotstion;
         }
-        public void Update(GraphicsDeviceManager graphics)
+        public void Update(GraphicsDeviceManager graphics, bool fire)
         {
-            if (InputManager.Fire)
+            if (fire)
             {
                 if (graphics.PreferredBackBufferHeight <= Position.Y + HitBox.Height)
                     Volocity = -10;

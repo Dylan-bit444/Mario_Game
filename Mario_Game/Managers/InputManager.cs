@@ -1,14 +1,9 @@
 ﻿using Mario_Game.State;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using SharpDX.XInput;
-using System;
+
 using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.Reflection.Metadata;
 
 namespace Mario_Game
 {
@@ -17,8 +12,8 @@ namespace Mario_Game
         public static bool Mickel;
         public static bool Fire;
         private static Vector2 _direction = Vector2.Zero;
-        public static Vector2 Direction => _direction;
-        public static bool Moving => _direction != Vector2.Zero;
+        private Vector2 Direction => _direction;
+        private static bool Moving => _direction != Vector2.Zero;
 
         private GamePadState PreviousControler;
 
@@ -26,7 +21,7 @@ namespace Mario_Game
         private int selectedInList = 0;
 
 
-        public void Update(Hero? _hero, List<Button>? menu,Game1 game,ContentManager content, GraphicsDeviceManager _graphics)
+        public void Update(Hero? _hero, List<Button>? menu,Game1 game,ContentManager content, GraphicsDeviceManager _graphics , float time)
         {
             GamePadCapabilities gamePad = GamePad.GetCapabilities(PlayerIndex.One);
             KeyboardState keyboardState = Keyboard.GetState();
@@ -129,6 +124,29 @@ namespace Mario_Game
                     Fire = true;
                 else if(keyboardState.IsKeyDown(Keys.E))
                     Fire = false;
+                #region Simons Jumping 
+                if (!_hero._onGround && _hero.gravitytimer == 0)
+                {
+                    _hero._velocity.Y += Hero.Gravity;
+
+                }
+                _hero.gravitytimer = MathHelper.Max(0, _hero.gravitytimer - 1);
+
+                if (Keyboard.GetState().IsKeyDown(Keys.Space) && _hero._onGround)
+                {
+                    _hero._velocity.Y = -Hero.Jump;
+                    _hero._onGround = false;
+                    _hero.gravitytimer = _hero.gravitytiming;
+                }
+                if (_hero.Position.Y + _hero.FrameHight > _graphics.PreferredBackBufferHeight)
+                {
+                    _hero._onGround = true;
+                    _hero.Position = new Vector2(_hero.Position.X, _graphics.PreferredBackBufferHeight - _hero.FrameHight);
+                    _hero._velocity.Y = 0;
+                    _hero.Position += _hero._velocity * time;
+                }
+                #endregion
+                _hero.Update(time, _graphics,Fire, Direction,Moving);
             }
             else if (menu != null && gamePad.IsConnected)
             {
@@ -170,26 +188,6 @@ namespace Mario_Game
             {
                 foreach (Button component in menu)
                     component.Update(game, content, _hero);
-            }
-            if (!_hero._onGround && _hero.gravitytimer == 0)
-            {
-                _hero._velocity.Y += Hero.Gravity;
-
-            }
-            _hero.gravitytimer = MathHelper.Max(0, _hero.gravitytimer - 1);
-
-            if (Keyboard.GetState().IsKeyDown(Keys.Space) && _hero._onGround)
-            {
-                _hero._velocity.Y = -Hero.Jump;
-                _hero._onGround = false;
-                _hero.gravitytimer = _hero.gravitytiming;
-            }
-            if (_hero.Position.Y + _hero.FrameHight > _graphics.PreferredBackBufferHeight)
-            {
-                _hero._onGround = true;
-                _hero.Position = new Vector2(_hero.Position.X, _graphics.PreferredBackBufferHeight - _hero.FrameHight);
-                _hero._velocity.Y = 0;
-                _hero.Position += _hero._velocity * Globals.Time;
             }
         }
     }

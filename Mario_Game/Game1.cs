@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using System.IO;
 using System;
-using System.IO;
+using Mario_Game.State;
 
 
 
@@ -16,7 +16,6 @@ namespace Mario_Game
     {
         GraphicsDeviceManager _graphics;
         SpriteBatch _spriteBatch;
-        private Hero _hero;
         private Dictionary<Vector2, int> tilemap;
         private List<Rectangle> textureStore;
         private int tileSize = 80;
@@ -75,24 +74,13 @@ namespace Mario_Game
         
         protected override void Initialize()
         {
-            _hero = new Hero();
-            
             // TODO: Add your initialization logic here
             IsMouseVisible = true;
-
             base.Initialize();
         }
         protected override void LoadContent()
         {
-            _hero.LoadOwnContent(Content, "Brick");
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            Globals.SpriteBatch = _spriteBatch;
-
-            //load hero
-            _hero = new Hero(_hero.Texture,
-                new Vector2(_graphics.PreferredBackBufferWidth / 2 - _hero.Texture.Width / 2,
-                _graphics.PreferredBackBufferHeight/2/* - _hero.Texture.Height*/),
-            Color.White, 2.0f, new Rectangle((int)_hero.Position.X, (int)_hero.Position.Y, _hero.Texture.Width, _hero.Texture.Height));
 
             tileValuesArray = TileManager.ReadFile("../../../Content/Map.txt");
             spriteSheet = Content.Load<Texture2D>("MC");
@@ -106,13 +94,6 @@ namespace Mario_Game
         }
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
-            Globals.Update(gameTime);
-
-           
-
-
             if (_nextState != null)
             {
                 _currentState = _nextState;
@@ -121,25 +102,8 @@ namespace Mario_Game
             }
 
             _currentState.Update(gameTime,this,Content,_graphics);
-            // TODO: Add your update logic here
-            //_gameManager.Update();
 
             base.Update(gameTime);
-        }
-        private Matrix Follow(Hero target, GraphicsDeviceManager graphics)
-        {
-            Matrix position = Matrix.CreateTranslation(
-              -target.Position.X - (target.BoundingBox.Width / 2),
-              0,
-              0);
-
-            Matrix offset = Matrix.CreateTranslation(
-                graphics.PreferredBackBufferWidth / 2,
-                0,
-                0);
-
-
-            return (position * offset);
         }
 
 
@@ -147,8 +111,7 @@ namespace Mario_Game
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            _spriteBatch.Begin(transformMatrix: Follow(_hero, _graphics));
-            _hero.Draw();
+            _spriteBatch.Begin();
             foreach (Tile t in tiles)
             {
                 t.Draw(_spriteBatch);

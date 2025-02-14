@@ -74,10 +74,9 @@ namespace Mario_Game
             float time;
             time = (float)gameTime.ElapsedGameTime.TotalSeconds;
             _power.Update(_hero, content.Load<Texture2D>("Mushroom"), content.Load<Texture2D>("Fire_Flower"));
-            _inputManager.Update(_hero, null,game,content);
+            _inputManager.Update(_hero, null,game,content,graphics,time);
             foreach (Coin coin in _coin) 
             coin.Update(time);
-            _hero.Update(time,graphics);
             _flag.Update(game, _hero, new MenuState(content));
         }
         private Matrix Follow(Hero target, GraphicsDeviceManager graphics)
