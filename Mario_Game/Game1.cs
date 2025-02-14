@@ -10,6 +10,7 @@ namespace Mario_Game
         private SpriteBatch _spriteBatch;
         private States _states;
 
+
         public void ChangeState(Structure state)
         {
             _nextState = state;
