@@ -13,6 +13,17 @@ namespace Mario_Game
         public FireBall Ball;
         public Coin[] Coins {get; set;}
         public int HitPoints = 1;
+
+
+        public const float Speed = 350f;
+        public const float Gravity = 3.5f;
+        public  const float Jump = 5000f;
+        public Vector2 _velocity;
+        public bool _onGround = true;
+        public int gravitytimer = 0;
+        public int gravitytiming = 30;
+
+
         public Hero():base() { }
         public Hero(Texture2D texture, Vector2 _position, Color _color, float _volocity, int frameRows, int frameCollums, Coin[] coins,FireBall fire) : base(texture, _position, _color, _volocity, frameRows, frameCollums)
         { 
