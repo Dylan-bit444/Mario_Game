@@ -11,6 +11,10 @@ namespace Mario_Game
     {
         public static bool Mickel;
         public static bool Fire;
+
+        private float Speed = 350f;
+        private float Gravity = 3.5f;
+        private float Jump = 5000f;
         private static Vector2 _direction = Vector2.Zero;
         private Vector2 Direction => _direction;
         private static bool Moving => _direction != Vector2.Zero;
@@ -127,14 +131,14 @@ namespace Mario_Game
                 #region Simons Jumping 
                 if (!_hero._onGround && _hero.gravitytimer == 0)
                 {
-                    _hero._velocity.Y += Hero.Gravity;
+                    _hero._velocity.Y += Gravity;
 
                 }
                 _hero.gravitytimer = MathHelper.Max(0, _hero.gravitytimer - 1);
 
                 if (Keyboard.GetState().IsKeyDown(Keys.Space) && _hero._onGround)
                 {
-                    _hero._velocity.Y = -Hero.Jump;
+                    _hero.Position -= new Vector2(0,Jump);
                     _hero._onGround = false;
                     _hero.gravitytimer = _hero.gravitytiming;
                 }
