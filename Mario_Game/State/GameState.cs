@@ -34,7 +34,7 @@ namespace Mario_Game
             _fireBall.IsDraw =false;
             if (Saves != null)
             {
-                _hero = new(_playerTexture, saves.Player.Position, Color.White, 200f, 8, 8, new Coin[10],_fireBall);
+                _hero = new(_playerTexture, saves.Player.Position, Color.White, 350f, 8, 8, new Coin[10],_fireBall);
                 _hero.CoinsCollected = saves.Player.CoinsCollected;
                 _hero.Animations.LastKeyPress = saves.Player.Animations.LastKeyPress;
                 for (int i = 0; i < _coin.Length; i++)

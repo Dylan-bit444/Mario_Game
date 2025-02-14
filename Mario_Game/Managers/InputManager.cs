@@ -11,10 +11,8 @@ namespace Mario_Game
     {
         public static bool Mickel;
         private bool Fire;
-
-        private float Speed = 350f;
-        private float Gravity = 3.5f;
-        private float Jump = 5000f;
+        private float Gravity = 500f;
+        private float Jump = 1500f;
         private static Vector2 _direction = Vector2.Zero;
         private Vector2 Direction => _direction;
         private static bool Moving => _direction != Vector2.Zero;
@@ -129,25 +127,12 @@ namespace Mario_Game
                 else if(keyboardState.IsKeyDown(Keys.E))
                     Fire = false;
                 #region Simons Jumping 
-                if (!_hero._onGround && _hero.gravitytimer == 0)
+                if (!_hero._onGround)
+                    _hero.Position += new Vector2(0, Gravity * time);
+                if (keyboardState.IsKeyDown(Keys.Space)&&_hero._onGround)
                 {
-                    _hero._velocity.Y += Gravity;
-
-                }
-                _hero.gravitytimer = MathHelper.Max(0, _hero.gravitytimer - 1);
-
-                if (Keyboard.GetState().IsKeyDown(Keys.Space) && _hero._onGround)
-                {
-                    _hero._velocity = new Vector2(0,-Jump);
+                    _hero.Position+= new Vector2(0,-_hero.Volocity);
                     _hero._onGround = false;
-                    _hero.gravitytimer = _hero.gravitytiming;
-                }
-                if (_hero.Position.Y + _hero.FrameHight > _graphics.PreferredBackBufferHeight)
-                {
-                    _hero._onGround = true;
-                    _hero._velocity = new Vector2(_hero.Position.X, _graphics.PreferredBackBufferHeight - _hero.FrameHight);
-                    _hero._velocity.Y = 0;
-                    _hero.Position += _hero._velocity * time;
                 }
                 #endregion
                 _hero.Update(time, _graphics,Fire, Direction,Moving);

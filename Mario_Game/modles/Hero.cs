@@ -65,7 +65,7 @@ namespace Mario_Game
             {
                 Ball.IsDraw = false;
             }
-            if (Moving && _onGround)
+            if (Moving)
             {
                 Position += Vector2.Normalize(Direction) * Volocity * time;
             }
