@@ -10,7 +10,7 @@ namespace Mario_Game
     internal class InputManager
     {
         public static bool Mickel;
-        public static bool Fire;
+        private bool Fire;
 
         private float Speed = 350f;
         private float Gravity = 3.5f;
@@ -138,14 +138,14 @@ namespace Mario_Game
 
                 if (Keyboard.GetState().IsKeyDown(Keys.Space) && _hero._onGround)
                 {
-                    _hero.Position -= new Vector2(0,Jump);
+                    _hero._velocity = new Vector2(0,-Jump);
                     _hero._onGround = false;
                     _hero.gravitytimer = _hero.gravitytiming;
                 }
                 if (_hero.Position.Y + _hero.FrameHight > _graphics.PreferredBackBufferHeight)
                 {
                     _hero._onGround = true;
-                    _hero.Position = new Vector2(_hero.Position.X, _graphics.PreferredBackBufferHeight - _hero.FrameHight);
+                    _hero._velocity = new Vector2(_hero.Position.X, _graphics.PreferredBackBufferHeight - _hero.FrameHight);
                     _hero._velocity.Y = 0;
                     _hero.Position += _hero._velocity * time;
                 }
