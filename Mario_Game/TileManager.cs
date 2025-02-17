@@ -16,6 +16,7 @@ namespace Mario_Game
     {
         //Need a 2D array to store the tiles
         private static int[,] tileArray;
+        private static Rectangle[,] Colliders;
 
         /// <summary>
         /// Read the file (.txt file) to get the tile values
@@ -60,7 +61,7 @@ namespace Mario_Game
             } while (!sReader.EndOfStream);
             //Close the streamreader
             sReader.Close();
-
+            Colliders = new Rectangle[tileArray.GetLength(0), tileArray.GetLength(1)];
             //Return the array to wherever the method is called
             return tileArray;
         }
@@ -140,7 +141,7 @@ namespace Mario_Game
             {
                 for (int y = leftTile; y <= rightTile; y++)
                 {
-                    if (tileArray[x, y] != 0) result.Add(Coliders[x, y]);
+                    if (tileArray[x, y] != 0) result.Add(Colliders[x,y]);
                 }
             }
             return result;

@@ -129,6 +129,10 @@ namespace Mario_Game
                 #region Simons Jumping 
                 if (!_hero._onGround)
                     _hero.Position += new Vector2(0, Gravity * time);
+                if (_hero.Position.Y < _graphics.PreferredBackBufferHeight)
+                    _hero._onGround = true;
+                else
+                _hero._onGround = false;
                 if (keyboardState.IsKeyDown(Keys.Space)&&_hero._onGround)
                 {
                     _hero._onGround = false;
