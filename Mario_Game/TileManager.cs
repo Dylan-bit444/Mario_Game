@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection.Metadata.Ecma335;
 using Mario_Game;
@@ -81,12 +82,12 @@ namespace Mario_Game
                     {
                         case 0:
                             sourceRectangle = new Rectangle(tileValuesArray[i, j] * 80, 0, 80, 80);
-                            
+
                             break;
                         case 1:
                             sourceRectangle = new Rectangle(tileValuesArray[i, j] * 80, 0, 80, 80);
                             collides = false;
-                            
+
                             break;
                         case 2:
                             sourceRectangle = new Rectangle(tileValuesArray[i, j] * 80, 0, 80, 80);
@@ -121,20 +122,29 @@ namespace Mario_Game
             }
             return tileTypes;
         }
-    }
-    }
+    
+    private static List<Rectangle> GetNearestBlocks(Rectangle Hitbox, int[,] tileArray)
+        {
+            int leftTile = (int)Math.Floor((float)Hitbox.Left / 80);
+            int rightTile = (int)Math.Ceiling((float)Hitbox.Right / 80) - 1;
+            int topTile = (int)Math.Floor((float)Hitbox.Top / 80);
+            int bottomTile = (int)Math.Ceiling((float)Hitbox.Bottom / 80) - 1;
+
+            leftTile = MathHelper.Clamp(leftTile, 0, tileArray.GetLength(1));
+            rightTile = MathHelper.Clamp(rightTile, 0, tileArray.GetLength(1));
+            topTile = MathHelper.Clamp(leftTile, 0, tileArray.GetLength(1));
+            bottomTile = MathHelper.Clamp(rightTile, 0, tileArray.GetLength(1));
+
+            List<Rectangle> result= new List<Rectangle>();
+            for (int x = topTile; x <= bottomTile; x++)
+            {
+                for (int y = leftTile; y <= rightTile; y++)
+                {
+                    if (tileArray[x, y] != 0) result.Add(Coliders[x, y]);
+                }
+            }
+            return result;
+        }
+    } }
 
 
-public List<Rectangle> GetNearestBlocks(Rectangle Hitbox)
-{
-    int leftTile = (int)Math.Floor(Hitbox.Left / 80);
-    int rightTile = (int)Math.Ceiling((float)Hitbox.Right / 80) - 1;
-    int topTile = (int)Math.Floor((float)Hitbox.Top / 80);
-    int bottomTile = (int)Math.Ceiling((float)Hitbox.Bottom / 80) - 1;
-
-    leftTile = MathHelper.Clamp(leftTile, 0, tileArray.GetLength(1));
-    rightTile = MathHelper.Clamp(rightTile, 0, tileArray.GetLength(1));
-    topTile = MathHelper.Clamp(leftTile, 0, tileArray.GetLength(1));
-    bottomTile = MathHelper.Clamp(rightTile, 0, tileArray.GetLength(1));
-    return null;
-}
