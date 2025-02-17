@@ -131,9 +131,14 @@ namespace Mario_Game
                     _hero.Position += new Vector2(0, Gravity * time);
                 if (keyboardState.IsKeyDown(Keys.Space)&&_hero._onGround)
                 {
-                    _hero.Position+= new Vector2(0,-_hero.Volocity);
                     _hero._onGround = false;
                 }
+                if(!_hero._onGround&& _hero.Position.Y < _hero.Volocity)
+                {
+                    _direction += new Vector2(0, 1);
+                }
+                else
+                    _hero._onGround=true;
                 #endregion
                 _hero.Update(time, _graphics,Fire, Direction,Moving);
             }
