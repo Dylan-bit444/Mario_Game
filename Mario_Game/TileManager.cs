@@ -64,7 +64,7 @@ namespace Mario_Game
             return tileArray;
         }
 
-        public static Tile[,] ChooseTile(int[,] tileValuesArray, Texture2D tileSheet, GraphicsDeviceManager graphicsDev)
+        public static Tile[,] ChooseTile(int[,] tileValuesArray, Texture2D tileSheet, GraphicsDevice graphicsDev)
         {
             Tile[,] tileTypes = new Tile[tileValuesArray.GetLength(0), tileValuesArray.GetLength(1)];
             Rectangle sourceRectangle;
@@ -125,16 +125,16 @@ namespace Mario_Game
     }
 
 
-public static List<Rectangle> GetNearestBlocks(Rectangle Hitbox)
+public List<Rectangle> GetNearestBlocks(Rectangle Hitbox)
 {
     int leftTile = (int)Math.Floor(Hitbox.Left / 80);
     int rightTile = (int)Math.Ceiling((float)Hitbox.Right / 80) - 1;
     int topTile = (int)Math.Floor((float)Hitbox.Top / 80);
     int bottomTile = (int)Math.Ceiling((float)Hitbox.Bottom / 80) - 1;
 
-    leftTile = MathHelper.Clamp(leftTile, 0, Tile.GetLength(1));
-    rightTile = MathHelper.Clamp(rightTile, 0, Tile.GetLength(1));
-    topTile = MathHelper.Clamp(leftTile, 0, Tile.GetLength(1));
-    bottomTile = MathHelper.Clamp(rightTile, 0, Tile.GetLength(1));
+    leftTile = MathHelper.Clamp(leftTile, 0, tileArray.GetLength(1));
+    rightTile = MathHelper.Clamp(rightTile, 0, tileArray.GetLength(1));
+    topTile = MathHelper.Clamp(leftTile, 0, tileArray.GetLength(1));
+    bottomTile = MathHelper.Clamp(rightTile, 0, tileArray.GetLength(1));
     return null;
 }
