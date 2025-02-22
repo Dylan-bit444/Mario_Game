@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using System.Reflection.Metadata;
 
 namespace Mario_Game
 {
@@ -23,6 +22,8 @@ namespace Mario_Game
             gameOver, 
             menuState
         }
+
+        Button _components = new List<Texture2D>();
 
         public void SetState(StateType inState)
         {
