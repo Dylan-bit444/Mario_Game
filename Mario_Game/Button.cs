@@ -27,7 +27,7 @@ namespace Mario_Game
             #endregion
             #region Properties
 
-            public delegate void Clickes(object? sender, Game1 game, ContentManager content, EventArgs e);
+            public delegate void Clickes(object sender, Game1 game, ContentManager content, EventArgs e);
             public event Clickes Click;
 
             public bool Clicked { get; private set; }

@@ -23,13 +23,13 @@ namespace Mario_Game
             menuState
         }
 
-        Button _components = new List<Texture2D>();
+        
 
         public void SetState(StateType inState)
         {
             if (inState == StateType.playGame)
             {
-                MenuState(ContentManager);   
+                GameState(ContentManager);   
             }
 
         }
@@ -79,12 +79,12 @@ namespace Mario_Game
                 component.Draw(gameTime, spriteBatch);
         }
 
-        private void LoadGameButton_Click(object? sender, Game1 game, ContentManager content, EventArgs e)
+        private void LoadGameButton_Click(object sender, Game1 game, ContentManager content, EventArgs e)
         {
             Console.WriteLine("Load Game");
         }
 
-        private void NewGameButton_Click(object? sender, Game1 game, ContentManager content, EventArgs e)
+        private void NewGameButton_Click(object sender, Game1 game, ContentManager content, EventArgs e)
         {
         }
 
@@ -102,9 +102,24 @@ namespace Mario_Game
 
 
         }
-        private void QuitGameButton_Click(object? sender, Game1 game, ContentManager content, EventArgs e)
+        private void QuitGameButton_Click(object sender, Game1 game, ContentManager content, EventArgs e)
         {
             game.Exit();
+        }
+
+        public void PauseState (ContentManager content)
+        {
+
+        }
+
+        public void EndGame (ContentManager content)
+        {
+
+        }
+
+        public void GameState (ContentManager content)
+        {
+
         }
     }
             
