@@ -12,7 +12,7 @@ namespace Mario_Game.modles
         {
             HeldPower = new PowerUp(Texture,new Vector2(Position.X,Position.Y-_texture.Height),Color.White,5,1,1);
         }
-
+        //bu
         public void Update(Hero _hero,Texture2D Mush,Texture2D Flower)
         {
             if (IsTouchingTop(_hero))
